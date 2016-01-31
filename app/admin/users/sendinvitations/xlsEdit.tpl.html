@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <h3 class="modal-title">Details you had entered</h3>
+</div>
+<div class="modal-body">
+  <section class="tile" fullscreen="isFullscreen01">
+    <form class="form-horizontal" role="form">
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font">
+          <strong>Food Item</strong> Details</h1>
+      </div>
+      <div class="tile-body">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Employee ID :</label>
+          <div class="col-sm-5">
+            <input type="text" name="employeeId " class="form-control mb-10" placeholder="Employee ID " data-ng-model="vm.ui.employeeId">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">First Name :</label>
+          <div class="col-sm-5">
+            <input type="text" name="firstName" class="form-control mb-10" placeholder="First Name" data-ng-model="vm.ui.firstName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Last Name :</label>
+          <div class="col-sm-5">
+            <input type="text" name="lastName" class="form-control mb-10" placeholder="Last Name" data-ng-model="vm.ui.lastName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Official Mail :</label>
+          <div class="col-sm-5">
+            <input type="text" name="officialMail" class="form-control mb-10" placeholder="Official Mail" data-ng-model="vm.ui.officialMail">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Mobile :</label>
+          <div class="col-sm-5">
+            <input type="text" name="mobile" class="form-control mb-10" placeholder="Mobile" data-ng-model="vm.ui.mobile">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Designation :</label>
+          <div class="col-sm-5">
+            <input type="text" name="designation" class="form-control mb-10" placeholder="Designation" data-ng-model="vm.ui.designation">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Gender :</label>
+          <div class="col-sm-5">
+            <label class="checkbox checkbox-custom">
+              <input name="optionsRadios" type="radio" value="Male" ng-model="vm.ui.gender"><i></i> Male
+            </label>
+            <label class="checkbox checkbox-custom">
+              <input name="optionsRadios" type="radio" value="Female" ng-model="vm.ui.gender"><i></i>Female
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="vm.save()">Save</button>
+  <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+</div>

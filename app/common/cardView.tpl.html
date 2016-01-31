@@ -1,0 +1,93 @@
+<div ng-if="templateUrl" ng-include="templateUrl">
+</div>
+<div class="flip-container fliponly" style="height:{{cardHeight}}">
+  <div ng-if="data && !templateUrl" class="bordr_layout flip" ng-class="{flipIt : data.flipit==true}" data-animation="am-flip-x" style="height:{{cardHeight}}">
+    <div class="div_header_bg" data-ng-class="{Open:'status-open',Closed:'status-closed',Close:'status-closed',Drop:'status-drop',Cancelled:'status-cancelled',OnHold:'status-cancelled',undefined:'status-open',Active:'status-open','In Active':'status-closed',None:'status-none'}[data.status]" title="{{data.status}}"></div>
+    <div class="form-group form-control div2_header_bg">
+      <div class="pull-left">
+        <input type="checkbox" name="grid_items" class="chkDelete" ng-model="data.checked" ng-change="actionClicked('selectionChanged', data);" ng-if="!isEditDisabled && data.isEditEnabled">
+        <span class="title_style" style="margin-left: 0;">{{data.name}}-{{data[idField]}}</span>
+      </div>
+      <div class="pull-left" style="margin-left:30px" ng-if="data.typeClass || data.statusClass">
+        <i ng-if="data.typeClass" class="{{data.typeClass}}" style="cursor:default;color:#c7942e;font-size:1.3em;" title="{{data.type}}" ng-click="actionClicked('type', data)"></i>
+        <!-- <i ng-if="data.statusClass" class="{{data.statusClass}}" style="cursor:default;color:#96c169;font-size:1.3em;" title="{{data.status}}" ng-click="actionClicked('status', data)"></i> -->
+      </div>
+      <div class="pull-right">
+        <a href="" ng-if="!isEditDisabled && data.isEditEnabled" title="Edit" ng-click="actionClicked('edit', data)">
+          <i class="fa fa-pencil-square-o" style="margin-bottom:4px;margin-right:0px;"></i>
+        </a>
+        <a href="javascript:void(0);" ng-if="!isDeleteDisabled && !data.isDeleteDisabled">
+          <i class="glyphicon glyphicon-remove remov_left " ng-click="actionClicked('archive', data)" style="margin-right:0px"></i>
+        </a>
+      </div>
+    </div>
+    <center>
+      <div class="fist_rnd_spn ellipsis_text" title="{{data[nameField]}}" style="padding:0px; padding-left:5px; padding-right:10px; margin:0px; height: 45px;">
+        <a href="" ng-click="actionClicked('getById',data)">
+          {{data[nameField]}}
+        </a>
+      </div>
+    </center>
+    <div class="div3_header_bg">
+      <div class="form-horizontal group_103" style="margin: 10px 0 0;">
+        <div class="form-group grp_frm" ng-repeat="column in mainColumns">
+          <label class="col-sm-6 control-label clmn1_style mrgn_lft2 ellipsis_text" title="{{column.title}}">{{column.title}}:&nbsp;</label>
+          <label class="col-sm-6 labl7_clmn ellipsis_text" title="{{column.tooltip ? column.tooltip : data[column.id]}}">{{data[column.id]}}</label>
+        </div>
+        <div class="form-group grp_frm" ng-repeat="n in [] | range:[vm.maxCols-mainColumns.length]">
+          <label class="col-sm-6 control-label clmn1_style mrgn_lft2 ellipsis_text"></label>
+          <label class="col-sm-6  labl7_clmn ellipsis_text"></label>
+        </div>
+      </div>
+      <div class="div4_header_bg pull-right">
+        <div style="padding-right: 32px;">
+          <a ng-repeat="action in vm.getCardActions('front', data)" ng-hide="vm.isHidden(data, action) === true" href="" title="{{action.title}}" class="img_margin_1" ng-click="actionClicked(action.id, data)">
+            <img ng-if="action.img" ng-src="{{action.img}}">
+            <i ng-if="action.iconClass" ng-class="action.iconClass"></i>
+          </a>
+        </div>
+        <a href="" class="arrow_style pull-right" ng-click="data.flipit = !data.flipit;">
+          <img src="images/arrow_fold.png">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div ng-if="data && !templateUrl" class="backfaceConent" ng-class="{normal: data.flipit==true}" style="height:{{cardHeight}}">
+    <div class="div_header_bg" data-ng-class="{Open:'status-open',Closed:'status-closed',Close:'status-closed',Drop:'status-drop',Cancelled:'status-cancelled',undefined:'status-open',Active:'status-open','In Active':'status-closed',None:'status-none'}[data.status]" title="{{data.status}}"></div>
+    <div class="form-group form-control div2_header_bg">
+      <div class="pull-left">
+        <input type="checkbox" name="grid_items" class="chkDelete" ng-model="data.checked" ng-if="!isEditDisabled && data.isEditEnabled">
+        <span class="title_style" title="Req-Id" style="margin-left: 0;">{{data.name}}-{{data[idField]}}</span>
+      </div>
+    </div>
+    <center>
+      <div class="fist_rnd_spn ellipsis_text" title="{{data[nameField]}}" style="padding:0px;margin:0px;padding-left:5px; padding-right:10px; "><a href="" ng-click="actionClicked('getById',data)">{{data[nameField]}}</a>
+      </div>
+    </center>
+    <div class="div3_header_bg">
+      <!-- <div class="fist_rnd_spn ellipsis_text" style="margin: 10px 0 0 10px;padding: 0;color:#22a7d3;" ng-bind="flipTitle"></div> -->
+      <div class="form-horizontal group_103" style="margin: 10px 0 0;">
+        <div class="form-group grp_frm" ng-repeat="column in flipColumns">
+          <label class="col-sm-6 control-label clmn1_style mrgn_lft2 ellipsis_text" title="{{column.tooltip}}">{{column.title}}:</label>
+          <label class="col-sm-6 labl7_clmn ellipsis_text" title="{{column.tooltip ? column.tooltip : data[column.id]}}">{{data[column.id]}}</label>
+        </div>
+        <div class="form-group grp_frm" ng-repeat="n in [] | range:[vm.maxCols-flipColumns.length]">
+          <label class="col-sm-7  control-label clmn1_style mrgn_lft2 ellipsis_text"></label>
+          <label class="col-sm-5  labl7_clmn"></label>
+        </div>
+      </div>
+
+      <div class="div4_header_bg pull-right">
+        <div style="padding-right: 32px;">
+          <a ng-repeat="action in vm.getCardActions('back', data)" href="" title="{{action.title}}" class="img_margin_1" ng-click="vm.actionClicked(action.id, data)">
+            <img ng-if="action.img" ng-src="{{action.img}}">
+            <i ng-if="action.iconClass" ng-class="action.iconClass"></i>
+          </a>
+        </div>
+        <a href="javascript:void(0)" class="arrow_style" ng-click="data.flipit = !data.flipit;">
+          <img src="images/arrow_fold.png">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

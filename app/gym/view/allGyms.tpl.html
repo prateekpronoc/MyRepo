@@ -1,0 +1,173 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-tables-bootstrap">
+      <div class="pageheader">
+        <h2>{{vm.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Gym</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile time-simple" ng-hide="vm.noData">
+              <div class="tile-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <p class="text-default lt">Created: {{vm.gymDetails.createdAt | date : format : timezone}}</p>
+
+                    <p class="text-uppercase text-strong mt-40 mb-0 custom-font">Status</p>
+                    <h3 class="text-uppercase text-success mt-0 mb-20">Active</h3>
+                  </div>
+                  <div class="col-md-4">
+                    <p class="text-uppercase text-strong mb-10 custom-font">Details<a href="javascript:void(0);" class="btn btn-default btn-rounded-20 btn-xs pull-right" ng-click="vm.update(vm.gymDetails.id)"><i class="fa fa-pencil"></i></a> </p>
+                    <ul class="list-unstyled text-default lt mb-20">
+                      <li>
+                        <strong class="inline-block w-xs">ID:</strong> {{vm.gymDetails.id}}</li>
+                      <li>
+                        <strong class="inline-block w-xs">Name:</strong> {{vm.gymDetails.name}}</li>
+                      <li>
+                        <strong class="inline-block w-xs">Contact Person:</strong> {{vm.allUsersNames[vm.gymDetails.managerId]}}</li>
+                      <li>
+                        <strong class="inline-block w-xs">Contact No:</strong> {{vm.allusersMobile[vm.gymDetails.managerId]}}</li>
+                      <li>
+                        <strong class="inline-block w-xs">Email:</strong> {{vm.allusersEmail[vm.gymDetails.managerId]}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row b-t pt-20">
+                  <div class="col-md-6 b-r">
+                    <p class="text-uppercase text-strong mb-10 custom-font">Description </p>
+                    <div class="col-md-6">
+                      <ul class="list-unstyled text-default lt mb-20">
+                        <li>{{vm.gymDetails.description}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="col-md-12">
+            <div class="post-container" ng-show="vm.noData">
+              <div class="panel panel-default b-0">
+                <h3 class="custom-font text-danger text-center">No Data found</h3>
+
+                <p style="margin-left:10px;"> Hi User !
+                </p>
+                <p style="margin-left:10px;">It seems , information you are looking for either not present in current system , or server encounterd some problem while fetching the data</p>
+              </div>
+            </div>
+            <section class="tile" fullscreen="isFullscreen07" ng-hide="vm.noData">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font"></h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a href="" dropdown-toggle="" class="dropdown-toggle settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href="" tile-control-refresh="" ng-click="ajaxFaker()"> <i class="fa fa-refresh" name="refresh"></i> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-widget">
+                <div class="row">
+                  <div class="col-sm-5">
+                    <select class="input-sm form-control inline w-sm" style="width:150px;">
+                      <option value="0">Action </option>
+                      <option value="2">Archive </option>
+                    </select>
+                    <button class="btn btn-sm btn-default">Apply</button>
+                  </div>
+                  <div class="col-sm-3"></div>
+                  <div class="col-sm-4">
+                    <div class="input-group">
+                      <input type="text" class="input-sm form-control" placeholder="Search..." ng-model="vm.searchText">
+                      <span class="input-group-btn">
+                        <button class="btn btn-sm btn-default" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tile-body p-0">
+                <div class="table-responsive">
+                  <table class="table mb-0">
+                    <thead>
+                      <tr>
+                        <th style="width:20px">
+                          <label class="checkbox checkbox-custom checkbox-custom-sm m-0">
+                            <input type="checkbox" ng-model="selectedAll" ng-click="vm.selectAll()" class="ng-pristine ng-untouched ng-valid"><i></i> </label>
+                        </th>
+                        <th ng-repeat="col in vm.columnCollection">{{col.title}}<i class="fa fa-sort" style="padding:10px;" ng-click="reverse=!reverse;vm.order(col.id, reverse)"></i></th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="ng-scope" ng-repeat="row in vm.entity | filter : vm.searchText" ng-click="vm.getById(row.id)">
+                        <td>
+                          <label class="checkbox checkbox-custom checkbox-custom-sm m-0">
+                            <input type="checkbox" ng-model="row.selected" class="ng-pristine ng-untouched ng-valid"><i></i></label>
+                        </td>
+                        <td>
+                          <a href="javascript:void(0);">
+                            <span>{{row.id}}</span>
+                          </a>
+                        </td>
+                        <td>
+                          <span>{{row.name}}</span>
+                        </td>
+                        <td>
+                          <span>{{row.capacity}}</span>
+                        </td>
+                        <td>
+                          <span>{{vm.allUsersNames[row.managerId]}}</span>
+                        </td>
+                        <td>
+                          <span>{{vm.allusersMobile[row.managerId]}}</span>
+                        </td>
+                        <td>
+                          <span>{{vm.allusersEmail[row.managerId]}}</span>
+                        </td>
+                        <td>
+                          <a href="javascript:void(0);" ui-sref="wams.addGymInfraToMr({gymId:row.id})">
+                            <i class="fa fa-plus" title="add equipments"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="tile-footer dvd dvd-top">
+                <div class="row">
+                  <div class="col-sm-5 hidden-xs">
+                    <select class="input-sm form-control w-sm inline" style="width:150px">
+                      <option value="0">Action</option>
+                      <option value="2">Archive </option>
+                    </select>
+                    <button class="btn btn-sm btn-default">Apply</button>
+                  </div>
+                  <div class="col-sm-3 text-center">
+                    <small class="text-muted">Showing {{vm.shownCount }} of {{vm.count}} items</small>
+                  </div>
+                  <div class="col-sm-4 text-right">
+                    <paging-control paging-options="vm.pagingOptions" action-page-changed="vm.pageChanged">
+                    </paging-control>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

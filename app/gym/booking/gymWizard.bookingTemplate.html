@@ -1,0 +1,55 @@
+<section class="tile" fullscreen="isFullscreen01">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font">
+          <strong>Slot</strong>Details</h1>
+      </div>
+      <div class="tile-body">
+        <form name="slotDetailsForm" class="form-horizontal" role="form" novalidate>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div style="font-family: monospace; font-size: 14px; margin-bottom: 30px;">
+
+                  </div>
+                  Slot Selected:{{vm.slotToSelected}}
+                  <scheduler class="scheduler" slots="vm.gymslots" columns="vm.labels">
+                  </scheduler>
+                  <!-- <meeting-scheduler data='vm.slots'></meeting-scheduler> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font">
+              <strong>Equipment</strong>Details</h1>
+          </div>
+          <div class="tile-body">
+            <div class="col-sm-12">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <carousel interval="vm.myInterval">
+                    <slide ng-repeat="slide in vm.infraImages">
+                      <img ng-src="{{slide}}" style="margin:auto;height:200px;">
+                      <div class="carousel-caption">
+                        <p>{{slide.text}}</p>
+                      </div>
+                    </slide>
+                  </carousel>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 form-group">
+              <button type="button" ng-click="vm.previous(0)" class="btn btn-primary pull-left">Back</button>
+              <button type="button" ng-click="vm.bookGymSlot()" class="btn btn-primary pull-right" ng-disabled="slotDetailsForm.$invalid">Book</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

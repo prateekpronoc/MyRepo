@@ -1,0 +1,88 @@
+
+
+
+<md-content>
+  <div>
+    <!-- <div class="ng-scope layout-row">
+      <div class="flex">First item in row</div>
+      <div class="flex-20">Second item in row</div>
+    </div>
+    <div class="ng-scope layout-column">
+      <div class="flex-33">First item in column</div>
+      <div class="flex-66">Second item in column</div>
+    </div> -->
+  </div>
+</md-content>
+<!-- <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"> -->
+<!-- <div flex="33" layout="column">
+  <div>
+
+  </div>
+
+  <md-content layout-padding class="md-padding" layout="row"  layout-align="center start">
+    <div>
+      <form name="userForm">
+        <div layout-gt-xs="row">
+          <md-input-container>
+            <label>Email</label>
+            <input ng-model="vm.credentials.un" type="email">
+          </md-input-container>
+          <md-input-container>
+            <label>Password</label>
+            <input ng-model="vm.credentials.pwd" type="password">
+          </md-input-container>
+        </div>
+        <md-button class="md-raised md-primary" ng-click="vm.login($event);">Primary</md-button>
+      </form>
+    </div>
+
+
+
+</div> -->
+<section class="content-section gridListdemoBasicUsage">
+  <!-- <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h1 class="text-center">The Different Ways SharePoint can help define your business</h1>
+     
+      <md-divider ng-style="{'background': 'rgba(255, 102, 51, 0.7)'}"></md-divider>
+    </div>
+  </div> -->
+  <div layout="row" layout-align="center center" style="margin-top:70px;">
+    <div class='md-padding' layout="row" layout-align="center" layout-wrap>
+      <md-card class="md-whiteframe-9dp" data-ng-style="{'width': '350px', 'border-radius': '6px'}" layout-padding>
+        <a>
+          <!--  <img layout-fill src="{{card.imagePath}}" class="img-rounded" alt="{{card.imageAlt}}" /> -->
+        </a>
+        <md-card-content>
+          <div>
+            <h4>Welcome To WAMS</h4>
+            <md-divider ng-style="{'background': 'rgba(255, 102, 51, 0.7)'}"></md-divider>
+            <br />
+            <form name="userForm">
+              <div layout="column">
+                <md-input-container>
+                  <label>Email</label>
+                  <input ng-model="vm.credentials.un" type="email">
+                </md-input-container>
+                <md-input-container>
+                  <label>Password</label>
+                  <input ng-model="vm.credentials.pwd" type="password">
+                </md-input-container>
+              </div>
+              <md-button class="md-raised md-primary" ng-click="vm.login($event);">Login</md-button>
+            </form>
+          </div>
+        </md-card-content>
+        <!-- <md-card-footer>
+          <div class="md-actions" layout="row" layout-align="center end">
+            <md-button ng-click="card.action($event)">View</md-button>
+          </div>
+        </md-card-footer> -->
+      </md-card>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- </md-content> -->

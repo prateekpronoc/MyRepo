@@ -1,0 +1,157 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.title}}
+          <!--  <span></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Cafeteria</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong> Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <alert class="col-md-2 pull-right" ng-repeat="alert in vm.alerts" type="success">{{alert.msg}}</alert>
+                <form name="CreateCafeteriaForm" class="form-horizontal" role="form" novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="name" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Name" ng-model="vm.ui.name" required>
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="CreateCafeteriaForm.name.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Cuisine
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="cusine" class="form-control mb-9" data-ng-model="vm.ui.cusineId" ng-options=" entity.id as entity.value for entity in vm.cuisines" required>
+                        <option value="">Select Cuisine</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Type
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="Type" class="form-control mb-9" data-ng-model="vm.ui.typeId" ng-options="entity.id as entity.value for entity in  vm.types" required>
+                        <option value="">Select Type</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Tags</label>
+                    <div class="col-sm-5">
+                      <input type="text" name="tags" class="form-control mb-10" placeholder="Tags" ng-model="vm.ui.tags">
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                  <label class="col-sm-3 control-label">Categories
+                    <span style="color:red;">*</span>
+                  </label>
+                  <div class="col-sm-9">
+                    <div class="section">
+                      <div ng-repeat="row in vm.foodCategories" ng-class="{wrap:!($index % 4)}">
+                        <label class="checkbox checkbox-custom checkbox-custom-sm m-0">
+                          <input type="checkbox" name="category" ng-model="row.selected" class="ng-pristine ng-untouched ng-valid" ng-change="row.isSelected=true;"><i></i>{{row.value}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong> Cost and Preparation </strong> Details</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Cost
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="number" name="cost" ng-pattern="/^\d+$/" ng-minlength="1" ng-maxlength="5" class="form-control mb-10" placeholder="Cost" data-ng-model="vm.ui.cost" required>
+                        <span class="error-form-fields pull-right" ng-show="CreateCafeteriaForm.cost.$error.pattern ">
+                          Not valid number!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Preparation Time
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="number" name="preparationTime" ng-pattern="/^\d+$/" class="form-control mb-10" placeholder="Preparation time in minutes" data-ng-model="vm.ui.preparationTime" required>
+                        <span class="error-form-fields pull-right" ng-show="CreateCafeteriaForm.preparationTime.$error.pattern ">
+                          Not valid number!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Details</label>
+                      <div class="col-sm-5">
+                        <textarea name="description" class="form-control" rows="5" placeholder="Details" ng-model="vm.ui.description"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Upload</strong>Image</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-3  control-label" style="padding-top:0px;">Select Image</label>
+                      <div class="col-sm-5">
+                        <input type="file" ngf-select="vm.uploadPic(vm.ui.picFile);" ng-model="vm.ui.picFile" name="file" id="fileInput" accept="image/*" ngf-max-size="2MB">
+                        <span>Upload image with (.jpg/jpeg/png) extension and max size 2 MB only</span>
+                      </div>
+                      <!-- <div class="col-sm-3">
+                      <button ng-click="vm.uploadPic(vm.ui.picFile)">upload image</button>
+                    </div> -->
+                      <div class="form-group col-sm-3">
+                        <img ng-src="{{vm.imageSource}}" ng-if="vm.imageSource" style="height:200px;width:200px;padding-right:10px" />
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-disabled="CreateCafeteriaForm.$invalid" ng-click="vm.createmore = true;vm.saveFoodItems();" class="btn btn-success mb-10" ng-show="!vm.updateMode">Save &amp; Create more</button>
+                    <button type="button" ng-disabled="CreateCafeteriaForm.$invalid" ng-click="vm.createmore = false;vm.saveFoodItems();" class="btn btn-primary mb-10">Save</button>
+                    <button type="button" ng-click="vm.reset()" class="btn btn-info mb-10">Reset</button>
+                    <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- page content -->

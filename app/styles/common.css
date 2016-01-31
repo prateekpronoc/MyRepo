@@ -1,0 +1,72 @@
+.section {
+  text-align: center;
+  display: inline-block;
+}
+
+.section > div.wrap {
+  clear: both;
+}
+
+.section div {
+  position: relative;
+  float: left;
+  padding: 0px 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.section div span {
+  position: absolute;
+  left: 30%;
+  width: 40%;
+  text-align: center;
+}
+
+
+/*image Upload*/
+
+.thumb {
+  width: 150px;
+  height: 150px;
+  float: none;
+  position: relative;
+  top: 7px;
+}
+
+form .progress {
+  line-height: 15px;
+}
+
+
+}
+.progress {
+  display: inline-block;
+  width: 100px;
+  border: 3px groove #CCC;
+}
+.progress div {
+  font-size: smaller;
+  background: orange;
+  width: 0;
+}
+
+/*get all wizard*/
+.w-sm, .w-150 {
+  width: 150px;
+}
+
+/*vertical line*/
+vr {
+  display: block;
+  width: 3px;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 305px;
+  height: 200px;
+}
+.verticalLine {
+  border-left: thick solid #ff0000;
+}
+

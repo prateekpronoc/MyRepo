@@ -1,0 +1,36 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.title}}
+          <!--  <span></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Gym</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong> Details</h1>
+              </div>
+              <div class="tile-body">
+                <div class="cardview-container">
+                  <div imagecard-view-grid data="vm.entity" main-actions="vm.mainActions" action-listener="vm.actionClicked(actionCode, record);" is-delete-disabled="vm.isDeleteDisabled" is-edit-disabled="vm.isEditDisabled" interval="vm.myInterval" slides-data="vm.slides"></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

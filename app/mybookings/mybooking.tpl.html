@@ -1,0 +1,71 @@
+<md-card>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>My Bookings</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <md-content style="height: 600px;">
+    <md-list ng-cloak>
+
+      <section>
+        <md-subheader class="md-primary">Meeting Room With Card View</md-subheader>
+        <md-list-item ng-repeat="booking in vm.ui.bookings">
+          <div flex="75"  flex-sm="100" flex-xs="100" layout="column">
+            <md-card>
+              <md-card-title>
+                <md-card-title-text>
+
+                  <span class="md-headline"> Booking Id - {{ booking.id }}</span>
+                  <span class="md-headline">Meeting Room - {{ booking.meetingroom }}</span>
+                  <span class="md-subhead">{{ booking.from | date : "MM/dd/yyyy 'at' h:mma" : timezone }} - {{booking.to | date : "MM/dd/yyyy 'at' h:mma" : timezone}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                  <div class="md-media-sm card-media"></div>
+                </md-card-title-media>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+
+                <!-- <md-button>Cancel</md-button> -->
+                <md-menu>
+                  <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+                    <md-icon md-menu-origin md-svg-icon="call:phone"></md-icon>
+                  </md-button>
+                  <md-menu-content width="4">
+                    <md-menu-item>
+                      <md-button ng-click="ctrl.redial($event)">
+                        <md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>
+                        Redial
+                      </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
+                        <md-icon md-svg-icon="call:voicemail"></md-icon>
+                        Check voicemail
+                      </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                      <md-button ng-click="ctrl.toggleNotifications()">
+                        <md-icon md-svg-icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"></md-icon>
+                        {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+                      </md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+                <md-button class="md-primary md-raised" ng-click="vm.showDetails(booking.resourceId)">
+                  View Details
+                </md-button>
+              </md-card-actions>
+            </md-card>
+          </div>
+
+        </md-list-item>
+      </section>
+    </md-list>
+  </md-content>
+
+
+
+</md-card>

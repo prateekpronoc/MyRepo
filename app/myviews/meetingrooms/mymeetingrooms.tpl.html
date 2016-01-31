@@ -1,0 +1,103 @@
+<md-card>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>My Meeting Rooms</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <md-list ng-cloak>
+
+      <section>
+        <!--  <md-subheader class="md-primary">Meeting Room </md-subheader> -->
+        <md-list-item ng-repeat="mr in vm.entity">
+          <div flex="50" flex-sm="100" flex-xs="100" layout="column">
+            <md-card class="md-body-1">
+              <md-card-title>
+                <md-card-title-text>
+
+                  <!--  <span class="md-title"> Id - {{ mr.id }}</span> -->
+                  <span class="md-title">Name - {{ mr.name }}</span>
+
+                </md-card-title-text>
+
+              </md-card-title>
+              <md-card-title-media>
+                <div  md-card-image>
+                  <div>
+                    <carousel interval="vm.myInterval">
+                      <slide ng-repeat="slide in vm.slides" active="slide.active">
+                        <img ng-src="{{slide.image}}">
+                        <div class="carousel-caption">
+                          <h4>Slide {{$index+1}}</h4>
+                        </div>
+                      </slide>
+                    </carousel>
+                  </div>
+                </div>
+
+              </md-card-title-media>
+              <md-card-content>
+                <p>
+                  <span class="md-subhead">Id : {{ mr.id}}</span>
+                </p>
+                <p>
+                  <span class="md-subhead">Location : {{ mr.location}}</span>
+                </p>
+                <p>
+                  <span class="md-subhead">Descriptions : {{ mr.description}}</span>
+                </p>
+
+              </md-card-content>
+              <md-card-actions layout="row" layout-align="end center">
+
+
+                <md-menu md-position-mode="target-right target">
+                  <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="vm.openMenu($mdOpenMenu, $event)">
+                    <md-icon md-menu-origin md-svg-icon="styles/icons/ic_menu_24px.svg"></md-icon>
+                  </md-button>
+                  <md-menu-content width="2">
+                    <md-menu-item>
+                      <md-button ng-click="vm.viewMRInfra($event,mr.id)">
+                        <md-icon md-svg-icon="styles/icons/ic_menu_24px.svg" md-menu-align-target></md-icon>
+                        View Details
+                      </md-button>
+                    </md-menu-item>
+                   
+                    <!-- <md-menu-item>
+                      <md-button  ng-click="vm.bookMr($event, mr.id);">
+                        <md-icon md-svg-icon="styles/icons/ic_menu_24px.svg"></md-icon>
+                        Book
+                      </md-button>
+                    </md-menu-item> -->
+
+                  </md-menu-content>
+                </md-menu>
+                <!--  <md-button class="md-primary md-raised" ng-click="vm.showDetails(booking.resourceId)">
+                  View Details
+                </md-button> -->
+              </md-card-actions>
+              <md-card-actions layout="row" layout-align="end center">
+                <!--  <md-button class="md-icon-button" aria-label="Favorite" alt="View infrastructure" title="View">
+                  <md-icon md-svg-icon="styles/icons/ic_flip_24px.svg"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Settings">
+                  <md-icon md-svg-icon="styles/icons/ic_menu_24px.svg"></md-icon>
+                </md-button> -->
+                <!--  <md-button class="md-icon-button" aria-label="Share">
+                  <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
+                </md-button> -->
+              </md-card-actions>
+
+            </md-card>
+          </div>
+
+        </md-list-item>
+      </section>
+    </md-list>
+  </md-content>
+
+
+
+</md-card>

@@ -1,0 +1,315 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <div class="col-md-12">
+          <div class="col-md-1">
+            <img src="images/yeoman.a6b33b1c.png" style="height:30px;width=30px;" alt="">
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <h2>{{page.title}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="wams.dashboard"><i class="fa fa-home"></i> {{main.title}}</a> </li>
+            <li> <a href="javascript:;">Employee Details</a> </li>
+            <li> <a ui-sref="wams.employemeetingdeatils">{{page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+          <form class="form-horizontal" role="form" novalidate>
+            <!-- tile -->
+            <section class="tile" fullscreen="isFullscreen03">
+
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Slot</strong>Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" on-toggle="toggled(open)"> <a href class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-toggle>
+                          <span class="minimize">
+                            <fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                          <span class="expand">
+                            <fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href tile-control-refresh ng-click="ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                      <li>
+                        <a href tile-control-fullscreen ng-click="isFullscreen03 = !isFullscreen03">
+                          <fa name="expand"></fa> Fullscreen </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+                </ul>
+              </div>
+
+
+              <div class="tile-body form-validation">
+                <div class="col-md-12">
+                  <div class="col-md-9">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>9:00</th>
+                          <th>10:00</th>
+                          <th>11:00</th>
+                          <th>12:00</th>
+                          <th>13:00</th>
+                          <th>14:00</th>
+                          <th>15:00</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green; color:#FFFFFF;">Slot Selected</td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <hr>
+                  </div>
+                  <div class="col-md-3">
+
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Available infraStructure</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Wifi Capability</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Overhead Projector</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Computers</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Loud Speakers</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Screen Stands</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Flim Projector</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+
+                <div class="col-md-9">
+                  <div class="col-md-4">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Daily
+                      </label>
+
+                      <label>
+                        <input type="checkbox"> Weekly
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <p>
+                      <strong>Meeting Room Cost:</strong>100 Points</p>
+                  </div>
+                  <button type="button" class="btn btn-primary">Reschedule Booking</button>
+                  <hr>
+                </div>
+              </div>
+
+
+
+              <div class="col-md-9">
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong>Invite</strong>People</h1>
+                </div>
+                <div class="tile-body form-validation">
+                  <div class="row">
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Subject Line</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control mb-10" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Required People</label>
+                      <div class="col-sm-5">
+                        <!--  <input type="text" name="fc1" class="form-control mb-10" required> -->
+                        <ui-select multiple="multiple" ng-model="multipleDemo.colors" ng-disabled="disabled" class="w-md">
+                          <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
+                          <ui-select-choices repeat="color in availableColors | filter:$select.search"> {{color}} </ui-select-choices>
+                        </ui-select>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Option People</label>
+                      <div class="col-sm-5">
+                        <!-- <input type="text" name="fc1" class="form-control mb-10" required> -->
+                        <ui-select multiple="multiple" ng-model="multipleDemo.colors" ng-disabled="disabled" class="w-md">
+                          <ui-select-match placeholder="Select colors...">{{$item}}</ui-select-match>
+                          <ui-select-choices repeat="color in availableColors | filter:$select.search"> {{color}} </ui-select-choices>
+                        </ui-select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Comments</label>
+                      <div class="col-sm-5">
+                        <textarea class="form-control" rows="5"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <hr>
+                <button type="button" class="btn btn-primary pull-right">Update Invitation</button>
+              </div>
+              <hr>
+              <div class="col-md-9">
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong>Book</strong>Snacks</h1>
+                </div>
+
+                <div class="tile-body form-validation">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Choose Resturant</label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" required>
+                        <option value="">Choose Resturant</option>
+                        <option value="foo">Foo</option>
+                        <option value="bar">Bar</option>
+                      </select>
+                    </div>
+
+                  </div>
+                </div>
+                <hr>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <table class="pull-right">
+
+                      <tbody>
+                        <tr>
+                          <td><b>meeting Room Cost</b></td>
+                          <td>100points</td>
+                        </tr>
+                        <tr>
+                          <td><b>Snacks Cost</b></td>
+                          <td>100points</td>
+                        </tr>
+                        <tr>
+                          <td><b>Total Service</b></td>
+                          <td>200points</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

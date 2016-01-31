@@ -1,0 +1,86 @@
+<div class="page page-form-validate">
+  <div class="pagecontent">
+    <div class="row">
+      <div class="col-md-12">
+        <section class="tile" fullscreen="isFullscreen01">
+          <form class="form-horizontal" role="form">
+            <div class="tile-header dvd dvd-btm">
+              <h1 class="custom-font">
+                <strong>Company</strong> Details</h1>
+            </div>
+            <div class="tile-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">location:</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.location}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">No Of Two Wheeler Slots:</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.noOfTwoWheelerSlots}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">no Of Four Wheeler Slots :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.noOfFourWheelerSlots}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">no Of Guest TwoWheeler Slots :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.noOfGuestTwoWheelerSlots}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">no Of Guest Four Wheeler Slots :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.noOfGuestFourWheelerSlots}}</p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">TotalSlots :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.totalSlots}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Description:</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.description}}</p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Contact Person :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.userInfo.name}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Email :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.userInfo.email}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Contact Number :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.userInfo.mobile}}</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="tile-footer">
+              <button type="button" ng-click="vm.exit();" class="btn btn-warning pull-left">Cancel</button>
+              <button type="button" ng-click="vm.exit();" class="btn btn-info" style="margin-left:500px;">Edit</button>
+              <button type="button" ng-click="vm.save();" class="btn btn-success pull-right">Save</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

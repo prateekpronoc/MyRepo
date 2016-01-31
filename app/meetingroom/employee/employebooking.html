@@ -1,0 +1,99 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <div class="col-md-12">
+          <div class="col-md-1">
+            <img src="images/yeoman.a6b33b1c.png" style="height:30px;width=30px;" alt="">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <h2>{{page.title}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="wams.dashboard"><i class="fa fa-home"></i> {{main.title}}</a> </li>
+            <li> <a href="javascript:;">Employee Details</a> </li>
+            <li> <a ui-sref="wams.employebooking">{{page.title}}</a> </li>
+            <li> <a ui-sref="wams.employebooking">{{main.test}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <form class="form-horizontal" role="form" novalidate>
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font"></h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <!-- <li ng-repeat="choice in items">
+                    <a href>{{choice}}</a>
+                  </li> -->
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+                </ul>
+              </div>
+              <div class="tile-body form-validation">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="form-group">
+                      <div class="col-md-3">
+                        <p style="color:red; font-size:25px;">Calaendar</p>
+                      </div>
+                      <div class="col-md-1">
+                        <button type="button" class="btn btn-default">Today</button>
+                      </div>
+                      <!--  <pre>Selected date is: <em>{{vm.dt | date:'fullDate' }}</em></pre> -->
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <div class="btn-group" dropdown>
+                      <button type="button" class="btn btn-danger">Create</button>
+                      <button type="button" class="btn btn-danger dropdown-toggle" dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button!</span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div style="display:inline-block; min-height:290px;">
+                      <datepicker ng-model="vm.dt" show-weeks="true" class="well well-sm" custom-class="vm.getDayClass(date, mode);">
+                      </datepicker>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <h1>CALENDAR</h1>
+                  <div ui-calendar="vm.uiConfig.calendar" ng-model="vm.eventSources"></div>
+                </div>
+              </div>
+            </section>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

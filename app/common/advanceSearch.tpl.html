@@ -1,0 +1,63 @@
+<section>
+  <form>
+    <div syle="background-color:#f9f9f9">
+      <!--Division for each control on advance search pannel -->
+      <!-- <div class="row" style="width:98%;margin-left:1%;margin-right:1%;" ng-repeat="row in vm.advanceSearchColletion" ng-model="vm.advanceSearchColletion"> -->
+      <!--Division for each row on advance search pannel -->
+      <!-- <div class="col-md-2" style="margin-right:1%;padding:0%;{{vm.widthPerParam}}" ng-repeat="column in row"> -->
+      <!--Division for each control in advance search pannel -->
+      <div style="float: left" ng-repeat="column in searchColumnCollection.collection" class="form-group advanced-search-control" ng-class="{'advanced-search-multiselect':  column.type === 'multiple'}">
+        <!--Label  of the control -->
+        <label ng-if="column.label" class="tabl_headr_nam">{{column.label}}</label>
+        <!--Toogle Button with other control -->
+        <button ng-if="column.hasToggleButton" style="border-radius: 15px;padding: 0;width: 40%; display:inline;" type="button" class="btn btn-default btn-sm" data-true-value="{{column.toggleTrue}}" data-false-value="{{column.toggleFalse}}" ng-model="vm.searchCriteria[column.toggleButtonId]" bs-checkbox>{{vm.searchCriteria[column.toggleButtonId]}}</button>
+        <!--Date Control-->
+        <input ng-if="column.type === 'date'" placeholder="{{column.placeHolder}}" ng-model="vm.searchCriteria[column.id]" class="form-control selectpicker" bs-datepicker style="width:94%;float:left;">
+        <!--Date and Time Control-->
+        <input ng-if="column.type === 'dateTime'" ng-model="vm.searchCriteria[column.id]" placeholder="{{column.placeHolder}}" class="form-control selectpicker" bs-datepicker style="width:70%;float:left;margin-right:2%;">
+        <input ng-if="column.type === 'dateTime'" placeholder="{{column.placeHolder}}" ng-model="vm.searchCriteria[column.id]" class="form-control selectpicker" bs-timepicker style="width:28%;float:left">
+        <!--TextBox-->
+        <input ng-if="column.type === 'text'" ng-click="[column.callBack]" ng-model="vm.searchCriteria[column.id]" placeholder="{{column.placeHolder}}" class="form-control" style="padding:5px" type="{{column.type}}">
+        <!--CheckBox control-->
+        <input ng-if="column.type === 'checkbox'" ng-model="vm.searchCriteria[column.id]" style="padding-top: 5px;padding-left: 5px;padding-right: 5px;padding-bottom: 1px;" type="{{column.type}}">
+        <!--Select -->
+        <!--Single select Parent control which has a child done -->
+        <select ng-if="column.type === 'select' && column.childId" ng-change="vm.onChangeOfValue(column);vm.searchCriteria[column.childId] = null" ng-model="vm.searchCriteria[column.id]" class="form-control" style="padding:5px">
+          <option value="" selected="true">Please Select</option>
+          <option ng-repeat="val in column.data" title="{{val[column.displayAttr]}}" value="{{val[column.id]}}">{{val[column.displayAttr]}}</option>
+        </select>
+        <!-- Single select Child control  which has a parent done -->
+        <select ng-if="column.type === 'select' && column.parentId" ng-disabled="{{'!vm.searchCriteria[column.parentId]'}}" ng-model="vm.searchCriteria[column.parentId]" class="form-control" style="padding:5px">
+          <option value="" selected="true">Please Select</option>
+          <option ng-repeat="val in column.data | filter:vm.searchCriteria[column.parentId]" title="{{val[column.displayAttr]}}" value="{{val[column.id]}}">{{val[column.displayAttr]}}</option>
+        </select>
+        <!-- Single select without parent and Childdone-->
+        <select ng-if="column.type === 'select' && !column.childId && !column.parentId" ng-model="vm.searchCriteria[column.id]" class="form-control" style="padding:5px">
+          <option value="">Please Select</option>
+          <option ng-repeat="val in column.data" title="{{val[column.displayAttr]}}" value="{{val[column.id]}}">{{val[column.displayAttr]}}</option>
+        </select>
+        <!-- Multi Select Parent control which has a child-->
+        <!-- <div two-way-select ng-change="vm.onChangeOfValue(column);vm.searchCriteria[column.childId] = null" multiple="true" ng-model="vm.searchCriteria[column.id]" class="form-control" style="padding:5px">
+                <option ng-repeat="val in column.data" title="{{val[column.displayAttr]}}" value="{{val[column.id]}}">{{val[column.displayAttr]}}</option>
+              </div> -->
+        <div two-way-select ng-if="column.childId && column.type === 'multiple'" selection-listener="vm.onChangeOfValue();" selected-ids="vm.searchCriteria[column.id]" title="{{column.label}}" data="column.processedData" style="position: relative;">
+          <!--vm.searchCriteria[column.childId] = null; -->
+        </div>
+
+        <!-- Multi Select Child control  which has a parentdone-->
+        <!-- <div two-way-select ng-disabled="{{'!vm.searchCriteria[column.parentId]'}}" multiple="true" ng-model="vm.searchCriteria[column.id]" class="form-control" style="padding:5px">
+                <option data-ng-if="val.parentId !== 0" title="{{val[column.displayAttr]}}" ng-repeat="val in column.data | filter:vm.searchCriteria[column.parentId]" value="{{val[column.id]}}">{{val[column.displayAttr]}}</option>
+              </div> -->
+        <div two-way-select ng-if="column.parentId && column.type === 'multiple'" selected-ids="vm.searchCriteria[column.id]" title="{{column.label}}" data="column.processedData" style="position: relative;">
+        </div>
+        <!-- Multi Select without parent and Child done-->
+        <div two-way-select ng-if="!column.childId && !column.parentId && column.type === 'multiple'" selected-ids="vm.searchCriteria[column.id]" title="{{column.label}}" data="column.processedData" style="position: relative;">
+        </div>
+      </div>
+    </div>
+    <div class="pull-right apply_ct" style="margin-top: 0px;">
+      <button type="button" class="btn btn-default btn-sm" ng-click="vm.clearAdvanceCollectionData();">Reset</button>
+      <button type="submit" class="btn btn-default btn-sm apply_btn" ng-click="vm.applyAdvanceSearch();">Apply</button>
+    </div>
+  </form>
+</section>

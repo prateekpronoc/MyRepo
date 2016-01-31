@@ -1,0 +1,243 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2 ng-hide="vm.roomid">{{vm.title}}
+        </h2>
+        <h2 ng-if="vm.roomid">{{vm.ui.name}} Meeting Room
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Meeting Rooms</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /page header -->
+      <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+          <!-- col -->
+          <div class="col-md-12">
+            <!-- tile -->
+            <section class="tile" fullscreen="isFullscreen01">
+              <!-- tile header -->
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong> Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a href="" dropdown-toggle="" class="dropdown-toggle settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href="" tile-control-toggle="">
+                          <span class="minimize"><i class="fa fa-angle-down" name="angle-down"></i>&nbsp;&nbsp;&nbsp;Minimize</span>
+                          <span class="expand"><i class="fa fa-angle-up" name="angle-up"></i>&nbsp;&nbsp;&nbsp;Expand</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-refresh="" ng-click="ajaxFaker()"> <i class="fa fa-refresh" name="refresh"></i> Refresh </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-fullscreen="" ng-click="isFullscreen01 = !isFullscreen01"> <i class="fa fa-expand" name="expand"></i> Fullscreen </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <!-- /tile header -->
+              <!-- tile body -->
+              <div class="tile-body">
+                <form class="form-horizontal" name="CreateMeetingRoom" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Meeting Room Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="meetingroomname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Meeting Room Name" data-ng-model="vm.ui.name" required>
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="CreateMeetingRoom.meetingroomname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Location
+                      <span style="color:red;">*</span>
+                    </label>
+                    <!--  <div class="col-sm-5"> -->
+                    <div class="col-md-5">
+                      <!-- <label class="col-sm-5 control-label"><a href="#" ng-click="vm.getLocation();">Add Location</a></label> -->
+                      <input type="text" name="meetingroomname" class="form-control mb-10" placeholder="Location" data-ng-model="vm.ui.location" required>
+                    </div>
+                    <div class="col-md-4">
+                      <button type="button" class="btn btn-info" ng-click="vm.getLocation();">Add Location</button>
+                    </div>
+                    <!-- </div> -->
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Type
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="meetingRoomType" class="form-control mb-9" data-ng-model="vm.ui.typeId" ng-options=" entity.id as entity.value for entity in vm.mrType" required>
+
+                        <option value="">Type</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Capacity
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" data-ng-model="vm.ui.capacity" required>
+                        <option value="">Seaters</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!--   <div class="form-group">
+                  <label class="col-sm-3 control-label">Capcity
+                    <span style="color:red;">*</span>
+                  </label>
+                  <div class="col-sm-5">
+                    <input type="tel" name="capacity" ng-pattern="/^\d+$/" class="form-control mb-10" placeholder="Capcity of Meeting Room" data-ng-model="vm.ui.capacity">
+                    <span class="error-form-fields pull-right" ng-show="CreateMeetingRoom.capacity.$error.pattern ">
+                      Not valid number!</span>
+                  </div>
+                </div> -->
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Description</label>
+                    <div class="col-sm-5">
+                      <textarea class="form-control" rows="5" name="message" id="message" placeholder="Description" data-ng-model="vm.ui.description"></textarea>
+
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Meeting Room</strong> Admin</h1>
+                  </div>
+                 <div class="tile-body">
+                    <div class="form-group" ng-hide="vm.ui.checkbox">
+                      <label class="col-sm-3 control-label">Existing User</label>
+                      <div class="col-sm-5">
+                        <select name="existinguser" class="form-control mb-9" ng-model="vm.ui.managerId" ng-change="vm.getUserById(vm.ui.managerId);">
+                          <option value="">Existing User</option>
+                          <option ng-repeat="(key,val) in vm.allusers" value="{{key}}">{{val}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-9 pull-right">
+                        <input type="checkbox" ng-model="vm.ui.checkbox" ng-click="vm.addNew();">
+                        <span>Add New User</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Admin Name
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="text" name="adminname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Admin Name" data-ng-model="vm.ui.adminname" required>
+                        <span class="error-form-fields pull-right" ng-show="CreateMeetingRoom.adminname.$error.pattern ">
+                          Enter a valid Name!</span>
+                      </div>
+                      <div class="col-sm-3">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Mobile number
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="tel" name="mobilenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Contact number" data-ng-model="vm.ui.mobile">
+                        <span class="error-form-fields pull-right" ng-show="CreateMeetingRoom.mobilenumber.$error.pattern ">
+                          Not valid contact number!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Contact number
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="tel" name="phonenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="15" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Phone number" data-ng-model="vm.ui.phone">
+                        <span class="error-form-fields pull-right" ng-show="CreateMeetingRoom.phonenumber.$error.pattern ">
+                          Not valid contact number!</span>
+                      </div>
+                      <!--   <div class="col-sm-3">
+                      <div class="col-sm-8">
+                        <select name="f2" class="form-control mb-9">
+                          <option value="">Choose Role</option>
+                          <option value="Admin">Admin</option>
+                          <option value="Manager">Manager</option>
+                        </select>
+                      </div>
+                    </div> -->
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Email Id
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="email" name="email" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Email Id" data-ng-model="vm.ui.email">
+                        <span class="error-form-fields pull-right" ng-show="CreateMeetingRoom.email.$error.email ">
+                          Not valid email!</span>
+                      </div>
+                      <div class="col-sm-3" ng-show="vm.ui.checkbox">
+                        <!-- <a href="#" ui-sref="wams.addmore" ng-model="vm.ui.addmore">add more </a> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Upload</strong>Image</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-3  control-label" style="padding-top:0px;">Select Image</label>
+                      <div class="col-sm-3">
+                        <button ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ngf-max-height="1000" ngf-max-size="4MB">
+                          Select Files</button>
+                      </div>
+                      <div class="col-sm-3">
+                        <button class="btn btn-sm btn-default" ng-click="vm.uploadPic(vm.ui.picFile)">upload image</button>
+                      </div>
+                      <div class="form-group col-sm-3">
+                        <img ng-src="{{vm.imageSource}}" ng-if="vm.imageSource" style="height:200px;width:200px;padding-right:10px" />
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="form-group">
+                    <div class="tile-footer text-right">
+                      <button ng-disabled="CreateMeetingRoom.$invalid" type="button" ng-click="vm.createmore = true;vm.saveMeetingRoom(vm.ui.managerId);" class="btn btn-success" ng-show="!vm.updateMode">Save &amp; Create more</button>
+                      <button type="button" ng-click="vm.createmore = false;vm.saveMeetingRoom(vm.ui.managerId);" class="btn btn-primary" ng-disabled="CreateMeetingRoom.$invalid">Save</button>
+                      <button type="button" ng-click="vm.reset();" class="btn btn-info">Reset</button>
+                      <button type="button" ng-click="vm.cancel();" class="btn btn-warning">Cancel</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

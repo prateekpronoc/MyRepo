@@ -1,0 +1,86 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-datatables">
+      <div class="pageheader">
+        <h2>{{vm.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Gym Infra Structure</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+          <div class="col-md-12">
+            <form name="addGymInfraForm" class="form-horizontal" role="form" novalidate>
+              <section class="tile" fullscreen="isFullscreen03">
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong></strong>
+                  </h1>
+                  <ul class="controls">
+                    <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                      <a href class="dropdown-toggle settings" dropdown-toggle>
+                        <i class="fa fa-cog"></i>
+                      </a>
+                      <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                        <li>
+                          <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                            <fa name="refresh"></fa> Refresh </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+                  </ul>
+                </div>
+                <section class="tile" fullscreen="isFullscreen07">
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Equipment Name
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control mb-10" ng-model="vm.ui.name" placeholder="Name">
+
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4 col-sm-2 control-label">Image
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-md-8 col-sm-8">
+                        <div class="col-md-5">
+                          <input type="file" file-model="vm.ui.uploadFile" />
+                          <span>Upload image with (.jpg/jpeg/png) extension and max size 2 MB only</span>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-sm btn-default" ng-click="vm.uploadPic()" ng-disabled="vm.notReadable">Upload Image</button>
+                        </div>
+                        <div class="form-group col-sm-3">
+                          <img ng-src="{{vm.imageSource}}" ng-if="vm.imageSource" style="height:200px;width:200px;padding-right:10px" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="form-group">
+                    <div class="col-md-4 pull-right">
+                      <button type="button" ng-disabled="addGymInfraForm.$invalid" ng-click="vm.createmore = true;vm.saveInfra();" class="btn btn-success mb-10" ng-show="!vm.updateMode">Save &amp; Create more</button>
+                      <button type="button" ng-click="vm.createmore=false;vm.saveInfra();" class="btn btn-primary mb-10" ng-disabled="addGymInfraForm.$invalid">Save</button>
+                      <button type="button" ng-click="vm.reset();" class="btn btn-info mb-10">Reset</button>
+                      <button type="button" ng-click="vm.cancel();" class="btn btn-warning mb-10">Cancel</button>
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

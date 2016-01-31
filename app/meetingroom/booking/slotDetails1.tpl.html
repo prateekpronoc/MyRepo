@@ -1,0 +1,472 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-wizard">
+      <div class="pagecontent">
+        <h1 class="custom-font">
+          <strong>Book Meeting Room</strong>
+        </h1>
+        <tabset class="tab-animation tab-container tab-wizard" justified="true" set-ng-animate="true" ng-init="steps={step1:true, step2:false, step3:false, step4:false, step5: false}">
+          <tab heading="Check Availability" active="steps.step1" ng-controller="MRoomBookingCtrl as vm">
+            <form name="step1" role="form" novalidate class="form-validation">
+              <section class="tile" fullscreen="isFullscreen01">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="tile-header dvd dvd-btm">
+                      <h1 class="custom-font">
+                        <strong>Book</strong>MeetingRoom</h1>
+                    </div>
+                    <div class="tile-body">
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-sm-2">
+                            <p class="text-center" style="border-radius: 10px;border: 1px solid #C1C1AE;padding: 20px;height: 100px">Check Avalabilty</p>
+                          </div>
+                          <div class="col-sm-10">
+                            <div class="row">
+                              <div class="col-sm-4">
+                                <p class="input-group">
+                                  <input type="text" class="form-control" datepicker-popup ng-model="vm.dt" is-open="vm.opened" min-date="vm.minDate" max-date="'2020-06-22'" datepicker-options="vm.dateOptions" date-disabled="vm.disabled(date, mode)" close-text="vm.Close" />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-4">
+                                <p class="input-group">
+                                  <input type="text" class="form-control" datepicker-popup ng-model="vm.dt" is-open="vm.opened" min-date="vm.minDate" max-date="'2020-06-22'" datepicker-options="vm.dateOptions" date-disabled="vm.disabled(date, mode)" close-text="vm.Close" />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="vm.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>
+                                </p>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-2">
+                                <input type="checkbox">Daily
+                              </div>
+                              <div class="col-md-2">
+                                <input type="checkbox">Weekly
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-sm-2">
+                            <p class=" text-center" style="border-radius: 10px;border: 1px solid #C1C1AE;padding: 20px;height: 70px">Location</p>
+                          </div>
+                          <div class="col-sm-10">
+                            <div class="row">
+                            </div>
+                            <div class="row">
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-10">
+                                <label>Building</label> &nbsp;&nbsp;&nbsp;
+                                <select name="buildings" data-ng-model="vm.ui.buildingId" ng-change="vm.fetchFloor(vm.ui.buildingId);" ng-options=" entity.id as entity.name for entity in vm.buildings">
+                                  <option value="">Select Building</option>
+                                </select>&nbsp;&nbsp;&nbsp;
+                                <label>Floor</label> &nbsp;&nbsp;&nbsp;
+                                <select name="floors" data-ng-model="vm.ui.floorId" ng-options="entity.id as entity.name for entity in vm.floors">
+                                  <option value="">Select Floor</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="row">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-10">
+                          <div class="col-md-4">
+                          </div>
+                          <div class=" col-md-6">
+                          </div>
+                          <div class="col-md-2 ">
+                            <button type="button" class="btn btn-primary pull-right" ng-click="vm.filterSearch();">Apply</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tile-body">
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="tile-body">
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <div class="tile-header dvd dvd-btm">
+                                <h1 class="custom-font">
+                                  Available Meeting Rooms</h1>
+                              </div>
+                              <div class="tile-widget">
+                                <div class="row">
+                                  <div class="col-sm-5">
+                                    <select class="input-sm form-control inline w-sm" style="width:150px;">
+                                      <option value="0">Action</option>
+                                      <option value="2">Archive selected </option>
+                                    </select>
+                                    <button class="btn btn-sm btn-default">Apply</button>
+                                  </div>
+                                  <div class="col-sm-3"></div>
+                                  <div class="col-sm-4">
+                                    <div class="input-group">
+                                      <input type="text" class="input-sm form-control" placeholder="Search..." ng-model="vm.searchText">
+                                      <span class="input-group-btn">
+                                        <button class="btn btn-sm btn-default" type="button">Go!</button>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="cardview-container">
+                                <div card-view-grid data="vm.entity" main-columns="vm.meetingroomMainColumns" flip-columns="vm.meetingroomFlipColumns" flip-actions="vm.flipActions" main-actions="vm.mainActions" action-listener="vm.actionClicked(actionCode, record);"></div>
+                              </div>
+                              <div class="text-center">
+                                <small class="text-muted">showing {{vm.maxSize}} of {{vm.count}} items</small>
+                              </div>
+                              <div class="col-sm-4 pull-right">
+                                <ul class="pagination pagination-sm m-0">
+                                  <li><a href="" ng-click="vm.pageChanged(1)"><i class="fa fa-chevron-left"></i></a></li>
+                                  <li ng-repeat="pageNo in  vm.pagingArray"><a href="" ng-click="vm.pageChanged(pageNo)">{{pageNo}}</a></li>
+                                  <li><a href="" ng-click="vm.pageChanged(vm.endPage)"><i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="text-center">
+                    <button type="submit" ng-disabled="step1.$invalid" class="btn btn-default pull-right" ng-click="steps.step2=true">Next</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </tab>
+          <tab heading="Slot Details" active="steps.step2" disabled="step1.$invalid">
+            <form name="step2" role="form" novalidate>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="col-sm-12">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <table class="table table-condensed">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th class="text-center">8.30am - 12:30pm</th>
+                              <th class="text-center">8.30am - 12:30pm</th>
+                              <th class="text-center">4:30pm - 8:30pm</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">Today</th>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.left" btn-checkbox></label>
+                                <!--   <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.middle" btn-checkbox></label>
+                                <!-- <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.right" btn-checkbox></label>
+                                <!-- <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Today</th>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.left" btn-checkbox></label>
+                                <!--   <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.middle" btn-checkbox></label>
+                                <!-- <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.right" btn-checkbox></label>
+                                <!-- <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Today</th>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.left" btn-checkbox></label>
+                                <!--   <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.middle" btn-checkbox></label>
+                                <!-- <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.right" btn-checkbox></label>
+                                <!-- <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Today</th>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.left" btn-checkbox></label>
+                                <!--   <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.middle" btn-checkbox></label>
+                                <!-- <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                              <td>
+                                <label class="btn btn-default form-control mb-10 ng-touched" ng-model="checkModel.right" btn-checkbox></label>
+                                <!-- <a href="javascript:void(0);" class="form-control mb-10 ng-touched"></a> -->
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        Available Infrastructure
+                      </div>
+                      <div class="panel-body">
+                        <div ng-repeat="entity in vm.infraDetails">
+                          <div class="col-sm-6">{{entity.name}}
+                          </div>
+                          <div class="col-sm-6">&nbsp;<i class="fa fa-check fa-2x" style="color:green"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <h4>Meeting Room Name</h4>
+                        <h4>Date</h4>
+                        <h4>Time</h4>
+                        <h4>Location</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 form-group pull-left">
+                    <div>
+                      <label class="col-md-12  ">Meeting Room Cost : 100 Points</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-default pull-left" ng-click="steps.step1=true">Previous</button>
+                    <button type="submit" ng-disabled="step2.$invalid" class="btn btn-default pull-right" ng-click="steps.step3=true">Next</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </tab>
+          <tab heading="Invitation" active="steps.step3" disabled="step2.$invalid">
+            <form name="step3" role="form" novalidate>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="col-sm-8 tile-header dvd dvd-btm">
+                      <h1 class="custom-font">
+                        <strong>Invite</strong>People</h1>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <label class="checkbox checkbox-custom">
+                        <input type="checkbox" checked="checked" ng-model="vm.slotdetails.mailflag"><i></i> Send Invitations </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-8 " style="margin-top:10px;">
+                      <label class="col-sm-3">Subject Line</label>
+                      <div class="col-md-9">
+                        <input type="text" name="subject" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Subject Line" ng-model="vm.slotdetails.subject">
+                        <span style="color:red;" class="error-form-fields pull-right" ng-show="slotDetailsForm.subject.$error.pattern ">
+                          Enter a valid Name!</span>
+                      </div>
+                    </div>
+                    <div class="col-sm-8 " style="margin-top:10px;">
+                      <label class="col-sm-3">Required People</label>
+                      <div class="col-md-7">
+                        <!-- <tags-input ng-model="tags" add-on-paste="true">
+                            <auto-complete source="vm.loadTags()"></auto-complete>
+                          </tags-input>
+                          <p>Model: {{tags}}</p> -->
+                        <!-- <tags-input ng-model="tags"></tags-input>
+                          <p>Model: {{tags}}</p> -->
+                        <input type="text" ng-model="vm.slotdetails.usr" placeholder="Required People" typeahead="usr as usr.email for usr in vm.allusers | filter:$viewValue | limitTo:8" class="form-control">
+                        <span class="error-form-fields pull-right" ng-show="slotDetailsForm.email.$error.email ">
+                          Not valid email!</span>
+                      </div>
+                      <div class="col-md-2">
+                        <button type="button" ng-click="vm.addUserMail()" class="btn btn-primary pull-right">Add</button>
+                        <!-- <div auto-complete url="/search" model="data.tags"></div> -->
+                        <!--  <input type="email" name="email" class="form-control mb-10" placeholder="email" ng-model="vm.slotdetails.email" required>
+                          <span class="error-form-fields pull-right" ng-show="slotDetailsForm.email.$error.email ">
+                            Not valid email!</span>optionalemail -->
+                      </div>
+                    </div>
+                    <!-- <pre class="col-sm-offset-1 col-sm-7 pull-left">Model: {{vm.usrmails}}</pre> -->
+                    <div class="col-sm-8 " style="margin-top:10px;">
+                      <label class="col-sm-3"></label>
+                      <div class="col-sm-7">
+                        <alert ng-repeat="usrmails in vm.usrmails" type="success" close="vm.closeAlert($index)">{{usrmails}}</alert>
+                      </div>
+                    </div>
+                    <div class="col-sm-8 " style="margin-top:10px;">
+                      <label class="col-sm-3">Optional People</label>
+                      <div class="col-md-7">
+                        <input type="text" placeholder="Optinal People" ng-model="vm.slotdetails.optionalemail" typeahead="users as users.email for users in vm.allusers | filter:$viewValue | limitTo:8 " class="form-control">
+                        <span class="error-form-fields pull-right" ng-show="slotDetailsForm.optionalemail.$error.email ">
+                          Not valid email!</span>
+                      </div>
+                      <div class="col-md-2">
+                        <button type="button" ng-click="vm.addOptinalUserMail()" class="btn btn-primary pull-right">Add</button>
+                      </div>
+                    </div>
+                    <!-- <pre class="col-sm-offset-1 col-sm-7 pull-left">Model: {{vm.optinalmails}}</pre> -->
+                    <div class="col-sm-8 " style="margin-top:10px;">
+                      <label class="col-sm-3"></label>
+                      <div class="col-sm-7">
+                        <alert ng-repeat="usrmails in vm.optinalmails" type="success" close="vm.closeAlert($index)">{{usrmails}}</alert>
+                      </div>
+                    </div>
+                    <div class="col-sm-8 " style="margin-top:10px;">
+                      <label class="col-sm-3">Comment</label>
+                      <div class="col-md-9">
+                        <textarea class="form-control" rows="5" placeholder="Comments" ng-model="vm.slotdetails.comments"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-12 tile dvd dvd-btm" style="margin-top:10px;">
+                    </div>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-default pull-left" ng-click="steps.step2=true">Previous</button>
+                    <button type="button" class="btn btn-primary">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary">Reset</button>
+                    <button type="submit" ng-disabled="step3.$invalid" class="btn btn-default pull-right" ng-click="steps.step4=true">Next</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </tab>
+          <tab heading="Food Selection" active="steps.step4" disabled="step3.$invalid">
+            <form name="step4" role="form" novalidate>
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Book</strong>Snacks</h1>
+              </div>
+              <hr>
+              <section class="tile" fullscreen="isFullscreen07">
+                <div class="tile-body form-validation">
+                  <div class="col-md-9" style="padding:10px;">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Choose Resturant</label>
+                      <div class="col-sm-5">
+                        <select name="f2" class="form-control mb-9" required>
+                          <option value="">Choose Resturant</option>
+                          <option value="foo">Foo</option>
+                          <option value="bar">Bar</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="col-md-8">Special</th>
+                        <th class="col-md-2"></th>
+                        <th class="col-md-2"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="col-md-8">
+                          <div class="row">
+                            <div class="col-md-3">
+                              <img src="images/yeoman.a6b33b1c.png" style="height:35px; width=35px;" alt="">
+                            </div>
+
+                            <div class="row col-md-9">
+                              <p>ABC</p>
+                              <p>Preparation Time :10mins</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="col-md-2">Rs:20</td>
+                        <td class="col-md-2">
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="col-md-8">
+                          <div class="row">
+                            <div class="col-md-3">
+                              <img src="images/yeoman.a6b33b1c.png" style="height:35px; width=35px;" alt="">
+                            </div>
+
+                            <div class="row col-md-9">
+                              <p>ABC</p>
+                              <p>Preparation Time :10mins</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="col-md-2">Rs:20</td>
+                        <td class="col-md-2">
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="col-md-8">
+                          <div class="row">
+                            <div class="col-md-3">
+                              <img src="images/yeoman.a6b33b1c.png" style="height:35px; width=35px;" alt="">
+                            </div>
+
+                            <div class="row col-md-9">
+                              <p>ABC</p>
+                              <p>Preparation Time :10mins</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="col-md-2">Rs:20</td>
+                        <td class="col-md-2">
+                          <span class="glyphicon glyphicon-plus"></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-default" ng-click="steps.step3=true">Previous</button>
+                  <button type="submit" ng-disabled="step4.$invalid" class="btn btn-default pull-right" ng-click="steps.step5=true">Next</button>
+                </div>
+              </section>
+            </form>
+          </tab>
+          <tab heading="Final" active="steps.step5" disabled="step4.$invalid">
+            <form name="step5" role="form" class="form-inline" ng-submit="addFooditems()" novalidate>
+              <button type="submit" class="btn btn-default" ng-click="steps.step4=true">Previous</button>
+              <button type="submit" ng-disabled="step5.$invalid" class="btn btn-success pull-right">Finish</button>
+            </form>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </section>
+</div>

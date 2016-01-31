@@ -1,0 +1,145 @@
+<div class="doc-content">
+  <md-content>
+    <br>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+
+        <h2>
+          <span>Avialable Meeting Rooms</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Search" ng-click="vm.isOpenRight()">
+          <md-icon md-svg-icon="styles/icons/ic_filter_24px.svg"></md-icon>
+        </md-button>
+
+      </div>
+    </md-toolbar>
+    <br>
+    <md-content flex layout-padding>
+      <div layout="row" layout-sm="column">
+        <div flex ng-repeat="mr in vm.entity">
+          <md-card class="md-body-1">
+            <md-card-title>
+              <md-card-title-text>
+
+                <!--  <span class="md-title"> Id - {{ mr.id }}</span> -->
+                <span class="md-title">Name - {{ mr.name }}</span>
+
+              </md-card-title-text>
+
+            </md-card-title>
+            <md-card-title-media>
+              <div md-card-image>
+                <div>
+                  <carousel interval="vm.myInterval">
+                    <slide ng-repeat="slide in vm.slides" active="slide.active">
+                      <img ng-src="{{slide.image}}">
+                      <div class="carousel-caption">
+                        <h4>Slide {{$index+1}}</h4>
+                      </div>
+                    </slide>
+                  </carousel>
+                </div>
+              </div>
+
+            </md-card-title-media>
+            <md-card-content>
+              <p>
+                <span class="md-subhead">Id : {{ mr.id}}</span>
+              </p>
+              <p>
+                <span class="md-subhead">Location : {{ mr.location}}</span>
+              </p>
+              <p>
+                <span class="md-subhead">Descriptions : {{ mr.description}}</span>
+              </p>
+
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+
+              <md-button class="md-icon-button" aria-label="Book" alt="Book" title="Book" ng-click="vm.fetchBookingDetails(mr.id);">
+                <md-icon md-svg-icon="styles/icons/ic_edit_24px.svg"></md-icon>
+              </md-button>
+
+              <!--  <md-button class="md-primary md-raised" ng-click="vm.showDetails(booking.resourceId)">
+                  View Details
+                </md-button> -->
+            </md-card-actions>
+            <md-card-actions layout="row" layout-align="end center">
+              <!--  <md-button class="md-icon-button" aria-label="Favorite" alt="View infrastructure" title="View">
+                  <md-icon md-svg-icon="styles/icons/ic_flip_24px.svg"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Settings">
+                  <md-icon md-svg-icon="styles/icons/ic_menu_24px.svg"></md-icon>
+                </md-button> -->
+              <!--  <md-button class="md-icon-button" aria-label="Share">
+                  <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
+                </md-button> -->
+            </md-card-actions>
+
+          </md-card>
+        </div>
+
+      </div>
+    </md-content>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+
+        <h2>
+          <span>Total Meeting Room {{vm.entity.length}}</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Search" ng-click="vm.isOpenRight()">
+          <md-icon md-svg-icon="styles/icons/ic_menu_24px.svg"></md-icon>
+        </md-button>
+
+      </div>
+    </md-toolbar>
+  </md-content>
+  <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+    <md-toolbar class="md-theme-light">
+      <h1 class="md-toolbar-tools">Search</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+      <div layout="column" layout-sm="column">
+        <div flex>
+          <md-input-container>
+            <label for="testInput">Input From Time</label>
+            <input type="number" id="testInput" ng-model="data" md-autofocus min="0" ma="60">
+          </md-input-container>
+        </div>
+        <div flex>
+          <md-datepicker ng-model="birthday"></md-datepicker>
+        </div>
+      </div>
+      <div layout="column" layout-sm="column">
+        <div flex>
+          <md-input-container>
+            <label for="testInput">Input To Time</label>
+            <input type="number" id="testInput" ng-model="data" md-autofocus min="0" ma="60">
+          </md-input-container>
+        </div>
+        <div flex>
+          <md-datepicker ng-model="birthday"></md-datepicker>
+        </div>
+      </div>
+      <div layout="column" layout-sm="column">
+        <div flex>
+
+        </div>
+        <div flex>
+          <md-button class="md-icon-button" aria-label="Search" ng-click="vm.isOpenRight()">
+            <md-icon md-svg-icon="styles/icons/ic_menu_24px.svg"></md-icon>
+          </md-button>
+        </div>
+      </div>
+      <!--  <section layout="column" flex>
+          <md-input-container>
+            <label for="testInput">Input Time</label>
+            <input type="number" id="testInput" ng-model="data" md-autofocus min="0" ma="60">
+          </md-input-container>
+         
+        </section> -->
+    </md-content>
+  </md-sidenav>
+</div>

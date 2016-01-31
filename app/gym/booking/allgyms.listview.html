@@ -1,0 +1,37 @@
+<div class="tile-body p-0">
+  <div class="table-responsive">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th style="width:20px">
+            <label class="checkbox checkbox-custom checkbox-custom-sm m-0">
+              <input type="checkbox" ng-model="selectedAll" ng-click="vm.selectAll()" class="ng-pristine ng-untouched ng-valid"><i></i> </label>
+          </th>
+          <th ng-repeat="col in vm.columnCollection">{{col.title}}<i class="fa fa-sort" style="padding:10px;" ng-click="reverse=!reverse;vm.order(col.id, reverse)"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="ng-scope" ng-repeat="row in vm.entity | filter : vm.searchText" ng-click="vm.getById(row.id)">
+          <td>
+            <label class="checkbox checkbox-custom checkbox-custom-sm m-0">
+              <input type="checkbox" ng-model="row.selected" class="ng-pristine ng-untouched ng-valid"><i></i></label>
+          </td>
+          <td>
+            <a href="javascript:void(0);">
+              <span>{{row.id}}</span>
+            </a>
+          </td>
+          <td>
+            <span>{{row.name}}</span>
+          </td>
+          <td>
+            <span>{{row.capacity}}</span>
+          </td>
+          <td>
+            <span>{{vm.ui.userInfo[row.managerId]}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

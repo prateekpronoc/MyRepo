@@ -1,0 +1,104 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <div class="col-md-12">
+          <div class="col-md-1">
+            <img src="images/yeoman.a6b33b1c.png" style="height:30px;width=30px;" alt="">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <h2>{{vm.viewcompanydetails[0].name}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a> </li>
+            <li> <a href="javascript:;">company</a> </li>
+            <li> <a ui-sref="app.premises.viewPremises">{{page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <form name="form1" class="form-horizontal" submit="submitForm(form1.$valid)" role="form" novalidate>
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong>Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+                </ul>
+              </div>
+              <div class="col-md-12">
+                <div class="tile-body form-validation">
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <label class="col-sm-6 control-label">Employee Strength</label>
+                      <label class="col-sm-6 control-label">{{vm.viewcompanydetails[0].employee_strength}}</label>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 control-label">Address</label>
+                      <label class="col-sm-6 control-label">{{vm.viewcompanydetails[0].address}}</label>
+                    </div>
+                  </div>
+                  <div class="pull-right">
+                    <div class="form-group">
+                      <img src="http://www.abbeyoffices.com/_images/assets/locations/image-gallery-full/Meeting-room_8.jpg" alt="" style="width:300px;height:300px;">
+                    </div>
+                    <div class="tile-body" ng-controller="PaginationDemoCtrl">
+                      <pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage" class="mt-0 mb-10"></pagination>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Meeting Rooms</strong>Details</h1>
+              </div>
+              <div class="tile-body form-validation">
+                <div class="form-group">
+                  <div class="col-md-10">
+                    <div class="tile-body table-custom">
+                      <form class="form-inline">
+                        <table datatable="ng" class="table table-custom">
+                          <thead>
+                            <tr>
+                              <th class="bt-0">Name</th>
+                              <th class="bt-0">Email</th>
+                              <th class="bt-0">Mobile</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="viewcompanyusersdetail in vm.viewcompanyusersdetails">
+                              <td>{{viewcompanyusersdetail.name}}</td>
+                              <td>{{viewcompanyusersdetail.email}}</td>
+                              <td>{{viewcompanyusersdetail.mobile}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

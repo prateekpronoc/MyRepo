@@ -1,0 +1,28 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-wizard">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.title}}
+
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Gym</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pagecontent">
+
+        <div data-ui-view>
+        </div>
+      </div>
+
+
+      <!-- /page content -->
+    </div>
+  </section>
+</div>

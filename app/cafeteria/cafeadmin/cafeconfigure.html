@@ -1,0 +1,159 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.title}}
+          <!--  <span></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Cafe Admin</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong> Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <form name="CreateCafeteriaForm" class="form-horizontal" role="form" novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Location</label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" ng-model="vm.ui.location" required>
+                        <option value="">location</option>
+                        <option value="foo">Foo</option>
+                        <option value="bar">Bar </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Cuisine</label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" ng-model="vm.ui.cuisineId" required>
+                        <option value="">Cuisine</option>
+                        <option value="foo">Foo</option>
+                        <option value="bar">Bar</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Sitting Capacity</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control mb-10" placeholder="Sitting Capacity" ng-model="vm.ui.sittingcapacity" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Description</label>
+                    <div class="col-sm-5">
+                      <textarea class="form-control" rows="5" name="message" id="message" placeholder="Description" ng-model="vm.ui.description"></textarea>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong> Timing Details </strong> Details</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Monday</label>
+                      <div class="col-sm-10">
+                        <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-max="1000" data-slider-step="10" data-slider-value="[120,780]"> </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Tuesday</label>
+                      <div class="col-sm-10">
+                        <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-max="1000" data-slider-step="10" data-slider-value="[120,780]"> </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Wednesday</label>
+                      <div class="col-sm-10">
+                        <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-max="1000" data-slider-step="10" data-slider-value="[120,780]"> </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Thrusday </label>
+                      <div class="col-sm-10">
+                        <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-max="1000" data-slider-step="10" data-slider-value="[120,780]"> </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Friday </label>
+                      <div class="col-sm-10">
+                        <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-max="1000" data-slider-step="10" data-slider-value="[120,780]"> </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Saturday </label>
+                      <div class="col-sm-10">
+                        <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-max="1000" data-slider-step="10" data-slider-value="[120,780]"> </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Sunday</label>
+                      <div class="col-sm-10">
+                        <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-max="1000" data-slider-step="10" data-slider-value="[120,780]"> </div>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong> Photo </strong> Galery</h1>
+                  </div>
+                  <div class="tile-body form-validation">
+                    <div class="form-group">
+                      <label class="col-sm-3  control-label">Upload Image</label>
+                      <div class="col-sm-3">
+                        <input type="file" ngf-select ng-model="vm.ui.picFile" name="file" id="fileInput" accept="image/*" ngf-max-size="2MB">
+                      </div>
+                      <div class="col-sm-3">
+                        <button ng-click="vm.uploadPic(vm.ui.picFile)">upload full image</button>
+                      </div>
+                      <span ng-show="picFile.result">Upload Successful</span>
+                      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                    </div>
+                    <!--    <div class="form-group">
+                <div class="col-md-2">
+                  <img src="images/yeoman.a6b33b1c.png" alt="" style="width:100px;height:100px;">
+                </div>
+                <div class="col-md-2">
+                  <img src="images/yeoman.a6b33b1c.png" alt="" style="width:100px;height:100px;">
+                </div>
+                <div class="col-md-2">
+                  <img src="images/yeoman.a6b33b1c.png" alt="" style="width:100px;height:100px;">
+                </div>
+                <div class="col-md-2">
+                  <img src="images/yeoman.a6b33b1c.png" alt="" style="width:100px;height:100px;">
+                </div>
+            </div> -->
+                  </div>
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-disabled="CreateCafeteriaForm.$invalid" ng-click="vm.createmore = true;vm.cafeConfigure();" class="btn btn-success mb-10" ng-show="!vm.updateMode">Save &amp; Create more</button>
+                    <button type="button" ng-disabled="CreateCafeteriaForm.$invalid" ng-click="vm.createmore = false;vm.cafeConfigure();" class="btn btn-primary mb-10">Save</button>
+                    <button type="button" ng-click="vm.reset()" class="btn btn-info mb-10">Reset</button>
+                    <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

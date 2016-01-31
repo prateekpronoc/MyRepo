@@ -1,0 +1,61 @@
+<div class="page page-form-validate">
+  <div class="pagecontent">
+    <div class="row">
+      <div class="col-md-12">
+        <section class="tile" fullscreen="isFullscreen01">
+          <form class="form-horizontal" role="form">
+            <div class="tile-header dvd dvd-btm">
+              <h1 class="custom-font">
+                <strong>Premises</strong>Details</h1>
+            </div>
+            <div class="tile-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">ID :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.id}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Resource Id :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.resourceId}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Resource Type :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.resourceType}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">From :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.from}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">To :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.to}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Booked By :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.bookedForWhom}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Transaction Id :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.entity.transactionId}}</p>
+                </div>
+              </div>
+              <button type="button" ng-click="vm.exit();" class="btn btn-info pull-right">Close</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

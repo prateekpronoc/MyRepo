@@ -1,0 +1,29 @@
+<div>
+  <md-content ng-show="vm.foodBookingEntity.length>0">
+    <md-list>
+      <md-subheader class="md-no-sticky">Food Items</md-subheader>
+      <md-list-item class="md-3-line" ng-repeat="item in vm.foodBookingEntity">
+
+        <div class="md-list-item-text" layout="column">
+          <div layout="">
+            <carousel interval="6000">
+              <slide ng-repeat="slide in item.foodItems" active="slide.active">
+                <img ng-src="/api/download?fileName={{vm.foodImages[slide.id]}}" style="width:70px;heigth:50px;">
+                <div class="carousel-caption">
+                  <h4>Slide {{$index+1}}</h4>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+          <h3>Ordered Id - {{ item.bookingId }}</h3>{{val}}
+          <p ng-repeat="val in item.foodItems">{{ val.name }} - {{val.qty}}</p>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider>
+
+    </md-list>
+  </md-content>
+  <md-content flex layout-padding ng-show="vm.foodBookingEntity.length===0">
+    <p>Please Order Some food</p>
+  </md-content>
+</div>

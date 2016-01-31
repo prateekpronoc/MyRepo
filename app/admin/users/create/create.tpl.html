@@ -1,0 +1,123 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <div class="pageheader">
+        <h2>{{vm.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Users</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen01">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong> Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a href="" dropdown-toggle="" class="dropdown-toggle settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href="" tile-control-toggle="">
+                          <span class="minimize"><i class="fa fa-angle-down" name="angle-down"></i>&nbsp;&nbsp;&nbsp;Minimize</span>
+                          <span class="expand"><i class="fa fa-angle-up" name="angle-up"></i>&nbsp;&nbsp;&nbsp;Expand</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-refresh="" ng-click="ajaxFaker()"> <i class="fa fa-refresh" name="refresh"></i> Refresh </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-fullscreen="" ng-click="isFullscreen01 = !isFullscreen01"> <i class="fa fa-expand" name="expand"></i> Fullscreen </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <alert class="col-md-2 pull-right" ng-repeat="alert in vm.alerts" type="success">{{alert.msg}}</alert>
+                <form class="form-horizontal" name="createUserForm" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="adminname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Admin Name" data-ng-model="vm.userInfo.name" required>
+                      <span class="error-form-fields pull-right" ng-show="createUserForm.adminname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Mobile number
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="tel" name="mobilenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-readonly="vm.credentials.selectuser" class="form-control mb-10" placeholder="Contact number" data-ng-model="vm.userInfo.mobile" required>
+                      <span class="error-form-fields pull-right" ng-show="createUserForm.mobilenumber.$error.pattern ">
+                        Not valid contact number!</span>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="col-sm-8">
+                        <select class="form-control mb-9" ng-model="vm.userInfo.roleId" required>
+                          <option value=""> Choose Role</option>
+                          <option ng-repeat="(key, value) in vm.assignrole" value="{{key}}">{{value}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Contact number
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="tel" name="contactnumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="15" ng-readonly="vm.credentials.selectuser" class="form-control mb-10" placeholder="Contact number" data-ng-model="vm.userInfo.phone" required>
+                      <span class="error-form-fields pull-right" ng-show="createUserForm.contactnumber.$error.pattern">
+                        Not valid contact number!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Email Id
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="email" name="email" ng-readonly="vm.credentials.selectuser" class="form-control mb-10" placeholder="Email Id" data-ng-model="vm.userInfo.email" required>
+                      <span class="error-form-fields pull-right" ng-show="createUserForm.email.$error.email ">
+                        Not valid email!</span>
+                    </div>
+                    <div class="col-sm-3" ng-show="vm.credentials.checkbox">
+                      <a href="#" ui-sref="wams.addmore" ng-model="vm.credentials.addmore">add more </a>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Select Tenant
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" ng-model="vm.userInfo.tenantId" required>
+                        <option value="">Select Tenant</option>
+                        <option ng-repeat="(key, val) in  vm.tenants" value="{{key}}">{{val}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-disabled="createUserForm.$invalid" ng-click="vm.createmore=true;vm.saveUser()" class="btn btn-success mb-10">Save &amp; Create more</button>
+                    <button type="button" ng-disabled="createUserForm.$invalid" ng-click="vm.createmore=false;vm.saveUser();" class="btn btn-primary mb-10">Save</button>
+                    <button type="button" ng-click="vm.reset()" class="btn btn-info mb-10">Reset</button>
+                    <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

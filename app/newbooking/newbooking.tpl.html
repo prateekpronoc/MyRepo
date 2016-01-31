@@ -1,0 +1,348 @@
+<md-card>
+  <!-- <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>My Meeting Rooms</span>
+      </h3>
+    </div>
+  </md-toolbar> -->
+
+  <md-content>
+
+
+    <section layout-fill layout="column" ng-if="vm.tabIndex===0">
+
+      <div flex layout="row" layout-xs="column" style="margin-top:15px;">
+        <div flex layout="row" layout-align="start" layout-margin>
+          <md-datepicker ng-model="vm.search.fromDate" md-min-date="vm.minDate" md-placeholder="Date" style="width:90%;">
+          </md-datepicker>
+        </div>
+
+        <div flex layout="row" layout-align="center center" layout-margin>
+          <md-input-container class="md-docs-dark-theme md-input-has-value" style="width:50%;">
+            <label>Start Time</label>
+            <input ng-model="vm.search.time" class="ng-pristine ng-untouched ng-valid md-input" max="20" min="8" step="1" aria-invalid="false" type="number">
+            <div class="md-errors-spacer"></div>
+          </md-input-container>
+        </div>
+        <div flex layout="row" layout-align="center center" layout-margin>
+          <md-input-container class="md-docs-dark-theme md-input-has-value" style="width:50%;">
+            <label for="input_82">Start Min</label>
+            <input ng-model="vm.search.min" class="ng-pristine ng-untouched ng-valid md-input" max="45" min="0" step="15" aria-invalid="false" type="number">
+            <div class="md-errors-spacer"></div>
+          </md-input-container>
+        </div>
+        <div flex layout="row" layout-align="center center" layout-margin>
+          <md-input-container class="md-docs-dark-theme md-input-has-value" style="width:50%;">
+            <label for="input_82">Duration</label>
+            <input ng-model="vm.search.duration" class="ng-pristine ng-untouched ng-valid md-input" min="30" max="120" step="30" type="number" aria-invalid="false">
+            <div class="md-errors-spacer"></div>
+          </md-input-container>
+        </div>
+        <div flex layout="row" layout-align="center center" layout-margin>
+          <!--   <md-input-container class="md-docs-dark-theme md-input-has-value" style="width:50%;">
+            <label for="input_82">Seating Capacity</label>
+            <input ng-model="vm.search.capacity" class="ng-pristine ng-untouched ng-valid md-input" min="4" max="16" step="1" type="number" aria-invalid="false">
+            
+          </md-input-container> -->
+        </div>
+      </div>
+      <div flex layout="row" layout-xs="column">
+        <div flex layout="row" layout-align="start" layout-margin style="margin-left:70px;">
+          <md-select placeholder="Select Infra" ng-model="vm.selectedInfra" multiple style="width:138px">
+            <md-option ng-value="infra" ng-repeat="infra in vm.infraList">{{infra.value}}</md-option>
+          </md-select>
+        </div>
+
+        <div flex layout="row" layout-align="center center" layout-margin>
+          <!-- <md-input-container class="md-docs-dark-theme md-input-has-value" style="width:50px;"> -->
+          <md-select placeholder="Select Type" ng-model="vm.selectedMRTypes" style="width:138px">
+            <md-option ng-value="mrType" ng-repeat="mrType in vm.mrTypes">{{mrType.value}}</md-option>
+          </md-select>
+        </div>
+        <div flex layout="row" layout-align="center center" layout-margin>
+
+        </div>
+        <div flex layout="row" layout-align="center center" layout-margin>
+
+        </div>
+
+
+
+        <!-- <md-select ng-model="vm.selectedInfra">
+        <md-option ng-value="infra" ng-repeat="infra in vm.infraList">{{ infra.value }}</md-option>
+      </md-select> -->
+        <div flex layout="row" layout-align="start" layout-xs="column">
+
+
+
+        </div>
+        <!-- <div flex layout="row" layout-xs="column"> -->
+        <!--  <md-list layout="row" layout-xs="column">
+        <md-list-item ng-repeat="val in vm.infraList">
+          <md-checkbox ng-model="val.selected">
+          </md-checkbox>
+          <span>{{val.value}}</span>
+        </md-list-item>
+      </md-list>
+ -->
+
+        <!-- </div> -->
+        <div layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary" ng-click="vm.clearSearch()">Reset</md-button>
+          <md-button class="md-raised md-primary" ng-click="vm.mrSearch()">Search</md-button>
+        </div>
+    </section>
+    <section layout-fill layout="column" ng-if="vm.tabIndex>0">
+
+
+
+      <md-list flex layout="row" layout-align="center center">
+        <md-list-item ng-repeat="item in vm.items">
+          <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+            <md-icon md-svg-src="{{item.icon}}"></md-icon>
+            <div class="md-grid-text"> {{ item.name }} </div>
+          </md-button>
+        </md-list-item>
+      </md-list>
+      </div>
+      </md-bottom-sheet>
+
+
+    </section>
+
+
+    <div layout="column" flex layout-fill ng-cloak>
+      <!-- <md-toolbar md-scroll-shrink>
+          <div class="md-toolbar-tools">My Messages</div>
+        </md-toolbar> -->
+      <md-content ng-if="vm.tabIndex===0 && vm.isSearchSuccess">
+        <section>
+          <md-subheader class="md-primary">Meeting Rooms</md-subheader>
+          <md-divider></md-divider>
+          <md-list-item class="secondary-button-padding" ng-repeat="value in vm.entity">
+
+            <img src="http://lorempixel.com/400/200/food" class="md-avatar" />
+            <div class="md-list-item-text">
+              <p>
+                <md-button ng-click="vm.viewDetails(value.id)" target="_blank">{{value.id}} {{value.name}}</md-button>
+              </p>
+              <p>{{value.description}}</p>
+              <md-button class="md-secondary md-primary md-hue-1" ng-click="vm.checkforBooking(value.id)">Book</md-button>
+              <!-- <md-button class="md-secondary md-raised md-primary"  ng-click="vm.fetchBookingDetails(value.id,$index)">Book</md-button> -->
+
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+          <!--   <md-list layout-padding ng-repeat="value in vm.entity">
+              <p> </p>
+              <p>{{value.description}}</p>
+            </md-list> -->
+        </section>
+
+      </md-content>
+      <md-content flex layout-padding ng-if="vm.tabIndex===0 && !vm.isSearchSuccess">
+        <p>Please Reset or Search with different Criteria</p>
+        <p>No Result Found!</p>
+      </md-content>
+      <md-content style="height: 350px;" ng-if="vm.slots.length>0 && vm.tabIndex==0">
+        <section>
+          <md-subheader class="md-primary" layout="row">
+            <h4>{{vm.entity[vm.selectedMR].name}} Slot Details. Duration - 60 min</h4>
+            <div>
+              <md-input-container class="md-block md-input-has-value">
+                <label>Select Duration</label>
+                <!--  <input ng-model="vm.duration" class="ng-pristine ng-untouched ng-valid md-input" aria-invalid="false" type="number" max="120" step="15" min="30"> -->
+                <div class="md-errors-spacer"></div>
+              </md-input-container>
+            </div>
+          </md-subheader>
+          <md-divider></md-divider>
+          <md-list-item class="secondary-button-padding" ng-repeat="value in vm.slots">
+
+            <img src="http://lorempixel.com/400/200/food" class="md-avatar" />
+            <div class="md-list-item-text">
+              <p>{{value.from}}:{{value.frommin}} - {{value.to}}:{{value.tomin}}</p>
+              <p>{{value.description}}</p>
+              <md-button class="md-secondary" ng-click="vm.bookMeetingRoom($index)">Book</md-button>
+
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+          <!--   <md-list layout-padding ng-repeat="value in vm.entity">
+              <p> </p>
+              <p>{{value.description}}</p>
+            </md-list> -->
+        </section>
+
+      </md-content>
+      <md-content ng-if="vm.tabIndex===1">
+        <section>
+          <md-subheader class="md-primary" layout="row">
+            <h4>{{vm.selectedEntity.mrDetails.id}} - {{vm.selectedEntity.mrDetails.name}}</h4>
+            <h4>{{vm.selectedEntity.mrDetails.location}} </h4>
+            <h4 ng-show="vm.dateSearch">{{vm.selectedSlot.from}}:{{vm.selectedSlot.frommin}} - {{vm.selectedSlot.to}}:{{vm.selectedSlot.tomin}} Duration :{{vm.search.duration}}</h4>
+            <div flex layout="row" layout-xs="column" style="margin-top:15px;">
+              <div flex layout="row" layout-align="start" layout-margin>
+                <md-datepicker ng-model="vm.select.fromDate" md-min-date="vm.minDate" md-placeholder="Date" style="width:90%;"  ng-show="!vm.dateSearch">
+                </md-datepicker>
+              </div>
+            </div>
+          
+            <md-input-container class="md-docs-dark-theme md-input-has-value" style="width:100px;" ng-show="!vm.dateSearch">
+              <label>Start Time</label>
+              <input ng-model="vm.select.time" class="ng-pristine ng-untouched ng-valid md-input" max="20" min="8" step="1" aria-invalid="false" type="number">
+              <div class="md-errors-spacer"></div>
+            </md-input-container>
+            <md-input-container class="md-docs-dark-theme md-input-has-value" style="width:100px;" ng-show="!vm.dateSearch">
+              <label>Start Min</label>
+              <input ng-model="vm.select.min" class="ng-pristine ng-untouched ng-valid md-input" max="45" min="0" step="15" aria-invalid="false" type="number">
+              <div class="md-errors-spacer"></div>
+            </md-input-container>
+            <md-input-container class="md-docs-dark-theme md-input-has-value" style="width:100px;" ng-show="!vm.dateSearch">
+              <label>Duration</label>
+              <input ng-model="vm.select.duration" class="ng-pristine ng-untouched ng-valid md-input" max="120" min="15" step="15" aria-invalid="false" type="number">
+              <div class="md-errors-spacer"></div>
+            </md-input-container>
+
+            <!-- <div>
+              <md-input-container class="md-block md-input-has-value">
+                <label>Select Duration</label>
+                <input ng-model="vm.duration" class="ng-pristine ng-untouched ng-valid md-input" aria-invalid="false" type="number" max="120" step="15" min="30">
+                <div class="md-errors-spacer"></div>
+              </md-input-container>
+            </div> -->
+          </md-subheader>
+          <md-divider></md-divider>
+          <div layout="column" ng-cloak>
+            <md-content layout-padding>
+              <form name="projectForm">
+                <md-input-container class="md-block">
+                  <label>Subject</label>
+                  <input md-maxlength="30" name="subject" ng-model="vm.bookingEntities.subject">
+                  <!--  <div ng-messages="projectForm.description.$error">
+                    <div ng-message="required">This is required.</div>
+                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                  </div> -->
+                </md-input-container>
+                <md-select multiple placeholder="Selecte Invitees" ng-model="vm.user" md-on-open="vm.fetchAllUsers()" style="min-width: 200px;">
+                  <md-option ng-value="user" ng-repeat="user in vm.users">{{user.email}}</md-option>
+                </md-select>
+                <md-input-container class="md-block">
+                  <label>Message</label>
+                  <input required name="clientName" ng-model="vm.bookingEntities.Message">
+
+                </md-input-container>
+              </form>
+              <!-- <md-button class="md-raised md-primary" ng-click="vm.createInvoice();">Book</md-button> -->
+            </md-content>
+          </div>
+          <!-- <md-list-item class="secondary-button-padding" ng-repeat="value in vm.slots">
+
+            <img src="http://lorempixel.com/400/200/food" class="md-avatar" />
+            <div class="md-list-item-text">
+              <p>{{value.from}}:{{value.frommin}} - {{value.to}}:{{value.tomin}}</p>
+              <p>{{value.description}}</p>
+              <md-button class="md-secondary" ng-click="vm.bookMeetingRoom(value.id)">Book</md-button>
+
+            </div>
+            <md-divider></md-divider>
+          </md-list-item> -->
+          <!--   <md-list layout-padding ng-repeat="value in vm.entity">
+              <p> </p>
+              <p>{{value.description}}</p>
+            </md-list> -->
+        </section>
+
+      </md-content>
+      <md-content ng-if="vm.tabIndex===2">
+        <section>
+
+          <div layout="column" ng-cloak>
+            <md-content layout-padding>
+              <div flex flex-sm="100" flex-xs="100" layout="column">
+
+                <md-card>
+                  <md-card-header>
+
+                    <md-card-header-text layout-align="center center">
+                      <span class="md-title">Booking Invoice</span>
+                      <!-- <span class="md-subhead">{{vm.selectedEntity.mrDetails.name}}</span> -->
+                    </md-card-header-text>
+                    <md-divider></md-divider>
+                  </md-card-header>
+
+                  <md-card-content>
+                    <article>
+                      <h1>Recipient</h1>
+                      <address contenteditable>
+                        <p>{{vm.userInfo.name}}
+                          <br>{{vm.userInfo.email}}</p>
+                      </address>
+                      <address contenteditable layout="column" layout-align="center end">
+                        <p>Date # {{vm.invoice.fromDate | date:'yyyy-MM-dd HH:mm:ss'}}
+                          <br>Points Due : 0.00</p>
+                      </address>
+
+
+                      <mdt-table>
+                        <mdt-header-row>
+                          <!-- <mdt-column align-rule="left">S.No</mdt-column> -->
+                          <mdt-column align-rule="right">Meeting Room ID</mdt-column>
+                          <mdt-column align-rule="right">Meeting Room Name</mdt-column>
+                          <mdt-column align-rule="right">Booked For</mdt-column>
+                          <mdt-column align-rule="right">Duration</mdt-column>
+
+                        </mdt-header-row>
+                        <mdt-row>
+                          <mdt-cell>{{vm.selectedEntity.mrDetails.id}}</mdt-cell>
+                          <mdt-cell>{{vm.selectedEntity.mrDetails.name}}</mdt-cell>
+                          <mdt-cell>{{ vm.invoice.fromDate}}</mdt-cell>
+                          <mdt-cell>{{vm.invoice.duration}}</mdt-cell>
+
+                        </mdt-row>
+                      </mdt-table>
+
+                    </article>
+
+                  </md-card-content>
+                  <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-raised md-primary" ng-click="vm.finalbooking()">Book</md-button>
+                  </md-card-actions>
+                </md-card>
+              </div>
+
+          </div>
+
+        </section>
+
+        </md-content>
+        <md-toolbar ng-if="vm.tabIndex>0 && vm.tabIndex<2">
+          <div class="md-toolbar-tools">
+            <md-button aria-label="Go Back" class="md-raised" ng-click="vm.back()">
+              Back
+            </md-button>
+            <!-- <h2>
+              <span>Toolbar with Standard Buttons</span>
+            </h2> -->
+            <span flex></span>
+            <md-button class="md-raised" aria-label="Next" ng-click="vm.next()">
+              Next
+            </md-button>
+            <!-- <md-button class="md-fab md-mini" aria-label="Favorite">
+              <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+            </md-button> -->
+          </div>
+        </md-toolbar>
+      </md-content>
+
+  </md-content>
+  </div>
+
+  <!-- </section> -->
+
+  </md-content>
+
+
+
+</md-card>

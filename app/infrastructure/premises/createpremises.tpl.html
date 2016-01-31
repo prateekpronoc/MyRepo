@@ -1,0 +1,152 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.page.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Premises</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong>Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <form name="createPremisesForm" class="form-horizontal" role="form" novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="premisesname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Name" ng-model="vm.premises.name" required>
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="createPremisesForm.premisesname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">State
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" ng-model="vm.premises.stateId" ng-change="vm.getCityCatalog();">
+                        <option value="">State</option>
+                        <option ng-repeat="(key, val) in vm.state" value="{{key}}">{{val}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">City
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" ng-disabled="!vm.premises.stateId" ng-model="vm.premises.cityId" ng-options="k as v for (k, v) in  vm.ui.cityValues" ng-change="vm.getLocCatalog();">
+                        <option value="">City</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Location
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" placeholder="Location" ng-model="vm.premises.location" required>
+                        <option value="">Location</option>
+                        <option ng-repeat="(key, value) in vm.location" value="{{value}}">{{value}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="Address">Address
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <textarea class="form-control" rows="5" placeholder="Address" ng-model="vm.premises.address"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group" ng-hide="vm.premises.checkbox">
+                    <label class="col-sm-3 control-label">Existing User
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="existinguser" class="form-control mb-9" ng-model="vm.premises.contactPerson" ng-change="vm.getUserById(vm.premises.contactPerson);">
+                        <option value="">Existing User</option>
+                        <option ng-repeat="(key,val) in vm.allusers" value="{{key}}">{{val}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-9 pull-right">
+                      <input type="checkbox" ng-model="vm.premises.checkbox" ng-click="vm.addNew();">
+                      <span>Add New User</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Contact Person
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="contactName" class="form-control mb-10" placeholder="Name" ng-model="vm.premises.contactPersonName" ng-pattern="/^[A-z]+$/" ng-readonly="vm.notReadable" required>
+
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="createPremisesForm.contactName.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Contact number
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="tel" class="form-control mb-10" name="mobilenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" class="form-control mb-10" placeholder="Contact number" ng-model="vm.premises.contactNo" ng-readonly="vm.notReadable" required>
+                      <span class="error-form-fields pull-right" ng-show="createPremisesForm.mobilenumber.$error.pattern ">
+                        Not valid contact number!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Email
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="email" name="email" class="form-control mb-10" placeholder="email" ng-model="vm.premises.email" ng-readonly="vm.notReadable" required>
+                      <span class="error-form-fields pull-right" ng-show="createPremisesForm.email.$error.email ">
+                        Not valid email!</span>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-disabled="createPremisesForm.$invalid" ng-click="vm.createmore = true;vm.savePremises();" class="btn btn-success mb-10" ng-hide="vm.updateMode">Save &amp; Create more</button>
+                    <button type="button" ng-disabled="createPremisesForm.$invalid" ng-click="vm.createmore = false;vm.savePremises();" class="btn btn-primary mb-10">Save</button>
+                    <button type="button" ng-click="vm.reset()" class="btn btn-info mb-10">Reset</button>
+                    <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

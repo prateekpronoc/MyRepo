@@ -1,0 +1,175 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <div class="pageheader">
+        <h2>{{vm.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Configuration</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong>Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <form name="createCostForm" class="form-horizontal" role="form" novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Resource Type
+                    </label>
+                    <div class="col-sm-5">
+
+                      <select name="f2" class="form-control mb-9" ng-change="vm.getEntity()" ng-model="vm.cf.resourceId">
+                        <option ng-repeat="(key, val) in vm.resourceType" value="{{key}}">{{val}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Entity
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" ng-change="vm.getcost()" ng-model="vm.cf.selectedEntity">
+                        <option ng-repeat="(key, val) in vm.entityType" value="{{key}}">{{val}}</option>
+                        <!-- <option ng-repeat="(key, value) in vm.entity" value="{{key}}">{{value}}</option> -->
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Cost</label>
+                    <div class="col-sm-5">
+                      <input type="number" class="form-control mb-10" name="cost" placeholder="Cost" ng-pattern="/^\d+$/" ng-model="vm.cf.cost" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Factor
+                    </label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" ng-model="vm.cf.factor">
+                        <option ng-repeat="(key, val) in vm.factors" value="{{key}}">{{val}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-click="vm.saveCostConfig();" class="btn btn-primary mb-10">Configure</button>
+                  </div>
+                  <div class="tile-widget">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <select class="input-sm form-control inline w-sm" style="width:150px;">
+                          <option value="0">Action </option>
+                          <option value="2">Archive </option>
+                        </select>
+                        <button class="btn btn-sm btn-default">Apply</button>
+                      </div>
+                      <div class="col-sm-3"></div>
+                      <div class="col-sm-4">
+                        <div class="input-group">
+                          <input type="text" class="input-sm form-control" placeholder="Search..." ng-model="vm.searchText">
+                          <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="button">Go!</button>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <table class="table table-custom dataTable no-footer" id="project-progress" role="grid" aria-describedby="project-progress_info">
+                        <thead>
+                          <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="project-progress" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ID: activate to sort column descending" style="width: 27px;">ID</th>
+                            <th class="sorting" tabindex="0" aria-controls="project-progress" rowspan="1" colspan="1" aria-label="Project: activate to sort column ascending" style="width: 226px;"> Resource Name </th>
+                            <th class="sorting" tabindex="0" aria-controls="project-progress" rowspan="1" colspan="1" aria-label="Priority: activate to sort column ascending" style="width: 200px;">Cost</th>
+                            <th class="sorting" tabindex="0" aria-controls="project-progress" rowspan="1" colspan="1" aria-label="Priority: activate to sort column ascending" style="width: 200px;">Factor</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr role="row" class="odd" ng-repeat="row in vm.costConfigEntity">
+                            <td class="sorting_1">{{row.id}}</td>
+                            <td>{{vm.cf.meetingrooms[row.resourceId]}} </td>
+                            <td>{{row.points}}</td>
+                            <td>{{vm.factors[row.factor]}}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- <div class="tile-body p-0">
+                  <div class="table-responsive">
+                    <table class="table mb-0">
+                      <thead>
+                        <tr>
+                          <th style="width:20px">
+                            <label class="checkbox checkbox-custom checkbox-custom-sm m-0">
+                              <input type="checkbox" ng-model="selectedAll" ng-click="selectAll()" class="ng-pristine ng-untouched ng-valid"><i></i> </label>
+                          </th>
+                          <th ng-repeat="col in vm.columnCollection">{{col.title}}<i style="padding:10px;" ></i></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="ng-scope" ng-repeat="row in  vm.costConfigEntity | filter : vm.searchText">
+                          <td>
+                            <label class="checkbox checkbox-custom checkbox-custom-sm m-0">
+                              <input type="checkbox" ng-model="user.selected" class="ng-pristine ng-untouched ng-valid"><i></i></label>
+                          </td>
+                          <td ng-repeat="col in vm.columnCollection">
+                            <a ng-click="vm.getById(row[col.id])" href="javascript:void(0);" ng-if="col.isAction">
+                              <span>{{row[col.id]}}</span>
+                            </a>
+                            <span ng-if="!col.isAction">{{row[col.id]}}</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div> -->
+                  <div class="tile-footer dvd dvd-top">
+                    <div class="row">
+                      <div class="col-sm-5 hidden-xs">
+                        <select class="input-sm form-control w-sm inline" style="width:150px">
+                          <option value="0">Action</option>
+                          <option value="2">Archive </option>
+                        </select>
+                        <button class="btn btn-sm btn-default">Apply</button>
+                      </div>
+                      <div class="col-sm-3 text-center">
+                        <small class="text-muted">Showing {{vm.shownCount }} of {{vm.count}} items</small>
+                      </div>
+                      <div class="col-sm-4 text-right">
+                        <paging-control paging-options="vm.pagingOptions" action-page-changed="vm.pageChanged">
+                        </paging-control>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

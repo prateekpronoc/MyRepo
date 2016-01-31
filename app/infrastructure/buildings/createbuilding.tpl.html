@@ -1,0 +1,168 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.title}}
+          <!--  <span></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+
+            <li> <a href="javascript:;">Buildings</a> </li>
+
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /page header -->
+      <!-- page content -->
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong>Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <form name="createBuildingForm" class="form-horizontal" role="form" novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="Buildingname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Building Name" ng-model="vm.buildingInfo.name" required>
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="createBuildingForm.Buildingname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Premises
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="Premises" class="form-control mb-9" data-ng-model="vm.buildingInfo.premiseId" ng-options="entity.id as entity.name for entity in  vm.premises" ng-change="vm.fetchPremisesAddress()" required>
+                        <option value="">Select Premises</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                  <label class="col-sm-3 control-label">State</label>
+                  <div class="col-sm-5">
+                    <select name="f2" class="form-control mb-9" ng-model="vm.buildingInfo
+.state" ng-change="vm.getCityCatalog();" ng-options="entity.value as entity.value for entity in vm.states">
+                      <option value="">State</option>
+                    </select>
+                  </div>
+                </div> -->
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">City</label>
+                    <div class="col-sm-5">
+                      <input type="text" ng-readonly="vm.buildingInfo.premiseId" class="form-control mb-9" ng-model="vm.buildingInfo.cityName" name="cityname" placeholder="City Name" required>
+                      <!-- <select class="form-control mb-9" ng-model="vm.buildingInfo.city" ng-options=" entity.id as entity.value for entity in vm.cities">
+                      <option value="">City</option>
+                    </select> -->
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Location
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control mb-9" ng-model="vm.buildingInfo.location" name="location" placeholder="Location" required>
+                      <!-- <select class="form-control mb-9" ng-model="vm.buildingInfo.city" ng-options=" entity.id as entity.value for entity in vm.cities">
+                      <option value="">City</option>
+                    </select> -->
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="Address">Address</label>
+                    <div class="col-sm-5">
+                      <textarea class="form-control" ng-readonly="vm.buildingInfo.premiseId" rows="5" placeholder="Address" ng-model="vm.buildingInfo.address"></textarea>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Contact</strong>Details</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group" ng-hide="vm.buildingInfo.checkbox">
+                      <label class="col-sm-3 control-label">Existing User
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <select name="existinguser" class="form-control mb-9" ng-model="vm.buildingInfo.contactPerson" ng-change="vm.getUserById(vm.buildingInfo.contactPerson);">
+                          <option value="">Existing User</option>
+                          <option ng-repeat="(key,val) in vm.allusers" value="{{key}}">{{val}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-9 pull-right">
+                        <input type="checkbox" ng-model="vm.buildingInfo.checkbox" ng-click="vm.addNew();">
+                        <span>Add New User</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Contact Person
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="text" name="ContactName" class="form-control mb-10" placeholder="Contact Name" ng-model="vm.buildingInfo.contactPersonName" ng-pattern="/^[A-z]+$/" ng-readonly="vm.notReadable" required>
+                        <span style="color:red;" class="error-form-fields pull-right" ng-show="createBuildingForm.ContactName.$error.pattern ">
+                          Enter a valid Name!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Contact number
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="tel" name="mobilenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" class="form-control mb-10" placeholder="Contact number" ng-readonly="vm.notReadable" data-ng-model="vm.buildingInfo.contactNo">
+                        <span class="error-form-fields pull-right" ng-show="createBuildingForm.mobilenumber.$error.pattern ">
+                          Not valid contact number!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Email Id
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="email" name="email" class="form-control mb-10" placeholder="Email Id" data-ng-model="vm.buildingInfo.email" ng-readonly="vm.notReadable" required>
+                        <span class="error-form-fields pull-right" ng-show="createBuildingForm.email.$error.email ">
+                          Not valid email!</span>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-disabled="createBuildingForm.$invalid" ng-click="vm.createmore=true;vm.saveBuildingDetails()" class="btn btn-success mb-10" ng-hide="vm.updateMode">Save &amp; Create more</button>
+                    <button type="button" ng-disabled="createBuildingForm.$invalid" ng-click="vm.createmore=false;vm.saveBuildingDetails();" class="btn btn-primary mb-10">Save</button>
+                    <button type="button" ng-click="vm.reset()" class="btn btn-info mb-10">Reset</button>
+                    <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- page content -->

@@ -1,0 +1,6 @@
+<div class="row grid_row_margin" data-ng-if="data.length>0">
+  <div class="cardview" card-view ng-repeat="dataElement in data" is-edit-disabled="isEditDisabled" is-delete-disabled="isDeleteDisabled" card-title="cardTitle" name-field="nameField" id-field="idField" data="dataElement" main-columns="mainColumns" flip-columns="flipColumns" main-actions="mainActions" flip-actions="flipActions" action-listener="actionClicked(actionCode, record);" actions-provider="vm.provideActions(view, record)" template-url="templateUrl" style="min-height:{{cardHeight}}" card-height="cardHeight"></div>
+</div>
+<div class="wizard_header_color criterion" data-ng-if="data.length === 0">
+  <div class="shortlist_heading col-md-7  pull-right">No {{cardTitle}}</div>
+</div>

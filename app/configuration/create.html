@@ -1,0 +1,96 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <div class="pageheader">
+        <h2>{{vm.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Configuration</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong>Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <form name="createCostForm" class="form-horizontal" role="form" novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Select Resource
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="resourceTypes" class="form-control mb-9" data-ng-model="vm.ui.resourceTypeId" ng-options=" entity.id as entity.value for entity in vm.resourceTypes" required>
+                        <option value="">Select Resource</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Select Premise
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="Premises" class="form-control mb-9" data-ng-model="vm.ui.premisesId" ng-change="vm.fetchBuildings();" ng-options="entity.id as entity.name for entity in  vm.premises" required>
+                        <option value="">Select Premises</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Select Building
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="buildings" class="form-control mb-9" data-ng-model="vm.ui.buildingId" ng-change="vm.fetchAllResources();" ng-options=" entity.id as entity.name for entity in vm.buildings" required>
+                        <option value="">Select Building</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Select Resources Name
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="resource" class="form-control mb-9" data-ng-model="vm.ui.resourceId" ng-change="vm.fetchTenants();" ng-options=" entity.id as entity.name for entity in vm.resourceNames" required>
+                        <option value="">Select Resources Name</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Tenants
+                    </label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" ng-model="vm.ui.tenantId">
+                        <option value="">Tenants</option>
+                        <option ng-repeat="(key, val) in vm.tObj" value="{{key}}">{{val}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-click="vm.enableMeetingRoom();" class="btn btn-primary mb-10">Enable</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

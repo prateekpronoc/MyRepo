@@ -1,0 +1,149 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-tables-bootstrap">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.page.title}}
+          <!-- <span class="ng-binding"></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+
+            <li> <a href="javascript:;">Meeting Rooms</a> </li>
+
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pagecontent">
+        <div class="post-container" ng-if="vm.entity.length<1">
+          <div class="panel panel-default b-0">
+            <h3 class="custom-font text-danger text-center">No Data found</h3>
+
+            <p style="margin-left:10px;"> Hi User !
+            </p>
+            <p style="margin-left:10px;">No Meeting Rooms are Available for this Tenant</p>
+          </div>
+        </div>
+        <!--  <div gridview-table column-collection="vm.columnCollection" entity="vm.entity"></div> -->
+        <!-- <div class="row">
+        <div class="col-md-12">
+          <section class="tile" fullscreen="isFullscreen01">
+            <div class="tile-header dvd dvd-btm">
+              <h1 class="custom-font">
+                <strong>Basic</strong> Example</h1>
+              <ul class="controls">
+                <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a href="" dropdown-toggle="" class="dropdown-toggle settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                  <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                    <li>
+                      <a href="" tile-control-toggle="">
+                        <span class="minimize"><i class="fa fa-angle-down" name="angle-down"></i>&nbsp;&nbsp;&nbsp;Minimize</span>
+                        <span class="expand"><i class="fa fa-angle-up" name="angle-up"></i>&nbsp;&nbsp;&nbsp;Expand</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="" tile-control-refresh="" ng-click="ajaxFaker()"> <i class="fa fa-refresh" name="refresh"></i> Refresh </a>
+                    </li>
+                    <li>
+                      <a href="" tile-control-fullscreen="" ng-click="isFullscreen01 = !isFullscreen01"> <i class="fa fa-expand" name="expand"></i> Fullscreen </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="remove"><a href="" tile-control-close=""><i class="fa fa-times"></i></a></li>
+              </ul>
+            </div>
+
+            <div class="tile-body p-0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th ng-repeat="col in vm.columnCollection">{{col.title}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="row in vm.entity">
+                    <td ng-repeat="col in vm.columnCollection">{{row[col.id]}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div> -->
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen07">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                </h1>
+                <ul class="controls">
+                  <li>
+                    <a href="" ng-click="vm.openAdvanceSearch();"><i class="fa fa-filter fa-1x"></i></a>
+                  </li>
+                  <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a href="" dropdown-toggle="" class="dropdown-toggle settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href="" tile-control-refresh="" ng-click="ajaxFaker()"> <i class="fa fa-refresh" name="refresh"></i> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-widget">
+                <div class="row">
+                  <div class="col-sm-5 hidden-xs">
+                    <select class="input-sm form-control w-sm inline" style="width:150px" ng-model="vm.allmeetingrooms.applyaction" ng-options="entity.id as entity.name for entity in vm.meetingroomActions" ng-if="vm.session.hasRole('SuperAdmin')">
+                      <option value="">Actions</option>
+                    </select>
+                    <button class="btn btn-sm btn-default" ng-click="vm.applyAction(vm.allmeetingrooms.applyaction)" ng-if="vm.session.hasRole('SuperAdmin')">Apply</button>
+                  </div>
+                  <div class="col-sm-3"></div>
+                  <div class="col-md-1 pull-right" style="padding-left:45px;">
+                    <!-- <a href="" ng-click="vm.openAdvanceSearch();"><i class="fa fa-filter fa-2x"></i></a> -->
+                    <!-- <div class="input-group">
+                    <input type="text" class="input-sm form-control" placeholder="Search..." ng-model="vm.searchText">
+                    <span class="input-group-btn">
+                      <button class="btn btn-sm btn-default" type="button">Go!</button>
+                    </span>
+                  </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="tile-body p-0">
+                <div class="cardview-container">
+                  <div imagecard-view-grid data="vm.entity" main-actions="vm.mainActions" action-listener="vm.actionClicked(actionCode, record);" is-delete-disabled="vm.isDeleteDisabled" is-edit-disabled="vm.isEditDisabled" interval="vm.myInterval" slides-data="vm.slides"></div>
+                  <!-- <div card-view-grid data="vm.entity" main-columns="vm.columnCollection" flip-columns="vm.FlipColumns" flip-actions="vm.flipActions" main-actions="vm.mainActions" action-listener="vm.actionClicked(actionCode, record);" is-delete-disabled="vm.isDeleteDisabled" is-edit-disabled="vm.isEditDisabled"></div> -->
+
+                </div>
+              </div>
+              <div class="tile-footer dvd dvd-top">
+                <div class="row">
+                  <div class="col-sm-5 hidden-xs">
+                    <select class="input-sm form-control w-sm inline" style="width:150px" ng-model="vm.allmeetingrooms.applyaction" ng-options="meetingroomAction.id as meetingroomAction.name for meetingroomAction in vm.meetingroomActions" ng-if="vm.session.hasRole('SuperAdmin')">
+                      <option value="">Actions</option>
+                    </select>
+                    <button class="btn btn-sm btn-default" ng-click="vm.applyAction(vm.allmeetingrooms.applyaction)" ng-if="vm.session.hasRole('SuperAdmin')">Apply</button>
+                  </div>
+                  <div class="col-sm-3 text-center">
+                    <small class="text-muted">showing {{vm.maxSize}} of {{vm.count}} items</small>
+                  </div>
+                  <div class="col-sm-4 text-right">
+                    <paging-control paging-options="vm.pagingOptions" action-page-changed="vm.pageChanged">
+                    </paging-control>
+                    <!--  <ul class="pagination pagination-sm m-0">
+                    <li><a href="" ng-click="vm.pageChanged(1)"><i class="fa fa-chevron-left"></i></a></li>
+                    <li ng-repeat="pageNo in  vm.pagingArray"><a href="" ng-click="vm.pageChanged(pageNo)">{{pageNo}}</a></li>
+                    <li><a href="" ng-click="vm.pageChanged(vm.endPage)"><i class="fa fa-chevron-right"></i></a></li>
+                  </ul> -->
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,94 @@
+#content {
+    padding-top: 45px;
+    width: auto;
+    //overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: -blackberry-touch;
+    @include transition(right .25s $ease-in-circ, padding-right .25s $ease-in-circ);
+    >div[ui-view] left: 80px;
+    left: 40px;
+}
+height: {
+    100%; {
+        &.ng-enter .page;
+    }
+}
+@include {
+    animation(littleFadeInUp {
+        .5s {
+            ease);@include {
+                animation-fill-mode(both);@include {
+                    backface-visibility(hidden); {
+                        &.ng-leave .page;
+                    }
+                }
+            }
+        }
+    }
+    opacity(0); {
+        >[ui-view].ng-enter, >[ui-view].ng-leave;
+    }
+}
+position: {
+    absolute;left: {
+        0;right: {
+            0;@include {
+                transition(all {
+                    .5s {
+                        ease-in-out); {
+                            >[ui-view].ng-enter;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@include opacity(0);@include transform(scale3d(0.5, 0.5, 0.5)); {
+    >[ui-view].ng-enter-active;
+}
+@include opacity(1);@include transform(scale3d(1, 1, 1)); {
+    >[ui-view].ng-leave;
+}
+@include opacity(1);@include transform(translate3d(0, 0, 0)); {
+    >[ui-view].ng-leave-active;
+}
+#minovate.header-fixed.aside-fixed {
+    #content;
+}
+#minovate.header-static {
+    #content;
+}
+#minovate.aside-static {
+    #content;
+}
+@media {
+    only {
+        screen {
+            and {
+                (max-width: {
+                    992px) {
+                        #minovate;
+                    }
+                    768px) {
+                        #minovate;
+                    }
+                }
+            }
+        }
+    }
+}
+&.header-fixed.aside-fixed {
+    &:not(.sidebar-sm):not(.sidebar-xs) #content;
+}
+top: {
+    90px; {
+        &:not(.sidebar-sm):not(.sidebar-xs);
+    }
+}
+&.aside-static {
+    #content;
+}
+&.header-static.aside-static {
+    #content;
+}

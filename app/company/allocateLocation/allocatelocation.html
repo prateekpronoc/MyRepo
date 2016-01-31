@@ -1,0 +1,74 @@
+<div class="page page-form-validate">
+  <div class="pagecontent">
+    <!-- row -->
+    <div class="row">
+      <!-- col -->
+      <div class="col-md-12">
+        <!-- tile -->
+        <section class="tile" fullscreen="isFullscreen01">
+          <!-- tile header -->
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font">
+              <strong>Allocate</strong>Location</h1>
+            <ul class="controls">
+              <li>
+                <a href="" tile-control-refresh="" ng-click="vm.cancel()"> <i class="fa fa-times" name="close"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="tile-body">
+            <form class="form-horizontal" name="AddLocationForm" role="form">
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="message">Premises
+                  <span style="color:red;">*</span>
+                </label>
+                <div class="col-sm-5">
+                  <select name="Premises" class="form-control mb-9" data-ng-model="vm.ui.premisesId" ng-change="vm.fetchBuildings();" ng-options="entity.id as entity.name for entity in  vm.premises" required>
+                    <option value="">Select Premises</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Building
+                  <span style="color:red;">*</span>
+                </label>
+                <div class="col-sm-5">
+                  <select name="buildings" class="form-control mb-9" data-ng-model="vm.ui.buildingId" ng-change="vm.fetchFloor();" ng-options=" entity.id as entity.name for entity in vm.buildings" required>
+                    <option value="">Select Building</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Floor</label>
+                <div class="col-sm-5">
+                  <select name="floors" class="form-control mb-9" data-ng-model="vm.ui.floorId" ng-change="vm.fetchFloorPart();" ng-options="entity.id as entity.name for entity in vm.floors">
+                    <option value="">Select Floor</option>
+                  </select>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Floor Parts</label>
+                <div class="col-sm-5">
+                  <select name="floorpart" class="form-control mb-9" data-ng-model="vm.ui.floorpartid" ng-options="entity.id as entity.name for entity in vm.floorpart">
+                    <option value="">Select Floor Part</option>
+                  </select>
+                </div>
+              </div>
+
+              <hr class="line-full"></hr>
+              <div class="form-group">
+                <div class="pull-right">
+                  <button type="button" ng-click="vm.allocateLocation();" class="btn btn-success btn-sm">Allocate</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

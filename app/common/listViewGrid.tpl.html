@@ -1,0 +1,40 @@
+<table class="table table-striped table-hover table-bordered" id="tbl" border="0" data-ng-if="data.length > 0" controller>
+  <thead class="" id="list-view-theader">
+    <tr class="table-column-header">
+      <th ng-if="options.enableSelection">
+        <input type="checkbox" ng-model="options.isAllChecked" ng-change="toggleSelection(options.isAllChecked)">
+      </th>
+      <th ng-repeat="column in columnInfo">
+        <span class="tabl_header_nam" ng-if="!column.isSorting" ng-bind="column.title" title="{{column.title}}"></span>
+        <a href="javascript:void(0);" ng-if="column.isSorting" ng-click="toggleSorting(column)">
+          <span class="tabl_headr_nam" ng-bind="column.title" title="{{column.title}}"></span>
+          <i class="fa" ng-class="{'fa-sort' : predicate===column.id }"></i>
+        </a>
+        <div class="form-group form_margin_left15" ng-if="!isFilterDisabled && column.isFilter">
+          <input type="text" class="form-control input_box_width width_chng" data-ng-model="search[column.id]">
+        </div>
+      </th>
+      <th colspan="2" ng-if="actions"></th>
+    </tr>
+  </thead>
+  <tbody id="req-list-view">
+    <tr ng-click="actionListner('rowClick', entity)" class="table_bdy_brdr" ng-repeat="entity in data | filter: search | orderBy: predicate:reversed">
+      <td ng-if="options.enableSelection">
+        <input type="checkbox" name="grid_items" class="chkDelete" ng-model="entity.checked" ng-change="itemSelectionChange()">
+      </td >
+      <td ng-repeat="column in columnInfo" ng-class="{'grid_text_alignment': column.dataType =='number'}">
+        <a href="" ng-if="column.actionNeeded" ng-click="actionClicked('columnClicked', entity)" ng-bind="entity[column.id]"></a>
+        <span ng-if="!column.actionNeeded" ng-bind="entity[column.id]" title="{{entity[column.id]}}"></span>
+      </td>
+      <td class="td-last" ng-if="actions">
+        <a class="img_margin_1" href="javascript:void(0);" ng-hide="isHidden(entity, action)" ng-repeat="action in actions" ng-bind-html="action.template" title="{{action.title}}" ng-click="actionClicked(action.id, entity)">
+        </a>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+<div class="wizard_header_color criterion" data-ng-if="data.length === 0">
+  <div class="shortlist_heading col-md-7  pull-right" data-ng-if="options.title">NO {{options.title}}</div>
+  <div class="shortlist_heading col-md-7  pull-right" data-ng-if="!options.title">NO DATA</div>
+</div>

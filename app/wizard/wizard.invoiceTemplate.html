@@ -1,0 +1,137 @@
+<section class="tile" fullscreen="isFullscreen01">
+  <div class="pagecontent">
+    <div class="add-nav">
+      <div class="nav-heading">
+        <h3>Booking Details :
+          <strong class="text-greensea">{{vm.orderDetails.bookingInfo.id}}</strong>
+        </h3>
+        <!-- <span class="controls pull-right">
+        <a href="javascript:;" ui-sref="wams.common" class="btn btn-ef btn-ef-1 btn-ef-1-default btn-ef-1a btn-rounded-20 mr-5" data-toggle="tooltip" title="" data-original-title="Back"><i class="fa fa-pencil"></i></a>
+        <a href="javascript:;" ui-sref="wams.common" class="btn btn-ef btn-ef-1 btn-ef-1-default btn-ef-1a btn-rounded-20 mr-5" data-toggle="tooltip" title="" data-original-title="Back"><i class="fa fa-times"></i></a>
+        <a href="javascript:;" ui-sref="wams.common" class="btn btn-ef btn-ef-1 btn-ef-1-default btn-ef-1a btn-rounded-20 mr-5" data-toggle="tooltip" title="" data-original-title="Send"><i class="fa fa-envelope"></i></a>
+        <a href="javascript:window.print()" class="btn btn-ef btn-ef-1 btn-ef-1-default btn-ef-1a btn-rounded-20" data-toggle="tooltip" title="" data-original-title="Print"><i class="fa fa-print"></i></a>
+      </span> -->
+      </div>
+
+      <div role="tabpanel">
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="details">
+            <div class="row">
+              <div class="col-md-12">
+                <section class="tile tile-simple">
+
+                  <!-- tile body -->
+                  <div class="tile-body p-0">
+
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped">
+                        <thead>
+                          <tr>
+                            <th>Meeting Room ID</th>
+                            <th>Meeting Room Name</th>
+                            <th>Booked By</th>
+                            <th>Status</th>
+                            <th>Booking From - To</th>
+                            <th>Edit</th>
+                            <th>Cancel</th>
+                            <!--  <th>Cost</th>
+                          <th>Unit</th> 
+                          <th>Total</th>-->
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><a href="javascript:;">{{vm.orderDetails.MRInfo.id}}</a></td>
+                            <td>{{vm.orderDetails.MRInfo.name}}</td>
+                            <td>{{vm.ui.userInfo[vm.orderDetails.bookingInfo.bookedForWhom]}}</td>
+                            <td>
+                              <span class="label label-success">Complete</span>
+                            </td>
+                            <td>
+                              {{vm.orderDetails.bookingInfo.from | date : "MM/dd/yyyy 'at' h:mma" : timezone}} - {{vm.orderDetails.bookingInfo.to | date : "MM/dd/yyyy 'at' h:mma" : timezone}}
+                            </td>
+                            <td><a href="javascript:;" ui-sref="wams.common" class="btn btn-ef btn-ef-1 btn-ef-1-default btn-ef-1a btn-rounded-20 mr-5" data-toggle="tooltip" title="" data-original-title="Back"><i class="fa fa-pencil"></i></a>
+                            </td>
+                            <td>
+                              <a href="javascript:;" ui-sref="wams.common" class="btn btn-ef btn-ef-1 btn-ef-1-default btn-ef-1a btn-rounded-20 mr-5" data-toggle="tooltip" title="" data-original-title="Back"><i class="fa fa-times"></i></a>
+                            </td>
+                            <!--  <td class="ng-binding">{{vm.costConfig.points}}</td>
+                          <td>{{vm.unit}}</td>
+
+
+                          <td class="ng-binding">{{vm.totalCost}}</td> -->
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                  <!-- /tile body -->
+
+                </section>
+                <section class="tile time-simple">
+
+                  <div class="tile-body">
+
+                    <div class="row">
+                      <div class="col-md-9">
+                        <p class="text-default lt">Created: {{vm.orderDetails.transactionInfo.createdOn | date : format : timezone}}</p>
+                        <p class="text-uppercase text-strong mt-40 mb-0 custom-font">Status</p>
+                        <h3 class="text-uppercase text-success mt-0 mb-20">Completed</h3>
+                      </div>
+                    </div>
+                    <div class="row b-t pt-20">
+                      <div class="col-md-3 b-r">
+                        <p class="text-uppercase text-strong mb-10 custom-font">Order Details</p>
+                        <ul class="list-unstyled text-default lt mb-20">
+                          <li>
+                            <strong>ID:</strong> <a href="javascript:;">{{vm.orderDetails.bookingInfo.id}}</a></li>
+
+                          <li>{{vm.orderDetails.MRInfo.name}}</li>
+                          <li>{{vm.orderDetails.MRInfo.type}}</li>
+                          <li>
+                            {{vm.orderDetails.MRInfo.capacity}}&nbsp; Seater </li>
+                        </ul>
+                      </div>
+                      <div class="col-md-6 b-r">
+                        <p class="text-uppercase text-strong mb-10 custom-font">
+                          Address
+                          <!-- <a href="javascript:;" class="btn btn-default btn-rounded-20 btn-xs pull-right"><i class="fa fa-pencil"></i></a> -->
+                        </p>
+
+                        <!-- col -->
+                        <div class="col-md-6">
+                          <ul class="list-unstyled text-default lt mb-20">
+                            <li>{{vm.orderDetails.MRInfo.name}}</li>
+                            <li>{{vm.orderDetails.MRInfo.location}}</li>
+
+                          </ul>
+                        </div>
+                        <!-- /col -->
+
+                        <!-- col -->
+                        <div class="col-md-6">
+                          <!--  <ul class="list-unstyled text-default lt mb-20">
+                          <li>john.douey@gmail.com</li>
+                          <li>655 169 4599</li>
+                        </ul> -->
+                        </div>
+                        <!-- /col -->
+                      </div>
+                      <div class="col-md-3">
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

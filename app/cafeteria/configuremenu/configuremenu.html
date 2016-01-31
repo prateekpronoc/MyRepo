@@ -1,0 +1,419 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="pageheader">
+      <h2>User Profile
+      </h2>
+      <div class="page-bar">
+        <ul class="page-breadcrumb">
+          <li>
+            <a ui-sref="app.dashboard"><i class="fa fa-home"></i>wams</a>
+          </li>
+          <li>
+            <a href="javascript:;">User</a>
+          </li>
+          <li>
+            <a ui-sref="app.pages.profile">{{vm.title}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="pagecontent">
+      <tabset class="tab-animation tab-container tab-wizard" justified="true" set-ng-animate="true">
+        <tab heading="Create Categories" active="steps.step1">
+          <form name="step1" role="form" novalidate class="form-validation">
+            <h4 class="custom-font">
+              <strong>Category </strong> Creation</h4>
+            <table class="form-group col-md-12" align="center">
+              <tbody>
+                <tr ng-repeat="(k, v) in vm.ui.categories">
+                  <td>
+                    <div class="form-group col-md-12" align="center">
+                      <label class="col-sm-3 control-label">{{v.category}}</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="categoryname" class="form-control mb-10" placeholder="Categories" ng-model="v.categoryname" typeahead="foodcategory as foodcategory.value for foodcategory in vm.foodCategories | filter:$viewValue | limitTo:8" required>
+                        <!--  <select name="categoryname" class="form-control mb-9" data-ng-model="v.categoryid" required>
+                        <option value="">Select Cusine</option>
+                        <option value="{{key}}" ng-repeat="(key,value) in  vm.foodCategories">{{value}}</option>
+                      </select> -->
+                      </div>
+                      <div class="col-md-2">
+                        <button href="" data-ng-click="vm.remove($index);" title="Delete" class="btn btn-sm btn-default"><i class="fa fa-trash-o" style="margin-right: 5px;"></i></button>
+                        <button ng-if="$index === (vm.ui.categories.length - 1)" data-ng-click="vm.add($index+2)" title="Add Category" ng-disabled="step1.categoryname.$error.required" class="btn btn-sm btn-default"><i class="fa fa-plus"></i></button>
+                        <!-- <a href="" ng-if="$index === (vm.ui.categories.length - 1)" data-ng-click="vm.add($index+2)" title="Add Category" ng-disabled="step1.categoryname.$error.required"><i class="fa fa-plus"></i></a> -->
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="submit" class="btn btn-default" ng-click="steps.step2=true">Next</button>
+          </form>
+        </tab>
+        <tab heading="Mark Categories" active="steps.step2" disabled="step1.$invalid">
+          <form name="step2" role="form" novalidate>
+            <h4 class="custom-font">
+              <strong>Avaliable Food</strong> items</h4>
+            <div class="col-md-12">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <select name="cusine" class="form-control mb-9" data-ng-model="vm.ui.cusineId" ng-options=" entity.id as entity.value for entity in vm.cusines">
+                    <option value="">Select Cusine</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <!-- <div class="btn-group" role="group" ng-repeat="entity in  vm.types">
+                  <button type="button" class="btn btn-default">{{entity.value}}</button>
+                </div> -->
+                  <select name="Type" class="form-control mb-9" data-ng-model="vm.ui.typeId" ng-options="entity.id as entity.value for entity in  vm.types">
+                    <option value="">Select Type</option>
+                  </select>
+                </div>
+                <div class="form-group text-center">
+                  <button type="submit" class="btn btn-default" ng-click="vm.getAllFoodItems();">Apply</button>
+                </div>
+              </div>
+              <vr /></vr>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="form-group">
+                    <label class="col-md-2 control-label">Add To</label>
+                    <div class="col-md-5">
+                      <select name="addtocategory" class="form-control mb-9" data-ng-model="vm.ui.addtocategory">
+                        <option value="">Choose Category</option>
+                        <option value="{{v.id}}" ng-repeat="(k,v) in vm.foodCategories">{{v.value}}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <button type="submit" class="btn btn-default" ng-click="vm.selectedCatagories();">Add</button>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="col-md-4" style="max-height:250px;overflow-y: scroll;">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <tr ng-repeat="(k, v) in vm.entity">
+                        <td>{{v.name}}</td>
+                        <td>
+                          <div class="checkbox pull-right">
+                            <label>
+                              <input type="checkbox" ng-change="v.isSelected=true;" ng-model="v.selected">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12" style="padding-top:20px;">
+              <div class="row">
+                <div class="form-group">
+                  <label class="col-md-3 control-label">Category Wise Added Items</label>
+                  <div class="col-md-5">
+                    <select name="adddedtocategory" class="form-control mb-9" data-ng-model="vm.ui.addedtocategory" ng-click="vm.getCategoriesAdded();">
+                      <option value="">Choose Category</option>
+                      <option value="{{v.id}}" ng-repeat="(k,v) in vm.foodCategories">{{v.value}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12" style="padding-top:30px;">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <tr ng-repeat="item in vm.categoryAddedItems">
+                        <td>{{vm.foodItems[item]}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-center">
+                  <button type="submit" class="btn btn-default pull-left" ng-click="steps.step1=true">Previous</button>
+                  <button type="button" class="btn btn-primary ">Cancel</button>
+                  <button type="button" class="btn btn-primary ">Save</button>
+                  <button type="button" class="btn btn-primary">Reset</button>
+                  <button type="submit" ng-disabled="step2.$invalid" class="btn btn-default pull-right" ng-click="steps.step3=true">Next</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </tab>
+        <tab heading="Mark Meal Details" active="steps.step3" disabled="step2.$invalid">
+          <form name="step3" role="form" novalidate>
+            <h4 class="custom-font">
+              <strong>Meal</strong>Marking</h4>
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="col-sm-5">
+                  <select name="mealmakingcategory" class="form-control mb-9" data-ng-model="vm.ui.mealmakingcategory" ng-click="vm.getCategoryAdded();" required>
+                    <option value="">Choose Category</option>
+                    <option value="{{v.categoryid}}" ng-repeat="(k,v) in vm.ui.categories">{{vm.foodCategories[v.categoryid]}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12" style="padding-top:30px;">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <table class="table table-bordered">
+                    <tr ng-repeat="(k, v) in vm.addedcategory">
+                      <td>{{v.name}}</td>
+                      <td>
+                        <div class="checkbox pull-right">
+                          <label>
+                            <input type="checkbox" ng-model="v.mealSelected">
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-left:15px;">
+              <div class="form-group">
+                <label class="col-md-2 control-label">Add To</label>
+                <div class="col-md-5">
+                  <select name="categoryname" class="form-control mb-9" data-ng-model="v.categoryid">
+                    <option value="">Choose Meal</option>
+                    <option value="{{key}}" ng-repeat="(key,value) in  vm.mealTypes">{{value}}</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <button type="submit" ng-click="vm.addMealMaking();">Add</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12" style="padding-top:30px;">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Choose Time</label>
+                <div class="col-sm-10">
+                  <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-max="1000" data-slider-step="10" data-slider-value="[120,780]"> </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-12 control-label">Meal Wise Add Food Items</label>
+              <div class="col-md-5">
+                <select name="categoryname" class="form-control mb-9" data-ng-model="v.categoryid">
+                  <option value="">Choose Meal</option>
+                  <option value="{{key}}" ng-repeat="(key,value) in  vm.mealTypes">{{value}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12" style="padding-top:30px;">
+              <div class="col-md-9" style="padding-top:30px;">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <tr>
+                        <td>abc
+                          <div class="checkbox pull-right">
+                            <label>
+                              <input type="checkbox">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>HP
+                          <div class="checkbox pull-right">
+                            <label>
+                              <input type="checkbox">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>PQR
+                          <div class="checkbox pull-right">
+                            <label>
+                              <input type="checkbox">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </table>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <table class="table table-bordered">
+                      <tr>
+                        <td>abc
+                          <div class="checkbox pull-right">
+                            <label>
+                              <input type="checkbox">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>HP
+                          <div class="checkbox pull-right">
+                            <label>
+                              <input type="checkbox">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>PQR
+                          <div class="checkbox pull-right">
+                            <label>
+                              <input type="checkbox">
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-center">
+                  <button type="submit" class="btn btn-default pull-left" ng-click="steps.step2=true">Previous</button>
+                  <button type="button" class="btn btn-primary">Cancel</button>
+                  <button type="button" class="btn btn-primary">Save</button>
+                  <button type="button" class="btn btn-primary">Reset</button>
+                  <button type="submit" ng-disabled="step3.$invalid" class="btn btn-default pull-right" ng-click="steps.step4=true">Next</button>
+                </div>
+              </div>
+
+            </div>
+
+          </form>
+        </tab>
+        <tab heading="Cost and Prep.Time" active="steps.step4" disabled="step3.$invalid">
+          <form name="step4" role="form" novalidate>
+
+            <div class="form-group">
+
+              <div class="tile-body table-custom">
+                <table class="col-md-12" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-custom">
+                  <thead>
+                    <tr>
+                      <th style="width:20px">
+                        <label class="checkbox checkbox-custom checkbox-custom-sm">
+                          <input type="checkbox" ng-model="selectedAll" ng-click="selectAll()"><i></i> </label>
+                      </th>
+                      <th class="bt-0">First Name</th>
+                      <th class="bt-0">Cuisine</th>
+                      <th class="bt-0">Type</th>
+                      <th class="bt-0">Preparation time</th>
+                      <th class="bt-0">Cost</th>
+                      <th class="bt-0">Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="fooditem in fooditems">
+                      <td>
+                        <label class="checkbox checkbox-custom checkbox-custom-sm">
+                          <input type="checkbox" ng-model="user.selected"><i></i></label>
+                      </td>
+                      <td>{{ fooditem.firstname }}</td>
+                      <td>{{ fooditem.cuisine }}</td>
+                      <td>{{ fooditem.type }}</td>
+                      <td>
+                        <div class="form-group">
+                          <label>
+                            <!-- <input type="text" ng-click="clicked()" class="form-control" placeholder="preparationtime"> -->
+                            <input type="text" ng-click="open('lg')" class="form-control" placeholder="preparationtime">
+                          </label>
+                        </div>
+                      </td>
+                      <td>{{fooditem.cost}}</td>
+                      <td>
+                        <p></p>
+                      </td>
+                      <td>
+                        <a type="button" href="" ng-click="vm.searchItem();" class="btn btn-default btn-xs">
+                          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </a>
+                        <button type="button" ng-click="removePerson($index)" class="btn btn-default btn-xs">
+                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+
+                </table>
+              </div>
+
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="steps.step3=true">Previous</button>
+            <button type="submit" ng-disabled="step4.$invalid" class="btn btn-default pull-right" ng-click="steps.step5=true">Next</button>
+          </form>
+        </tab>
+        <tab heading="Confirm Menu" active="steps.step5" disabled="step4.$invalid">
+
+          <form name="step5" role="form" class="form-inline" ng-submit="addFooditems()" novalidate>
+
+            <div class="tile-body table-custom">
+              <table class="col-md-12" datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-custom">
+                <thead>
+                  <tr>
+                    <th style="width:20px">
+                      <label class="checkbox checkbox-custom checkbox-custom-sm">
+                        <input type="checkbox" ng-model="selectedAll" ng-click="selectAll()"><i></i> </label>
+                    </th>
+                    <th class="bt-0">First Name</th>
+                    <th class="bt-0">Cuisine</th>
+                    <th class="bt-0">Type</th>
+                    <th class="bt-0">Preparation time</th>
+                    <th class="bt-0">Cost</th>
+                    <th class="bt-0">Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="fooditem in fooditems">
+                    <td>
+                      <label class="checkbox checkbox-custom checkbox-custom-sm">
+                        <input type="checkbox" ng-model="user.selected"><i></i></label>
+                    </td>
+                    <td>{{ fooditem.firstname }}</td>
+                    <td>{{ fooditem.cuisine }}</td>
+                    <td>{{ fooditem.type }}</td>
+                    <td>{{fooditem.preparationtime}}</td>
+                    <td>{{fooditem.cost}}</td>
+                    <td>
+                      <p></p>
+                    </td>
+                    <td>
+                      <a type="button" href="" ng-click="vm.searchItem();" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                      </a>
+                      <button type="button" ng-click="removePerson($index)" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+
+
+            <button type="submit" class="btn btn-default" ng-click="steps.step4=true">Previous</button>
+            <button type="submit" ng-disabled="step5.$invalid" class="btn btn-success pull-right">Finish</button>
+          </form>
+        </tab>
+      </tabset>
+    </div>
+  </section>
+</div>

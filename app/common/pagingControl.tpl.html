@@ -1,0 +1,25 @@
+<div >
+  <div >
+    <!-- <div class="btn-group footer_btn_style">
+      <span class="show_font_size pull-left">Show</span>
+    </div> -->
+    <!-- <div class="btn-group footer_btn_style">
+      <select class="form-control selectpicker pull-right" ng-model="pageRecordCount" data-ng-options="rowCount as rowCount for rowCount in pageRecordOptionsArray" ng-change="onRowCountChange(pageRecordCount)">
+      </select>
+    </div> -->
+    <ul class="pagination pagination-sm m-0">
+      <li class="active" ng-show="pageStartIndex > 1"><a href="javascript:void(0);" ng-click="onFirstPageClicked();">&lt;&lt;</a>
+      </li>
+      <li class="active" ng-show="pageStartIndex > 1"><a href="javascript:void(0);" ng-click="previousPageClicked();">&lt;</a>
+      </li>
+      <li class="" ng-model="page" ng-class="{'numr_actv': pagingOptions.currentPage === page}" ng-repeat="page in pagingArray"><a href="javascript:void(0);" ng-class="{'activ_num' : page === pagingOptions.currentPage }" ng-click="
+          pageClicked(page);">
+          {{page}}</a>
+      </li>
+      <li ng-show="pageEndIndex < maxPageLimit"><a href="javascript:void(0);" ng-click="nextPageClicked();">&gt;</a>
+      </li>
+      <li ng-show="pageEndIndex < maxPageLimit"><a href="javascript:void(0);" ng-click="onLastPageClicked();">&gt;&gt;</a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <div class="pageheader">
+        <h2>{{vm.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Balance</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Account</strong>Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <!--  <alert class="col-md-2 pull-right" ng-repeat="alert in vm.alerts" type="success">{{alert.msg}}</alert> -->
+                <form name="accountBalanceForm" class="form-horizontal" role="form" novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Select Account
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="accounts" class="form-control mb-9" data-ng-model="vm.accountsbalance.account" ng-options="entity.id as entity.name for entity in  vm.accountDetails" ng-change="vm.getEntityBalance(vm.accountsbalance.account)" required>
+                        <option value="">Select Account</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group" ng-if="vm.accountBalanceDetails">
+                    <label class="col-sm-3 control-label">Name
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="accountname" ng-readonly="vm.accountsbalance.account" class="form-control mb-10" placeholder="Account Name" data-ng-model="vm.accountsbalance.accountname" required>
+                    </div>
+                  </div>
+                  <div class="form-group" ng-if="vm.accountBalanceDetails">
+                    <label class="col-sm-3 control-label">Account Balance
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="balance" ng-readonly="vm.accountsbalance.account" class="form-control mb-10" placeholder="Account Balance" data-ng-model="vm.accountsbalance.balance" required>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

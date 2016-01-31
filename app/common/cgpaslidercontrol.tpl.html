@@ -1,0 +1,19 @@
+<div class="popover popover-multiselect" style="width: 400px; left: -125px; min-height: 130px;">
+  <div style="margin: 10px;">
+    <div style="padding-top: 10px;" class="row">
+      <label class="col-sm-6" style="text-align: left;">
+        <input type="radio" name="isCgpa" ng-model="vm.isPercentage" ng-value="false" ng-change="cgpaOptionChanged();">
+        <span style="font-weight:normal;">CGPA</span>
+      </label>
+      <label class="col-sm-6" style="text-align: left;">
+        <input type="radio" name="isCgpa" ng-model="vm.isPercentage" ng-value="true" ng-change="cgpaOptionChanged();">
+        <span style="font-weight:normal;">Percentage</span>
+      </label>
+    </div>
+    <div style="padding-top: 10px;" class="row">
+      <div class="col-sm-12">
+        <input slider ng-model="vm.percentage" type="text" options="vm.sliderOptions" id="mySlider1" />
+      </div>
+    </div>
+  </div>
+</div>

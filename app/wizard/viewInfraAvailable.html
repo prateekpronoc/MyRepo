@@ -1,0 +1,30 @@
+<div class="page page-form-validate">
+  <div class="pagecontent">
+    <div class="row">
+      <div class="col-md-12">
+        <section class="tile" fullscreen="isFullscreen01">
+          <form class="form-horizontal" role="form">
+            <div class="tile-header dvd dvd-btm">
+              <h1 class="custom-font">
+                <strong>Meeting Room InfraStructure</strong> Details</h1>
+            </div>
+            <div class="tile-body">
+              <div style="max-height:450px;overflow-y: scroll;">
+                <div class="form-group" ng-repeat="entity in vm.infraDetails">
+                  <label class="col-sm-3 control-label">{{entity.name}}</label>
+                  <div class="col-sm-4" ng-if="entity.isSelected">
+                    <p class="form-control-static">&nbsp;<i class="fa fa-check fa-2x" style="color:green" ng-if="entity.isSelected"></i></p>
+                  </div>
+                  <div class="col-sm-4" ng-if="!entity.isSelected">
+                    <p class="form-control-static">&nbsp;<i class="fa fa-times fa-2x" style="color:red" ng-if="!entity.isSelected"></i></p>
+                  </div>
+                </div>
+              </div>
+              <button type="button" ng-click="vm.exit();" class="btn btn-info pull-right">Close</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

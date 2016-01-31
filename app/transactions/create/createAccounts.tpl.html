@@ -1,0 +1,108 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.title}}
+          <!--  <span></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Floors</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong>Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <!--  <alert class="col-md-2 pull-right" ng-repeat="alert in vm.alerts" type="success">{{alert.msg}}</alert> -->
+                <form name="createFloorForm" class="form-horizontal" role="form" novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Account Holder Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="Floorname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Account Holder Name" ng-model="vm.name" required>
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="createFloorForm.Floorname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Description
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <textarea style="margin: 0px; width: 542px; height: 56px;" ng-model="vm.descp"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Entity Type
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+
+                      <select name="f2" class="form-control mb-9" ng-change="vm.getEntity()" ng-model="vm.selectedAccType">
+                        <option ng-repeat="(key, value) in vm.accountFor" value="{{key}}">{{value}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Entity
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" n ng-model="vm.selectedEntity">
+                        <option ng-repeat="(key, value) in vm.entity" value="{{key}}">{{value}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Account Type
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" ng-model="vm.selectedAccountType">
+                        <option ng-repeat="(key, value) in vm.accountType" value="{{key}}">{{value}}</option>
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <!--  <button type="button" ng-click="vm.createAccount();" class="btn btn-success mb-10">Save &amp; Create more</button> -->
+                    <button type="button" ng-click="vm.createAccount();" class="btn btn-primary mb-10">Save</button>
+                    <button type="button" ng-click="vm.reset()" class="btn btn-info mb-10">Reset</button>
+                    <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- page content -->

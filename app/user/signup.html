@@ -1,0 +1,167 @@
+<div class="page  page-login">
+  <div class="text-center">
+    <h3 class="text-light text-cyan">
+      <span class="text-lightred">S</span>ign Up</h3>
+  </div>
+  <div class="container w-420 p-15 bg-white mt-40" style="width:700px;">
+    <div class="pagecontent">
+      <tabset class="tab-animation tab-container tab-wizard" justified="true" set-ng-animate="true">
+
+        <tab active="vm.steps[0].status">
+          <tab-heading>
+            Personal Information
+            <span class="badge badge-default pull-right wizard-step">1</span>
+          </tab-heading>
+          <form name="step1" role="form" novalidate class="form-validation">
+            <div class="form-group col-md-12">
+              <label for="empId">Employee Id:
+                <span style="color:red;">*</span>
+              </label>
+              <input type="text" name="empId" id="empId" class="form-control" ng-model="vm.ui.empId" ng-pattern="/^[a-zA-Z0-9]*$/" required>
+              <p class="help-block">
+                <span ng-show="step1.empId.$invalid && !step1.empId.$pristine">Employee Id is required.</span>
+              </p>
+            </div>
+            <div class="form-group col-md-12">
+              <label for="username">First Name:
+                <span style="color:red;">*</span>
+              </label>
+              <input type="text" name="firstname" id="firstname" class="form-control" ng-model="vm.ui.firstname" ng-pattern="/^[A-z]+$/" required>
+              <p class="help-block">
+                <span ng-show="step1.firstname.$invalid && !step1.firstname.$pristine">firstname is required.</span>
+              </p>
+            </div>
+
+            <div class="form-group col-md-12">
+              <label for="lastname">Last Name:
+                <span style="color:red;">*</span>
+              </label>
+              <input type="text" name="lastname" id="lastname" class="form-control" ng-model="vm.ui.lastname" ng-pattern="/^[A-z]+$/" required>
+              <p class="help-block">
+                <span ng-show="step1.lastname.$invalid && !step1.lastname.$pristine">Last Name is required.</span>
+              </p>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="bg-slategray lt wrap-reset mt-20 text-left">
+
+                <p class="m-0">
+
+                  <a class="btn btn-dutch b-0 text-uppercase pull-right" ng-disabled='step1.$invalid' ng-if="vm.stepCount<2" ng-click="vm.nextTab()">Next</a>
+                  <a class="btn btn-greensea b-0 text-uppercase pull-right" ng-disabled='step1.$invalid' ng-click="vm.save()" ng-if="vm.stepCount===2">Submit</a>
+                  <a class="btn btn-lightred b-0 text-uppercase" ng-disabled='vm.stepCount===0' ng-click="vm.previous();">Back</a>
+
+                </p>
+              </div>
+            </div>
+          </form>
+        </tab>
+        <tab active="vm.steps[1].status" disabled="step1.$invalid">
+          <tab-heading>
+            Contact Information
+            <span class="badge badge-default pull-right wizard-step">2</span>
+          </tab-heading>
+          <form name="step2" role="form" class="form-validation" novalidate>
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label for="email">Email: </label>
+
+                <input type="email" name="email" readonly="true" id="email" class="form-control" ng-model="vm.ui.email" required>
+
+                <p class="help-block">
+                  <span ng-show="step2.email.$invalid && !step2.email.$pristine">Email is required.</span>
+                </p>
+              </div>
+              <div class="form-group col-md-12">
+
+                <label for="phone">Phone:
+                  <span style="color:red;">*</span>
+                </label>
+                <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.ui.phone" placeholder="XXXXXXXXXXX" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" required>
+                <p class="help-block">
+                  <span ng-show="step2.phone.$invalid && !step2.phone.$pristine">Bad format.</span>
+                </p>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="bg-slategray lt wrap-reset mt-20 text-left">
+
+                <p class="m-0">
+
+                  <a class="btn btn-dutch b-0 text-uppercase pull-right" ng-disabled='step2.$invalid' ng-if="vm.stepCount<2" ng-click="vm.nextTab()">Next</a>
+                  <a class="btn btn-greensea b-0 text-uppercase pull-right" ng-disabled='step2.$invalid' ng-click="vm.save()" ng-if="vm.stepCount===2">Submit</a>
+                  <a class="btn btn-lightred b-0 text-uppercase" ng-disabled='vm.stepCount===0' ng-click="vm.previous();">Back</a>
+
+                </p>
+              </div>
+            </div>
+          </form>
+        </tab>
+        <tab active="vm.steps[2].status" disabled="step2.$invalid">
+          <tab-heading>
+            Company Information
+            <span class="badge badge-default pull-right wizard-step">3</span>
+          </tab-heading>
+
+          <form name="step3" role="form" class="form-validation" novalidate>
+            <div class="form-group col-md-12">
+              <label for="companyname">Company Name: </label>
+              <input type="text" name="companyname" id="companyname" readonly="true" class="form-control" ng-model="vm.ui.tenantDetails.name" required>
+              <p class="help-block">
+                <span ng-show="step3.companyname.$invalid && !step3.companyname.$pristine">Company Name is required.</span>
+              </p>
+
+            </div>
+            <div class="form-group col-md-12">
+              <label for="designation">Designation:
+                <span style="color:red;">*</span>
+              </label>
+              <input type="text" name="designation" id="designation" class="form-control" ng-model="vm.ui.designation" ng-pattern="/^[a-zA-Z ]*$/" required>
+              <p class="help-block">
+                <span ng-show="step3.designation.$invalid && !step3.designation.$pristine">designation is required.</span>
+              </p>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-12" style="margin-left:13px;">
+                <label for="gender">Gender:
+                  <span style="color:red;">*</span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-3">
+                <label class="checkbox checkbox-custom">
+                  <input name="optionsRadios" type="radio" value="Male" ng-model="vm.ui.gender" required><i></i> Male
+
+                </label>
+              </div>
+              <div class="form-group col-sm-3">
+                <label class="checkbox checkbox-custom">
+
+                  <input name="optionsRadios" type="radio" value="Female" ng-model="vm.ui.gender" required><i></i>Female
+
+
+                </label>
+              </div>
+            </div>
+            <div class="form-group text-left">
+              <label class="checkbox checkbox-custom checkbox-custom-sm inline-block">
+                <input type="checkbox" ng-model="vm.user.accept" required><i></i> I agree to the <a href="javascript:;">Terms of Service</a> & <a href="javascript:;">Privacy Policy</a>
+              </label>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="bg-slategray lt wrap-reset mt-20 text-left">
+
+                <p class="m-0">
+
+                  <a class="btn btn-dutch b-0 text-uppercase pull-right" ng-disabled='step3.$invalid' ng-if="vm.stepCount<2" ng-click="vm.nextTab()">Next</a>
+                  <a class="btn btn-greensea b-0 text-uppercase pull-right" ng-disabled='step3.$invalid' ng-click="vm.save()" ng-if="vm.stepCount===2">Submit</a>
+                  <a class="btn btn-lightred b-0 text-uppercase" ng-disabled='vm.stepCount===0' ng-click="vm.previous();">Back</a>
+                </p>
+              </div>
+            </div>
+          </form>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

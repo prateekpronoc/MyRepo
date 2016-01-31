@@ -1,0 +1,58 @@
+<md-dialog aria-label="Mango (Fruit)" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{vm.entityInfo.name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="styles/icons/ic_camera_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <!-- <h2>Using .md-dialog-content class that sets the padding as the spec</h2> -->
+
+
+        <div>
+          <carousel interval="vm.myInterval">
+            <slide ng-repeat="slide in vm.slides" active="slide.active">
+              <img ng-src="{{slide.image}}">
+              <div class="carousel-caption">
+                <h4>Slide {{$index+1}}</h4>
+              </div>
+            </slide>
+          </carousel>
+        </div>
+        <p>
+          {{vm.entityInfo.description}}
+        </p>
+        <p>
+          <span class="md-subhead">Created On: {{ vm.entityInfo.createdAt}}</span>
+        </p>
+        <p>
+          <span class="md-subhead">Location: {{ vm.entityInfo.location}}</span>
+        </p>
+        <p>
+          <span class="md-subhead">Type: {{ vm.entityInfo.type}}</span>
+        </p>
+        <!-- <p>
+          The highest concentration of Mangifera genus is in the western part of Malesia (Sumatra, Java and Borneo) and in Burma and India. While other Mangifera species (e.g. horse mango, M. foetida) are also grown on a more localized basis, Mangifera indica&mdash;the "common mango" or "Indian mango"&mdash;is the only mango tree commonly cultivated in many tropical and subtropical regions.
+        </p> -->
+
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <!--  <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wik -->
+      </md-button>
+      <span flex></span>
+      <!-- <md-button ng-click="vm.hide('not useful')">
+        Not Useful
+      </md-button> -->
+      <md-button ng-click="vm.hide('not useful')" style="margin-right:20px;">
+        Ok
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

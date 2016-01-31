@@ -1,0 +1,76 @@
+<section class="tile" fullscreen="isFullscreen01">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font">
+          <strong>Invite</strong>People</h1>
+      </div>
+      <div class="tile-body">
+        <form name="slotDetailsForm" class="form-horizontal" role="form" novalidate>
+          <div class="form-group">
+            <div class="col-sm-10">
+              <label class="checkbox checkbox-custom">
+                <input type="checkbox" checked="checked" ng-model="vm.slotdetails.mailflag"><i></i> Send Invitations </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-8 " style="margin-top:10px;">
+              <label class="col-sm-3">Subject Line
+                <span style="color:red;">*</span>
+              </label>
+              <div class="col-md-9">
+                <input type="text" name="subject" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Subject Line" ng-model="vm.slotdetails.subject" required>
+                <span style="color:red;" class="error-form-fields pull-right" ng-show="slotDetailsForm.subject.$error.pattern ">
+                  Enter a valid Name!</span>
+              </div>
+            </div>
+            <div class="col-sm-8 " style="margin-top:10px;">
+              <label class="col-sm-3">Required People
+                <span style="color:red;" ng-if="vm.slotdetails.mailflag">*</span>
+              </label>
+              <div class="col-md-7">
+                <input type="text" name="requiredpeople" ng-model="vm.slotdetails.usr" placeholder="Required People" typeahead="usr as usr.email for usr in vm.allusers | filter:$viewValue | limitTo:8" class="form-control" ng-keyup="$event.keyCode === 13 && vm.addUserMail()">
+              </div>
+            </div>
+            <div class="col-sm-8 " style="margin-top:10px;">
+              <label class="col-sm-3"></label>
+              <div class="col-sm-7">
+                <alert ng-repeat="usrmails in vm.usrmails" type="success" close="vm.closeAlert($index)">{{usrmails}}</alert>
+              </div>
+            </div>
+            <div class="col-sm-8 " style="margin-top:10px;">
+              <label class="col-sm-3">Optional People</label>
+              <div class="col-md-7">
+                <input type="text" placeholder="Optinal People" ng-model="vm.slotdetails.optionalemail" typeahead="users as users.email for users in vm.allusers | filter:$viewValue | limitTo:8 " class="form-control" ng-keyup="$event.keyCode === 13 && vm.addOptinalUserMail()">
+                <span class="error-form-fields pull-right" ng-show="slotDetailsForm.optionalemail.$error.email ">
+                  Not valid email!</span>
+              </div>
+            </div>
+            <div class="col-sm-8 " style="margin-top:10px;">
+              <label class="col-sm-3"></label>
+              <div class="col-sm-7">
+                <alert ng-repeat="usrmails in vm.optinalmails" type="success" close="vm.closeAlert($index)">{{usrmails}}</alert>
+              </div>
+            </div>
+            <div class="col-sm-8 " style="margin-top:10px;">
+              <label class="col-sm-3">Comment</label>
+              <div class="col-md-9">
+                <textarea class="form-control" rows="5" placeholder="Comments" ng-model="vm.slotdetails.comments"></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="tile-footer dvd dvd-top">
+        <div class="row">
+          <div class="col-md-10 hidden-xs">
+            <button type="button" ng-click="vm.previous('1')" class="btn btn-primary pull-left">Back</button>
+          </div>
+          <div class="col-md-2">
+            <button type="button" ng-disabled="slotDetailsForm.$invalid" ng-click="vm.finaltransaction()" class="btn btn-primary pull-right"><i class="fa fa-spinner fa-spin fa-lg" ng-show="vm.logging"></i>Book</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

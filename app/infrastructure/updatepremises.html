@@ -1,0 +1,104 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <form name="createPremisesForm" class="form-horizontal" role="form" novalidate>
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong>Premises</strong>Details</h1>
+                  <ul class="controls">
+                    <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                      <a href class="dropdown-toggle settings" dropdown-toggle>
+                        <i class="fa fa-cog"></i>
+                      </a>
+                      <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                        <li>
+                          <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                            <fa name="refresh"></fa> Refresh </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+                  </ul>
+                </div>
+                <div class="tile-body form-validation">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="premisesname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Name" ng-model="vm.premises.name" required>
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="createPremisesForm.premisesname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">State</label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" ng-model="vm.premises.state" ng-change="vm.getCityCatalog();" ng-options="entity.id as entity.value for entity in vm.states">
+                        <option value="">State</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">City</label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" ng-model="vm.premises.city" ng-options="entity.id as entity.value for entity in vm.cities">
+                        <option value="">City</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Location</label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" ng-model="vm.premises.location" required>
+                        <option value="">Location</option>
+                        <option value="Devalrabesanahalli">Devalrabesanahalli</option>
+                        <option value="Bellandur">Bellandur </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="Address">Address</label>
+                    <div class="col-sm-5">
+                      <textarea class="form-control" rows="5" placeholder="Address" ng-model="vm.premises.address" required></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Contact number</label>
+                    <div class="col-sm-5">
+                      <input type="tel" name="mobilenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="15" class="form-control mb-10" placeholder="Contact number" ng-model="vm.premises.contactnumber" required>
+                      <span class="error-form-fields pull-right" ng-show="createPremisesForm.mobilenumber.$error.pattern ">
+                        Not valid contact number!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Email
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="email" name="email" class="form-control mb-10" placeholder="email" ng-model="vm.premises.email" required>
+                      <span class="error-form-fields pull-right" ng-show="createPremisesForm.email.$error.email ">
+                        Not valid email!</span>
+                    </div>
+                  </div>
+                </div>
+                <hr class="line-full">
+                <div class="tile-footer text-right">
+                  <button type="button" ng-disabled="createPremisesForm.$invalid" ng-click="vm.createPremises();" class="btn btn-primary mb-10">Save</button>
+                  <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- page content -->

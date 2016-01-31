@@ -1,0 +1,409 @@
+<md-toolbar ng-show="!showSearch">
+  <div class="md-toolbar-tools">
+    <md-button ng-click="vm.toggleLeft('left')" hide-gt-md aria-label="Menu">
+      <ng-md-icon icon="menu"></ng-md-icon>
+    </md-button>
+    <h3>
+      Cafeteria
+    </h3>
+    <span flex></span>
+  </div>
+
+</md-toolbar>
+
+<section class="md-padding" layout="column" ng-show="vm.tabIndex===1">
+
+  <md-chips>
+    <md-chip ng-repeat="val in vm.mycart">{{val.fname}}{{[vm.mycartQuantity[val.fId]]}} </md-chip>
+
+  </md-chips>
+
+
+</section>
+<md-content flex md-scroll-y ng-show="vm.tabIndex===2" hide-gt-md>
+
+  <p>
+    <strong class="inline-block w-sm mb-5">Total Cost Due:</strong> {{vm.totalCost}}
+  </p>
+  <p>
+    <md-button class="md-raised md-primary" layout-align="end center" aria-label="Favorite" ng-click="vm.confirmOrder()">
+      Pay
+    </md-button>
+    <md-button class="md-raised md-primary" aria-label="Favorite" ng-click="vm.shopAgain()">
+      Continue Shopping
+    </md-button>
+  </p>
+
+
+</md-content>
+<md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="vm.viewCart()" ng-show="vm.tabIndex===1">
+  <ng-md-icon icon="add_shopping_cart"></ng-md-icon>
+</md-button>
+<md-content flex md-scroll-y ng-show="vm.tabIndex<1">
+  <!-- <ng-switch on="vm.selectedIndex" class="tabpanel-container"> -->
+  <div layout="row" layout-align="center center">
+
+    <md-card flex-gt-md="80">
+      <md-card-content>
+        <md-list>
+          <div flex ng-repeat="val in vm.cafeEntity.entities">
+            <md-card>
+              <div>
+                <carousel interval="vm.myInterval">
+                  <slide ng-repeat="slide in vm.slides" active="slide.active">
+                    <img ng-src="{{slide.image}}">
+                    <div class="carousel-caption">
+                      <h4>Slide {{$index+1}}</h4>
+                    </div>
+                  </slide>
+                </carousel>
+              </div>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{val.id}} - {{val.name}}</span>
+                </md-card-title-text>
+              </md-card-title>
+              <md-card-content>
+                <p>
+                  {{val.description}}
+                </p>
+                <div layout="column" layout-align="start">
+                  <p>Contact Person : {{val.contactName}}</p>
+                  <div layout="row" layout-align="start">
+                    <p>Email : {{val.contactEmail}}</p>
+                  </div>
+                  <div layout="row" layout-align="start">
+                    <p>Contact # : {{val.contactNo}}</p>
+                  </div>
+                </div>
+              </md-card-content>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" aria-label="Favorite" ng-click="vm.fetchMenuDetails(val.id)">
+                  View Menu
+                </md-button>
+              </md-card-actions>
+            </md-card>
+          </div>
+          <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+          <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+          </md-item>
+          <md-divider></md-divider>
+          <md-item layout class="inset">
+          </md-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+  </div>
+
+
+</md-content>
+
+
+
+<md-content flex md-scroll-y ng-show="vm.tabIndex===1">
+
+  <div layout="row" layout-align="center center">
+
+    <md-card flex-gt-md="80">
+      <md-card-content>
+        <md-list>
+          <section ng-repeat="value in vm.cafeMenu.entities | orderBy : value.categoryId">
+            <md-subheader class="md-primary">{{vm.categoryValues[value.categoryId]}}</md-subheader>
+            <md-divider></md-divider>
+            <md-list-item class="secondary-button-padding" ng-repeat="val in value.foodItems">
+
+              <img src="http://lorempixel.com/400/200/food" class="md-avatar" />
+              <div class="md-list-item-text">
+                <p>{{value.foodItemsNames[val]}}</p>
+                <p>Cost : {{value.foodItemsCost[val]}} points</p>
+                <p>Preperation Time : {{value.foodItemsPrepTime[val]}} mins</p>
+              </div>
+              <div layout="row" layout-align="end center">
+
+                <md-button aria-label="Add" hide-gt-md ng-click="vm.addToCart({fId : val,quantity: 1,fname: value.foodItemsNames[val],fCost :value.foodItemsCost[val],categoryId : value.categoryId})" ng-show="vm.tabIndex===1">
+                  <ng-md-icon icon="add_circle_outline"></ng-md-icon>
+                </md-button>
+                <md-button class="md-secondary" hide-xs ng-click="vm.addToCart({fId : val,quantity: 1,fname: value.foodItemsNames[val],fCost :value.foodItemsCost[val],categoryId : value.categoryId})">Add To Cart</md-button>
+              </div>
+              <md-divider></md-divider>
+            </md-list-item>
+
+          </section>
+          <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+          <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+          </md-item>
+          <md-divider></md-divider>
+          <md-item layout class="inset">
+          </md-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+  </div>
+
+
+</md-content>
+
+<!-- Shopping Cart -->
+<md-content flex md-scroll-y ng-show="vm.tabIndex===2" hide-xs>
+
+  <div layout="row" layout-align="center center">
+    <md-card flex-gt-md="80">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">My Cart</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <div>
+          <!-- col -->
+          <div class="col-md-12">
+
+            <section class="tile tile-simple">
+              <!-- tile body -->
+              <div class="tile-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th>Remove</th>
+
+                        <th>Name </th>
+                        <th>Price </th>
+                        <th>Quantity </th>
+                        <th>Total </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="entity in vm.mycart">
+                        <td>
+                          <input type="checkbox" ng-model="entity.selected">
+                        </td>
+
+                        <td>{{entity.fname}} </td>
+                        <td>{{entity.fCost}}</td>
+                        <td>
+                          <input type="number" ng-model="entity.quantity" min="1" max="5" ng-change="vm.calculateTotal();" />
+                        </td>
+                        <td>{{entity.fCost*entity.quantity}}</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- /tile body -->
+            </section>
+            <!-- /tile -->
+          </div>
+          <!-- /col -->
+          <div>
+            <!-- col -->
+            <div class="col-md-3 col-md-offset-9 price-total">
+              <!-- tile -->
+              <section class="tile tile-simple bg-tr-black lter">
+                <!-- tile body -->
+                <div class="tile-body">
+                  <ul class="list-unstyled">
+                    <li class="ng-binding">
+                      <strong class="inline-block w-sm mb-5">Total Cost Due:</strong> {{vm.totalCost}}
+                      <md-button class="md-raised md-primary" layout-align="end center" aria-label="Favorite" ng-click="vm.confirmOrder()">
+                        Pay
+                      </md-button>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /tile body -->
+              </section>
+              <!-- /tile -->
+            </div>
+            <!-- /col -->
+          </div>
+        </div>
+      </md-card-content>
+
+      <md-card-actions layout="row">
+        <md-button class="md-raised md-primary" aria-label="Favorite" ng-click="vm.shopAgain()">
+          Continue Shopping
+        </md-button>
+        <md-button class="md-raised md-primary" layout-align="end center" aria-label="Favorite" ng-click="vm.updateCart()">
+          Update Cart
+        </md-button>
+      </md-card-actions>
+    </md-card>
+
+  </div>
+
+
+</md-content>
+
+<!-- Cart for Small Devices -->
+<md-content flex md-scroll-y hide-gt-md ng-show="vm.tabIndex===2">
+
+
+  <div layout="row" layout-align="center center">
+    <md-card flex-gt-md="80">
+      <md-card-content>
+        <md-list>
+          <md-list-item class="md-3-line" ng-repeat="entity in vm.mycart">
+            <div class="md-tile-left inset" hide-sm>
+              <img src="http://lorempixel.com/400/200/food" class="md-avatar" />
+            </div>
+            <div class="md-list-item-text" layout="column">
+              <h3>{{entity.fname}}</h3>
+              <h4>{{entity.fCost}}</h4>
+              <p>
+                <input type="number" ng-model="entity.quantity" min="1" max="5" ng-change="vm.calculateTotal();" />
+                <md-button class="md-raised md-primary" layout-align="end center" aria-label="Favorite" ng-click="vm.deleteItems(entity.fId)">
+                  Delete
+                </md-button>
+              </p>
+            </div>
+
+          </md-list-item>
+          <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+          <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+          </md-item>
+          <md-divider></md-divider>
+          <md-item layout class="inset">
+          </md-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+
+  </div>
+
+
+
+
+</md-content>
+
+<md-card>
+
+  <md-content ng-show="vm.tabIndex===3">
+    <div>
+      <!-- col -->
+      <div class="col-md-12">
+        <!-- tile -->
+        <section class="tile time-simple">
+          <!-- tile body -->
+          <div class="tile-body">
+            <!-- row -->
+            <div class="row">
+              <!-- col -->
+              <div class="col-md-9">
+                <!--      <a href="http://www.logoinstant.com" target="_blank" title="Free Logo">
+                  <img src="images/logo-placeholder.2aff39e6.jpg" alt="" class="thumb thumb-xl m-10 mb-20">
+                </a> -->
+              </div>
+              <!-- /col -->
+              <!-- col -->
+              <div class="col-md-3">
+                <h3 class="mb-0 text-custom text-strong"> {{vm.currentDate | date : "MMMM d, y"}}</h3>
+                <p class="text-default lt">Order ID: #365116</p>
+              </div>
+              <!-- /col -->
+            </div>
+            <!-- /row -->
+            <!-- row -->
+            <div class="row b-t pt-20">
+              <!-- col -->
+              <div class="col-md-4" style="border-right:1px solid rgba(0,0,0,.05)">
+                <p class="text-uppercase text-strong mb-10 custom-font"> From </p>
+                <ul class="list-unstyled text-default lt mb-20">
+                  <li>{{vm.selectedCafeInfo.name}}</li>
+                  <li>{{vm.selectedCafeInfo.contactName}}</li>
+                  <li>{{vm.selectedCafeInfo.contactNo}}</li>
+                  <li>{{vm.selectedCafeInfo.contactEmail}}</li>
+                </ul>
+              </div>
+              <!-- /col -->
+              <!-- col -->
+              <div class="col-md-4" style="border-right:1px solid rgba(0,0,0,.05)">
+                <p class="text-uppercase text-strong mb-10 custom-font"> To</p>
+                <ul class="list-unstyled text-default lt mb-20">
+                  <li>{{vm.session.getUserName()}}</li>
+                  <li>{{vm.session.getUserEmail()}}</li>
+                </ul>
+              </div>
+              <!-- /col -->
+              <!-- col -->
+              <div class="col-md-4">
+                <p class="text-uppercase text-strong mb-10 custom-font">Payment Details</p>
+                <ul class="list-unstyled text-default lt mb-20">
+
+                  <strong>Account Name:</strong> {{ vm.accountInfo.name}}</li>
+                  <li>
+                    <strong>Account #:</strong> {{vm.accountInfo.id}}</li>
+
+                </ul>
+              </div>
+              <!-- /col -->
+            </div>
+            <!-- /row -->
+          </div>
+          <!-- /tile body -->
+        </section>
+        <!-- /tile -->
+        <!-- tile -->
+        <section class="tile tile-simple">
+          <!-- tile body -->
+          <div class="tile-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Name </th>
+                    <th>Price </th>
+                    <th>Quantity </th>
+                    <th>Total </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="entity in vm.mycart">
+                    <td>{{$index}}</td>
+                    <td>{{entity.fname}} </td>
+                    <td>{{entity.fCost}}</td>
+                    <td>{{vm.mycartQuantity[entity.fId]}}</td>
+                    <td>{{entity.fCost*vm.mycartQuantity[entity.fId]}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /tile body -->
+        </section>
+        <!-- /tile -->
+      </div>
+      <!-- /col -->
+      <div>
+        <!-- col -->
+        <div class="col-md-3 col-md-offset-9 price-total">
+          <!-- tile -->
+          <section class="tile tile-simple bg-tr-black lter">
+            <!-- tile body -->
+            <div class="tile-body">
+              <ul class="list-unstyled">
+
+                <li class="ng-binding">
+                  <strong class="inline-block w-sm mb-5">Grand Total:</strong>{{vm.totalCost}}</li>
+                <li class="ng-binding">
+                  <strong class="inline-block w-sm mb-5">Total Paid:</strong> {{vm.totalCost}}</li>
+                <li class="ng-binding">
+                  <li>
+                    <md-button class="md-raised md-primary" aria-label="Favorite" ng-click="vm.viewAllBookings()"> View All Bookings
+                    </md-button>
+
+                  </li>
+              </ul>
+            </div>
+            <!-- /tile body -->
+          </section>
+          <!-- /tile -->
+        </div>
+        <!-- /col -->
+      </div>
+    </div>
+  </md-content>
+</md-card>

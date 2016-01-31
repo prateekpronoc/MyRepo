@@ -1,0 +1,66 @@
+<section class="tile" fullscreen="isFullscreen01">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font">
+          <strong>Transaction</strong>
+        </h1>
+      </div>
+      <div class="tile-body">
+
+        <form name="slotDetailsForm" class="form-horizontal" role="form" novalidate>
+          <div class="form-group">
+            <div class="col-sm-12" >
+              <div ng-show="!vm.bookEntity" class="alert alert-big alert-lightred alert-dismissable fade in">
+               
+                <h4>
+                  <strong>Insufficient balance, please recharge your account to proceed or select different account</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-8 " style="margin-top:10px;">
+              <label class="col-sm-3">Select Account</label>
+              <div class="col-md-6">
+                <select data-ng-model="vm.ui.accountId" id="alertType" ng-options=" entity.id as entity.name for entity in vm.accountInfo" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-change="vm.fetchbalanceInfo();"></select>
+
+              </div>
+              <div class="col-md-3">
+                <label ng-if="vm.ui.balanceInfo.balance">{{vm.ui.balanceInfo.balance}} Points</label>
+              </div>
+            </div>
+
+            <div class="col-sm-8 " style="margin-top:10px;">
+              <label class="col-sm-3">Comment</label>
+              <div class="col-md-9">
+                <textarea class="form-control" rows="5" placeholder="Comments" ng-model="vm.ui.comments"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-8 " style="margin-top:10px;">
+              <button type="button" ng-show="vm.bookEntity" ng-click="vm.finaltransaction()" class="btn btn-primary pull-right">Book</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12 tile dvd dvd-btm" style="margin-top:10px;">
+            </div>
+          </div>
+          <div class="form-group pull-right">
+
+            <div>
+              <label class="col-md-12  ">Meeting Room Cost : {{vm.totalCost}} Points</label>
+            </div>
+            <div>
+              <label class="col-md-12  dvd dvd-btm ">Other Cost : 0 Points</label>
+            </div>
+            <div>
+              <label class="col-md-12 ">Total Service Cost : {{vm.totalCost}} Points</label>
+            </div>
+            <!-- <button type="button" class="btn btn-primary pull-right">Send Invitation</button> -->
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

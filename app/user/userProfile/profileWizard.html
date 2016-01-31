@@ -1,0 +1,293 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="pageheader">
+      <h2>User Profile
+      </h2>
+      <div class="page-bar">
+        <ul class="page-breadcrumb">
+          <li>
+            <a ui-sref="app.dashboard"><i class="fa fa-home"></i>wams</a>
+          </li>
+          <li>
+            <a href="javascript:;">User</a>
+          </li>
+          <li>
+            <a ui-sref="app.pages.profile">{{vm.title}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="pagecontent">
+
+
+
+      <tabset class="tab-animation tab-container tab-wizard" justified="true" set-ng-animate="true">
+
+        <tab active="vm.steps.step1">
+          <tab-heading>
+            Basic Details
+            <span class="badge badge-default pull-right wizard-step">1</span>
+          </tab-heading>
+
+          <form name="step1" role="form" novalidate class="form-validation">
+
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label for="username">Employee Id:</label>
+                <input type="text" name="empId" id="empId" class="form-control" ng-model="vm.ui.employeeId" ng-pattern="/^[a-zA-Z0-9]*$/" readonly>
+                <p class="help-block">
+                  <span ng-show="step1.empId.$invalid && !step1.empId.$pristine">Employee Id is required.</span>
+                </p>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="username">First Name: </label>
+                <input type="text" name="firstname" id="firstname" class="form-control" ng-model="vm.ui.firstName" ng-pattern="/^[A-z]+$/" ng-readonly="vm.notReadable">
+                <p class="help-block">
+                  <span ng-show="step1.firstname.$invalid && !step1.firstname.$pristine">firstname is required.</span>
+                </p>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="username">Last Name:</label>
+                <input type="text" name="lastname" id="lastname" class="form-control" ng-model="vm.ui.lastName" ng-pattern="/^[A-z]+$/" ng-readonly="vm.notReadable">
+                <p class="help-block">
+                  <span ng-show="step1.lastname.$invalid && !step1.lastname.$pristine">Last Name is required.</span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <label for="dob">Date of birth:</label>
+                <p class="input-group">
+                  <input type="text" class="form-control" ng-model="vm.ui.dob" is-open="vm.startdateopened" datepicker-options="vm.dateOptions" close-text="Close" datepicker-popup="yyyy-MM-dd" ng-readonly="vm.notReadable" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-sm btn-default" ng-click="vm.startdateopen($event)" ng-disabled="vm.notReadable"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </p>
+              </div>
+
+              <div class="form-group col-sm-4">
+                <label for="officialemail">Official Email: </label>
+                <input type="email" name="officialemail" id="officialemail" class="form-control" ng-model="vm.ui.officialMail" readonly>
+                <p class="help-block">
+                  <span ng-show="step1.officialemail.$invalid && !step1.officialemail.$pristine">Email is required.</span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-3">
+                <label for="Gender">Gender:</label>
+                <label class="checkbox checkbox-custom">
+                  <input name="optionsRadios" type="radio" value="Male" ng-model="vm.ui.gender" ng-disabled="vm.notReadable"><i></i> Male
+                </label>
+              </div>
+              <div class="form-group col-sm-3">
+                <label for="Gender"></label>
+                <label class="checkbox checkbox-custom">
+                  <input name="optionsRadios" type="radio" value="Female" ng-model="vm.ui.gender" ng-disabled="vm.notReadable"><i></i>Female
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label class="col-sm-2 pull-left" for="image">Image:</label>
+                <div class="col-md-5">
+                  <input type="file" file-model="vm.uploadFile" />
+                  <!-- <input type="file" ngf-select ng-model="vm.ui.picFile" name="file" id="fileInput" accept="image/*" ngf-max-size="2MB"> -->
+                  <span>Upload image with (.jpg/jpeg/png) extension and max size 2 MB only</span>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-sm btn-default" ng-click="vm.uploadPic(vm.picFile)" ng-disabled="vm.notReadable">Upload Image</button>
+                  <!-- <button ng-click="vm.uploadPic(vm.ui.picFile)">upload image</button> -->
+                </div>
+                <div class="form-group col-sm-3">
+                  <!-- <img ng-show="step1.file.$valid" ngf-thumbnail="vm.uploadFile" class="thumb"> -->
+                  <img ng-src="{{vm.imageSource}}" ng-if="vm.imageSource" style="height:200px;width:200px;padding-right:10px" />
+                  <!-- <img ng-src="{{vm.mySource}}" id="photo-id" ng-if="vm.imageSource" /> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-default" ng-click="vm.edit()" style="margin-left:500px;">Edit</button>
+              <!-- <a href class="icon icon-success icon-ef-3 icon-ef-3a hover-color" class="btn btn-default" ng-click="vm.edit()"><i class="fa fa-edit"></i></a>
+          <a href class="icon icon-success icon-ef-3 icon-ef-3a hover-color" ng-disabled="step1.$invalid" class="btn btn-default text-center" ng-click="vm.nextTab('step2')"></a> -->
+              <button type="submit" ng-disabled="step1.$invalid" class="btn btn-default pull-right" ng-click="vm.nextTab('step2')">Next</button>
+              <!-- <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c mb-10 pull-right" ng-disabled="step1.$invalid" ng-click="vm.nextTab('step2')">Next</button> -->
+            </div>
+          </form>
+
+        </tab>
+
+        <tab active="vm.steps.step2" disabled="step1.$invalid">
+
+          <tab-heading>
+            Personal Details
+            <span class="badge badge-default pull-right wizard-step">2</span>
+          </tab-heading>
+
+          <form name="step2" role="form" class="form-validation" novalidate>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="personalemail">Personal Email:</label>
+                <input type="email" name="personalemail" id="personalemail" class="form-control" ng-model="vm.ui.personalMail" ng-readonly="vm.notReadable">
+                <p class="help-block">
+                  <span ng-show="step2.personalemail.$invalid && !step2.personalemail.$pristine">Email is required.</span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="phone">Phone Number: </label>
+                <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.ui.mobile" placeholder="XXXXXXXXXX" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-readonly="vm.notReadable">
+                <p class="help-block">
+                  <span ng-show="step2.phone.$invalid && !step2.phone.$pristine">Bad format.</span>
+                </p>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="emergencynumber">Emergency Number:</label>
+                <input type="text" name="emergencynumber" id="emergencynumber" class="form-control" ng-model="vm.ui.emergencyNo" ng-pattern="/^\d+$/" ng-readonly="vm.notReadable">
+                <p class="help-block">
+                  <span ng-show="step2.emergencynumber.$invalid && !step2.emergencynumber.$pristine">Bad format.</span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="address2">Permanent Address: </label>
+                <!-- <input type="text" name="address2" id="address2" class="form-control" ng-model="user.address2" placeholder="Enter secondary address"> -->
+                <textarea class="form-control" rows="5" name="message" id="message" placeholder="Enter Permanent address" ng-model="vm.ui.permAddr" ng-readonly="vm.notReadable"></textarea>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="address2">Communication Address: </label>
+                <textarea class="form-control" rows="5" name="message" id="message" placeholder="Enter Communication address" ng-model="vm.ui.commAddr" ng-readonly="vm.notReadable"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="transport">Id Proof:</label>
+                <select class="form-control mb-9" ng-model="vm.ui.idproof" ng-disabled="vm.notReadable">
+                  <option value="">Id proof</option>
+                  <option value="1">Passport</option>
+                  <option value="2">Aadhar card</option>
+                  <option value="3">Voter id</option>
+                  <option value="4">PAN card</option>
+                  <option value="5">Driving License</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="transport">Mode Of Transport:</label>
+                <select class="form-control mb-9" ng-model="vm.ui.modeOfTransport" ng-disabled="vm.notReadable">
+                  <option value=""> Choose Transport</option>
+                  <option value="1">Car</option>
+                  <option value="2">Bike</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-12" ng-if="vm.ui.idproof">
+                <label for="transport">Id Proof Details:</label>
+                <input type="text" name="idpdetails" id="idpdetails" class="form-control" ng-model="vm.ui.idpdetails">
+                <p class="help-block">
+                  <span ng-show="step2.idpdetails.$invalid && !step2.idpdetails.$pristine">Id proof Detail is required.</span>
+                </p>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="vm.nextTab('step1')">Previous</button>
+            <button type="submit" class="btn btn-default" ng-click="vm.edit()" style="margin-left:450px;">Edit</button>
+            <button type="submit" class="btn btn-default pull-right" ng-click="vm.nextTab('step3')">Next</button>
+          </form>
+        </tab>
+        <tab active="vm.steps.step3" disabled="step2.$invalid">
+          <tab-heading>
+            Work Details
+            <span class="badge badge-default pull-right wizard-step">3</span>
+          </tab-heading>
+          <form name="step3" role="form" class="form-validation" novalidate>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="cname">Compnay Name: </label>
+                <input type="text" name="cname" id="cname" class="form-control" ng-model="vm.ui.tenantDetails.name" readonly>
+                <p class="help-block">
+                  <span ng-show="step3.cname.$invalid && !step3.cname.$pristine">Company Name is required.</span>
+                </p>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="designation">Designation: </label>
+                <input type="text" name="designation" id="designation" class="form-control" ng-model="vm.ui.designation" ng-pattern="/^[a-zA-Z ]*$/" readonly>
+                <p class="help-block">
+                  <span ng-show="step3.designation.$invalid && !step3.designation.$pristine">Designation is required.</span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="jdate">Joining Date: </label>
+                <input type="text" name="jdate" id="jdate" class="form-control" ng-model="vm.ui.joiningDate" placeholder="YYYY-MM-DD" ng-pattern="/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/" readonly>
+                <p class="help-block">
+                  <span ng-show="step3.jdate.$invalid && !step3.jdate.$pristine">Bad format.</span>
+                </p>
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="level">Level:</label>
+                <select class="form-control mb-9" ng-model="vm.ui.level" ng-disabled="vm.notReadable">
+                  <option value=""> Choose Level</option>
+                  <option value="Level1">Level1</option>
+                  <option value="Level2">Level2</option>
+                  <option value="Level3">Level3</option>
+                  <option value="Level4">Level4</option>
+                  <option value="Level5">Level5</option>
+                  <option value="Level6">Level6</option>
+                  <option value="Level7">Level7</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="officenumber">Office Number: </label>
+                <input type="text" name="officenumber" id="officenumber" class="form-control" ng-model="vm.ui.officeNo" placeholder="XXXXXXXXXX" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-readonly="vm.notReadable">
+                <p class="help-block" ng-pattern="/^\d+$/">
+                  <span ng-show="step3.officenumber.$invalid && !step3.officenumber.$pristine">Bad format.</span>
+                </p>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="extensionnumber">Extension Number:</label>
+                <input type="text" name="extensionnumber" id="extensionnumber" class="form-control" ng-model="vm.ui.extension" ng-pattern="/^\d+$/" placeholder="XXXXXXXXXX" ng-readonly="vm.notReadable">
+                <p class="help-block">
+                  <span ng-show="step3.extensionnumber.$invalid && !step3.extensionnumber.$pristine">Bad format.</span>
+                </p>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="vm.nextTab('step2')">Previous</button>
+            <button type="submit" ng-disabled="step3.$invalid" class="btn btn-default" ng-click="vm.edit()" style="margin-left:450px;">Edit</button>
+            <button type="submit" ng-disabled="step3.$invalid" class="btn btn-default pull-right" ng-click="vm.nextTab('step4')">Next</button>
+          </form>
+        </tab>
+
+        <tab active="vm.steps.step4" disabled="step3.$invalid">
+
+          <tab-heading>
+            Final
+            <span class="badge badge-default pull-right wizard-step">4</span>
+          </tab-heading>
+          <p class="well">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+
+
+          <form name="step4" role="form" class="form-validation" novalidate>
+            <div class="checkbox">
+              <label class="checkbox checkbox-custom">
+                <input type="checkbox" name="agree" id="agree" ng-model="vm.ui.agree" required><i></i> I agree to the <a href class="text-info">Terms of Service</a>
+              </label>
+              <p class="help-block">
+                <span ng-show="step4.agree.$invalid && !step4.agree.$pristine" class="text-red">You must accept Terms of Service.</span>
+              </p>
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="vm.nextTab('step3')">Previous</button>
+            <button type="submit" ng-disabled="step4.$invalid" class="btn btn-default pull-right" ng-click="vm.save()">Submit</button>
+          </form>
+        </tab>
+      </tabset>
+    </div>
+  </section>
+</div>

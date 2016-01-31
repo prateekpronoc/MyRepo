@@ -1,0 +1,151 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <div class="col-md-12">
+          <div class="col-md-1">
+            <img src="images/yeoman.a6b33b1c.png" style="height:30px;width=30px;" alt="">
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <h2>{{vm.page.title}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a> </li>
+            <li> <a href="javascript:;">Employee</a> </li>
+            <li> <a ui-sref="app.employe.mr.mrbooking">{{vm.page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+          <div class="col-md-12">
+
+            <form class="form-horizontal" role="form" novalidate>
+              <!-- tile -->
+              <section class="tile" fullscreen="isFullscreen03">
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong>MeetingRoom</strong>Booking</h1>
+                  <ul class="controls">
+                    <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                      <a href class="dropdown-toggle settings" dropdown-toggle>
+                        <i class="fa fa-cog"></i>
+                      </a>
+                      <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                        <li>
+                          <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                            <fa name="refresh"></fa> Refresh </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+                  </ul>
+                </div>
+
+                <div class="tile-body form-validation">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <p class="text-center" style="border-radius: 10px;border: 1px solid #C1C1AE;padding: 20px;width: 130px;height: 100px">Check Avalabilty</p>
+                        </div>
+                      </div>
+                      <div class="col-md-10">
+                        <div class="form-group">
+                          <div class="col-md-4" style="margin-top: 33px">
+                            <p class="input-group">
+                              <input type="date" class="form-control" datepicker-popup ng-model="vm.mybooking.startdate" is-open="startdateopened" max-date="'2015-11-22'" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" />
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="startdateopen($event)"><i class="fa fa-calendar"></i></button>
+                              </span>
+                            </p>
+                          </div>
+                          <div class="col-md-2">
+                            <timepicker time-picker ng-model="vm.mybooking.fromtime" ng-change="vm.changed();" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></timepicker>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-10">
+                        <div class="form-group">
+                          <div class="col-md-4" style="margin-top: 33px">
+                            <p class="input-group">
+                              <input type="date" class="form-control" datepicker-popup ng-model="vm.mybooking.enddate" is-open="enddateopened" max-date="'2015-11-22'" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" />
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="enddateopen($event)"><i class="fa fa-calendar"></i></button>
+                                <!--  <button type="button" class="btn btn-default" ng-click="vm.open($event)"><i class="fa fa-calendar"></i></button> -->
+                              </span>
+                            </p>
+                          </div>
+                          <div class="col-md-2">
+                            <timepicker ng-model="vm.mybooking.totime" time-picker ng-change="vm.changed();" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></timepicker>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-10">
+                        <div class="form-group">
+                          <div class="col-md-4">
+                            <input type="checkbox">Daily
+                          </div>
+                          <div class="col-md-2">
+                            <input type="checkbox">Weekly
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <p class="text-center" style="border-radius: 10px;border: 1px solid #C1C1AE;padding: 20px;width: 130px;height: 100px">Location</p>
+                        </div>
+                      </div>
+                      <div class="col-md-10">
+                        <div class="form-group">
+                          <label class="col-md-1 control-label">Buliding</label>
+                          <div class="col-md-2">
+                            <input type="text" class="form-control mb-10" required>
+                          </div>
+                          <label class="col-md-2 control-label">Floor</label>
+                          <div class="col-md-2">
+                            <input type="text" class="form-control mb-10" required>
+                          </div>
+                          <div class="col-md-2">
+                            <button type="button" class="btn btn-primary pull-right">Apply</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong>Avalabile Meeting</strong>Rooms</h1>
+                </div>
+                <div clas="tile-body form-validation">
+                  <!--  <div class="row"> -->
+                  <div class="col-md-4" ng-repeat="gettingmeetingroomdata in vm.gettingmeetingroomsdata" style="padding-top:10px;">
+                    <div mrcard-view class="cardview-container" card-title="gettingmeetingroomdata.name" action-listener="vm.actionClicked(actionCode, record);" main-columns="gettingmeetingroomdata" actions-provider="vm.provideActions(view, record);" flip-columns="flipColumns" main-actions="vm.mainActions" card-height="cardHeight" is-delete-disabled="vm.isDeleteDisabled" is-edit-disabled="vm.isEditDisabled">
+                    </div>
+                  </div>
+                  <!-- </div> -->
+                </div>
+                <div class="col-sm-12">
+                  <paging-control paging-options=" vm.pagingOptions " action-page-changed="vm.selectPageNo ">
+                  </paging-control>
+                </div>
+              </section>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

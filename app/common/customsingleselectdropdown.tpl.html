@@ -1,0 +1,17 @@
+<div class="popover popover-multiselect">
+  <div style="margin: 10px;">
+    <div class="multiselectline">
+      <input placeholder="Search" class="form-control searchtext" type="text" data-ng-model="vm.filterLeft">
+      <span data-ng-click="vm.filterLeft = '';" class="glyphicon glyphicon-remove-circle searchclear"></span>
+    </div>
+    <div class="selectbox" style="max-height: 120px; overflow-y: auto;overflow-x:hidden">
+      <ul class="singleselectbox" style=" overflow-y: auto;overflow-x:hidden">
+        <li ng-repeat="(k,v) in data" ng-if="vm.selectedId === k || !vm.filterLeft || v.toLowerCase().indexOf(vm.filterLeft.toLowerCase()) > -1" ng-click="vm.selectedId = k; vm.changed(vm.selectedId); $hide();">
+          <div class="list-item ellipsis_text" ng-class="{'selected-item': vm.selectedId === k}">
+            <span class="ellipsis_text" title="{{v}}" ng-bind="v" style="padding-left: 3px;"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

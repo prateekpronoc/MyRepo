@@ -1,0 +1,60 @@
+<section class="tile" fullscreen="isFullscreen01">
+  <div class="tile-body">
+    <div class="cardview-container">
+      <div imagecard-view-grid data="vm.entity" main-actions="vm.mainActions" action-listener="vm.actionClicked(actionCode, record);" is-delete-disabled="vm.isDeleteDisabled" is-edit-disabled="vm.isEditDisabled" interval="vm.myInterval" slides-data="vm.slides"></div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-sm-12">
+        <div class="tile-widget">
+          <div class="col-sm-6" ng-repeat="row in vm.entity">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <carousel interval="vm.myInterval">
+                  <slide ng-repeat="slide in vm.slides" active="slide.active">
+                    <img ng-src="{{slide.image}}" style="margin:auto;height:200px;">
+                    <div class="carousel-caption">
+                      <h4>Slide {{$index}}</h4>
+                      <p>{{slide.text}}</p>
+                    </div>
+                  </slide>
+                </carousel>
+              </div>
+              <div class="panel-footer">
+                <div class="row b-t pt-20">
+                  <div class="col-md-4 b-r">
+                    <p class="text-uppercase text-strong mb-10 custom-font">
+                      Address & other Details
+                    </p>
+                    <div class="col-md-12">
+                      <ul>
+                        <li>
+                          <strong>Name</strong>:{{row.name}}</li>
+                        <li title="{{row.location}}">
+                          <strong>Location</strong>:{{row.location}}</li>
+                        <li title="{{row.capacity}}">
+                          <strong>Capacity</strong>:{{row.capacity}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-4 b-r">
+                    <p class="text-uppercase text-strong mb-10 custom-font">Manager Details</p>
+                    <ul>
+                      <li title="{{vm.ui.userInfo[row.managerId]}}">
+                        <strong>Name</strong>: {{vm.ui.userInfo[row.managerId]}}</li>
+                      <li>
+                        <strong>E-mail</strong>:</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4 b-r">
+                    <button type="button" class="btn btn-default pull-right" ng-click="vm.bookGym(row.id);">Book</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div> -->
+  </div>
+</section>

@@ -1,0 +1,183 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <div class="pageheader">
+        <h2>{{vm.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Users</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen01">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Register</strong>Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a href="" dropdown-toggle="" class="dropdown-toggle settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href="" tile-control-toggle="">
+                          <span class="minimize"><i class="fa fa-angle-down" name="angle-down"></i>&nbsp;&nbsp;&nbsp;Minimize</span>
+                          <span class="expand"><i class="fa fa-angle-up" name="angle-up"></i>&nbsp;&nbsp;&nbsp;Expand</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-refresh="" ng-click="ajaxFaker()"> <i class="fa fa-refresh" name="refresh"></i> Refresh </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-fullscreen="" ng-click="isFullscreen01 = !isFullscreen01"> <i class="fa fa-expand" name="expand"></i> Fullscreen </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <form class="form-horizontal" name="createUserForm" role="form">
+                  <!-- <div class="form-group">
+                  <label class="col-sm-3 control-label">Name
+                    <span style="color:red;">*</span>
+                  </label>
+                  <div class="col-sm-5">
+                    <input type="text" name="adminname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Admin Name" data-ng-model="vm.ui.name">
+                    <span class="error-form-fields pull-right" ng-show="createUserForm.adminname.$error.pattern ">
+                      Enter a valid Name!</span>
+                  </div>
+                  <div class="col-sm-3">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Mobile number
+                    <span style="color:red;">*</span>
+                  </label>
+                  <div class="col-sm-5">
+                    <input type="tel" name="mobilenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="15" ng-readonly="vm.credentials.selectuser" class="form-control mb-10" placeholder="Contact number" data-ng-model="vm.ui.mobile">
+                    <span class="error-form-fields pull-right" ng-show="createUserForm.mobilenumber.$error.pattern ">
+                      Not valid contact number!</span>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="col-sm-8">
+                      <select class="form-control mb-9" ng-model="vm.ui.roleId">
+                        <option value=""> Choose Role</option>
+                        <option ng-repeat="(key, value) in vm.assignrole" value="{{key}}">{{value}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Contact number
+                    <span style="color:red;">*</span>
+                  </label>
+                  <div class="col-sm-5">
+                    <input type="tel" name="contactnumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="15" ng-readonly="vm.credentials.selectuser" class="form-control mb-10" placeholder="Contact number" data-ng-model="vm.ui.phone">
+                    <span class="error-form-fields pull-right" ng-show="createUserForm.contactnumber.$error.pattern">
+                      Not valid contact number!</span>
+                  </div>
+                </div> -->
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Email Id
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="email" class="form-control mb-10" placeholder="Enter Email's separated by comma " data-ng-model="vm.ui.emails">
+                    </div>
+                    <div class="col-md-4">
+                      <button type="button" class="btn btn-primary" ng-click="vm.sendInvitation()">Send Invitation</button>
+                    </div>
+                  </div>
+
+                  <hr class="line-full">
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Upload</strong>Excel</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-3  control-label" style="padding-top:0px;">Upload File</label>
+                      <div class="col-sm-4">
+                        <input type="file" file-model="vm.uploadFile" />
+                        <!-- <span>Upload file with (.xls) extension and max size 3 MB only</span> -->
+                      </div>
+                      <!--  <input type="file" ngf-select ng-model="vm.picFile" name="file" accept="image/*" ngf-max-size="2MB" required>
+                      <i ng-show="myForm.file.$error.required">*required</i>
+                      <br>
+                      <i ng-show="myForm.file.$error.maxSize">File too large 
+          {{picFile.size / 1000000|number:1}}MB: max 2M</i>
+                      <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
+                      <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+                    </div>-->
+                      <div class="col-sm-3">
+                        <button class="btn btn-sm btn-default" ng-click="vm.uploadPic(vm.picFile)">Upload File</button>
+                      </div>
+                      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                      <div class="col-sm-2">
+                        <a ng-click="vm.downloadTemplate()" href="javascript:void(0)">Download User Template</a>
+                      </div>
+                    </div>
+                    <hr class="line-full" ng-if="vm.fileObj">
+                    <button class="btn btn-warning" type="button" ng-if="vm.fileObj">
+                      Invalid Data
+                      <span class="badge">{{vm.InvaildDataCount}}</span>
+                    </button>
+                    <hr class="line-full" ng-if="vm.fileObj">
+                    <div class="tile-body p-0" ng-if="vm.fileObj">
+                      <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                          <thead>
+                            <tr>
+                              <th ng-repeat="col in vm.columnCollection">{{col.title}}</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="ng-scope" ng-repeat="row in vm.fileObj| filter : vm.searchText" ng-class="{ 'text-danger': !row.isSelected }">
+                              <td>
+                                <a href="javascript:void(0);">
+                                  <span>{{row.employeeId}}</span>
+                                </a>
+                              </td>
+                              <td>
+                                <span>{{row.firstName}}</span>
+                              </td>
+                              <td>
+                                <span>{{row.lastName}}</span>
+                              </td>
+                              <td>
+                                <span>{{row.officialMail}}</span>
+                              </td>
+                              <td>
+                                <span>{{row.mobile}}</span>
+                              </td>
+                              <td>
+                                <span>{{row.designation}}</span>
+                              </td>
+                              <td>
+                                <span>{{row.gender}}</span>
+                              </td>
+                              <td>
+                                <a href="javascript:void(0);" ng-click="vm.getById(row.officialMail)"><i class="fa fa-pencil"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="form-group">
+                        <button type="button" class="btn btn-primary" ng-click="vm.processExcelData()">Send Invitation</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

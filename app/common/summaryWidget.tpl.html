@@ -1,0 +1,21 @@
+<div class=" stats collapse_div" ng-class="data.class1">
+  <div class="openings" ng-click="vm.toggleHeaderWidgetShown();">
+    <img ng-if="data.image" ng-src="images/{{data.image}}" style="width:25px; margin-bottom: 5px;" />
+    <i ng-if="data.icon" class="{{data.icon}}"></i>
+
+    <span class="openin_font">{{data.title}}</span>
+  </div>
+  <div class="content_collapse" ng-class="data.class2" ng-show="headerWidgetShown">
+    <div class="row inner_column_margin" ng-repeat="row in data.dataValues">
+      <div class="openings" ng-if="row.rowTitle">
+        <p></p>
+        <span class="openin_font ng-binding">{{row.rowTitle}}</span>
+      </div>
+      <div class="col-md-{{vm.colWidth}} total_column" ng-repeat="data in row.rowData">
+        <span class="number_style">{{data.value}}</span>
+        <br>
+        <span class="open_color">{{data.title}}</span>
+      </div>
+    </div>
+  </div>
+</div>

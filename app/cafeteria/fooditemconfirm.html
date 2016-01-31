@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <h3 class="modal-title">Details you had entered</h3>
+</div>
+<div class="modal-body">
+  <section class="tile" fullscreen="isFullscreen01">
+    <form class="form-horizontal" role="form">
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font">
+          <strong>Food Item</strong> Details</h1>
+      </div>
+      <div class="tile-body">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Name :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.itemDetails.name}}</p>
+          </div>
+          <div class="form-group col-sm-3">
+            <img ng-src="{{vm.imageSource}}" ng-if="vm.imageSource" style="height:100px;width:100px;" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Description :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.itemDetails.description}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Cuisine:</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.cuisines[vm.itemDetails.cusineId]}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Type:</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{ vm.foodtype[vm.itemDetails.typeId]}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Cost :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.itemDetails.cost}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Preparation Time:</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.itemDetails.preparationTime}} Minutes</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="tile-footer">
+            <button type="button" ng-click="vm.exit();" class="btn btn-warning pull-left">Cancel</button>
+            <button type="button" ng-click="vm.exit();" class="btn btn-info" style="margin-left:500px;">Edit</button>
+            <button type="button" ng-click="vm.save();" class="btn btn-success pull-right">Save</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>

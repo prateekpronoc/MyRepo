@@ -1,0 +1,76 @@
+<!doctype html>
+<html ng-app="wams">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="language" content="english">
+  <title ng-bind="pageTitle + ' | wams'">wams</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- build:css(bower_components) wams-vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) wams.css -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</head>
+
+
+<body layout="row">
+  <!-- Container #1 (see wireframe) -->
+
+  <!-- <div ui-view="header"></div>
+ -->
+
+  <!-- Container #2 -->
+  <!-- <div flex layout="row"> -->
+
+  <!-- Container #3 -->
+  <!-- <div ></div> -->
+  <div ui-view="navbar" style="height:100%;"></div>
+  <div layout="column" class="relative" layout-fill role="main">
+    <div ui-view="header"></div>
+    <!-- <md-content flex md-scroll-y> -->
+    <div ui-view layout="column" layout-fill layout-padding></div>
+    <!-- </md-content> -->
+  </div>
+  <!-- <div layout="column" tabindex="-1" role="main" flex="" class="layout-column flex">
+    <div ui-view="header"></div>
+    <md-content flex id="content" ui-view style="background-color:#ECECEC;"></md-content>
+  </div> -->
+  <!-- Container #4 -->
+  <!--  <div ui-view></div> -->
+  <!-- <md-content flex id="content" ui-view></md-content>
+ -->
+  <!-- <div ui-view="rightbar"></div> -->
+
+  <!-- </div> -->
+  <!-- <div layout="column">
+    <div ui-view="header"></div>
+    <div ui-view="navbar"></div>
+    <div ui-view></div>
+  </div> -->
+  <!--  <toaster-container toaster-options="'close-button': true,'close-duration' :300"></toaster-container> -->
+  <!--  <toaster-container toaster-options="{'time-out': 3000, 'close-button':true}"></toaster-container> -->
+  <!-- <div >
+    
+    
+    
+  </div> -->
+  <!-- build:js(bower_components) wams-vendor.js -->
+  <!-- bower:js -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:js(app) wams.js -->
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- endbuild -->
+  <!-- build:js(.tmp) wams-templates.js -->
+  <!-- inject:partials -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</body>
+
+</html>

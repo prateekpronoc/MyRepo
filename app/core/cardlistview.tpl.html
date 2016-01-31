@@ -1,0 +1,76 @@
+<section class="sectn_bg_color">
+  <div class=" container hp_container">
+    <!--begin of TABLE-->
+    <table class="table" border="0" style="margin-top: 20px;">
+      <thead class="table_header_color">
+        <tr>
+          <th colspan="20" class="list_bordr_radius">
+            <div class="">
+              <div class="pull-left">
+                <span class="pull-left reqr_font_size">{{vm.title}} ({{vm.config.pagingOptions.totalDataRecordCount}})</span>
+              </div>
+              <div class="pull-right">
+                <form class="form-inline list_view_bordr">
+                  <div class="show_btn_style pull-left " ng-if="vm.config.selectOptions.length > 0">
+                    <span class="tabl_header_nam">Sort on</span>
+                    <select class="form-control selectpicker" ng-model="vm.sortOn">
+                      <option ng-repeat="option in vm.config.selectOptions" value="{{$index}}">{{option}}</option>
+                    </select>
+                  </div>
+                  <div class="show_btn_style  pull-left" ng-if="vm.config.selectOptions.length > 0">
+                    <span class="tabl_header_nam">&nbsp;&nbsp;By</span>
+                    <select class="form-control selectpicker" ng-change="vm.refresh(true)" ng-model="vm.sortBy" ng-disabled="vm.config.selectOptions[vm.sortOn] === 'Select'">
+                      <option value="2">Select</option>
+                      <option value="0">Ascending</option>
+                      <option value="1">Descending</option>
+                    </select>
+                  </div>
+                  <div class="bar_margin"></div>
+                  <div class="btn-group group_1 show_form">
+                    <a href="javascript:void(0)" style="font-sze:20px;" title="Refresh" ng-click="vm.refresh(vm.sortOn !== '0');"><i class="fa fa-refresh"></i></a>
+                  </div>
+                  <div class="bar_margin"></div>
+                  <div class="btn-group group_1 show_form">
+                    <button type="button" class="btn btn-default btn_primary button_radius" ng-click="vm.create();" ng-if="!vm.config.isCreateDisabled">Create
+                    </button>
+                  </div>
+                  <div class="btn-group group_1 show_form">
+                    <button type="button" class="btn btn-default dropdown-toggle btn_primary button_radius" placement="bottom-right" data-toggle="dropdown" bs-dropdown="vm.config.actions">
+                      <span ng-if="vm.config.actionLabel">{{vm.config.actionLabel}}</span>
+                      <spam ng-if="!vm.config.actionLabel">Action</spam>
+                      <span class="caret caret_color"></span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th colspan="20" class="table-hr-container">
+            <hr class="table-header-hr" />
+          </th>
+        </tr>
+        <tr class="table_bordr_top reqrmnt_table">
+          <th colspan="20">
+            <div class="pull-left" ng-if="vm.config.gridOptions.selectedRowCount>0">
+              <span class="check_text marLeft10">{{vm.config.gridOptions.selectedRowCount}}&nbsp;{{vm.config.title || vm.title}}(s)&nbsp;Selected </span>
+            </div>
+            <div class="pull-right">
+              <div ng-if="!vm.config.isCardViewDisabled && !vm.config.isListViewDisabled" class="pull-left">
+                <a class="req-gridview-link " href="" ng-click="vm.onViewChange('card');"><i class="glyphicon glyphicon-th-large glyphn_siz"></i></a>
+                <a class="req-listview-link " href="" ng-click="vm.onViewChange('list')"><i class="glyphicon glyphicon-align-justify glyphn_siz"></i></a>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+    </table>
+    <div class="table-responsive extra-large-table" dw-loading="data" dw-loading-options="vm.loadingOptions">
+      <list-view-grid ng-if="vm.viewType === 'list'" column-info="vm.config.gridColumns" options="vm.config.gridOptions" data="vm.entities" actions="vm.config.gridActions" action-listener="vm.actionClicked(actionCode, record);" is-active="vm.viewType === 'list'"></list-view-grid>
+      <div card-view-grid ng-if="vm.viewType === 'card' && !vm.config.isCardViewDisabled" class="cardview-container" card-title="{{vm.config.title}}" data="vm.entities" action-listener="vm.actionClicked(actionCode, record);" main-columns="vm.config.cardColumns" id-field="{{vm.config.idField}}" name-field="{{vm.config.nameField}}" actions-provider="vm.provideActions(view, record);" flip-columns="vm.config.cardFlipColumns" main-actions="vm.config.cardActions" card-height="{{vm.cardHeight}}" is-delete-disabled="vm.config.isDeleteDisabled" is-edit-disabled="vm.config.isEditDisabled"></div>
+    </div>
+    <paging-control paging-options="vm.config.pagingOptions" action-page-changed="vm.onPageClicked">
+    </paging-control>
+  </div>
+</section>

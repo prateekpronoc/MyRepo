@@ -1,0 +1,193 @@
+<section class="tile" fullscreen="isFullscreen01">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font">
+          <strong>Book</strong>Gym</h1>
+        <ul class="controls">
+          <li>
+            <a href="" ng-click="vm.openAdvanceSearch();"><i class="fa fa-filter fa-2x"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="tile-body">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row">
+                <label class="col-sm-1" style="padding-top:34px;">
+                  <strong>From:</strong>
+                </label>
+                <div class="col-sm-6" style="padding-top:34px;padding-left:34px;">
+                  <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="vm.ui.startdate" is-open="vm.startdateopened" datepicker-options="vm.dateOptions" min-date="vm.minDate" ng-required="true" close-text="Close" ng-change="vm.getEndDate()" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-sm btn-default" ng-click="vm.startdateopen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+                <div class="col-md-2">
+                  <timepicker ng-model="vm.ui.fromtime" ng-change="vm.changed();" hour-step="vm.hstep" minute-step="vm.mstep" min-time="10:00" max-time="15:30" show-meridian="vm.ismeridian"></timepicker>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="row">
+                <label class="col-sm-1" style="padding-top:34px;">
+                  <strong>To:</strong>
+                </label>
+                <div class="col-sm-6" style="padding-top:34px;">
+                  <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="vm.ui.enddate" min-date="vm.ui.startdate" is-open="vm.enddateopened" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" init-date="vm.ui.startdate" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-sm btn-default" ng-click="vm.enddateopen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+                <div class="col-md-2">
+                  <timepicker ng-model="vm.ui.totime" ng-change="vm.changed();" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></timepicker>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="col-md-2">
+
+            </div>
+            <div class=" col-md-7">
+            </div>
+            <div class="col-md-3 pull-right">
+              <button type="button" class="btn btn-primary" ng-click="vm.filterMRs();">Search</button>&nbsp;&nbsp;
+              <button type="button" class="btn btn-primary" ng-click="vm.ui.buildingId=null;vm.ui.floorId=null;vm.reset()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tile-body">
+        <section class="tile" fullscreen="isFullscreen07" ng-if="vm.entity.length<1">
+          <div class="post-container" ng-show="vm.noData">
+            <div class="panel panel-default b-0">
+              <h3 class="custom-font text-danger text-center">No Data found</h3>
+
+              <p style="margin-left:10px;"> Hi User !
+              </p>
+              <p style="margin-left:10px;">No Meeting Rooms Are Available for Booking.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font">
+              Available Gym</h1>
+            <ul class="controls">
+              <li>
+                <a href="" ui-sref="wams.gymWizard.checkAvailability.listview"><i class="fa fa-list fa-1x"></i></a>
+              </li>
+              <li>
+                <a href="" ui-sref="wams.gymWizard.checkAvailability.cardview"><i class="fa fa-th fa-1x"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="tile-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="tile-widget">
+                  <div class="row">
+                    <div class="col-sm-5 hidden-xs">
+                      <select class="input-sm form-control w-sm inline" style="width:150px" ng-model="vm.allmeetingrooms.applyaction" ng-options="entity.id as entity.name for entity in vm.meetingroomActions" ng-if="vm.session.hasRole('SuperAdmin')">
+                        <option value="">Actions</option>
+                      </select>
+                      <button class="btn btn-sm btn-default" ng-click="vm.applyAction(vm.allmeetingrooms.applyaction)" ng-if="vm.session.hasRole('SuperAdmin')">Apply</button>
+                    </div>
+                    <div class="col-sm-3"></div>
+                  </div>
+                </div>
+                <div class="cardview-container">
+                  <div imagecard-view-grid data="vm.entity" main-actions="vm.mainActions" action-listener="vm.actionClicked(actionCode, record);" is-delete-disabled="vm.isDeleteDisabled" is-edit-disabled="vm.isEditDisabled" interval="vm.myInterval" slides-data="vm.slides"></div>
+                  <!-- <div data-ui-view></div> -->
+                  <!--  <div class="row">
+              <div class="col-sm-12">
+                <div class="tile-widget">
+                  <div class="col-sm-6" ng-repeat="row in vm.entity" style="height:500px;">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <carousel interval="vm.myInterval">
+                          <slide ng-repeat="slide in vm.slides" active="slide.active">
+                            <img ng-src="{{slide.image}}" style="margin:auto;height:200px;">
+                            <div class="carousel-caption">
+                              <p>{{slide.text}}</p>
+                            </div>
+                          </slide>
+                        </carousel>
+                      </div>
+                      <div class="panel-footer">
+                        <div class="row b-t pt-20">
+                          <div class="col-md-4 b-r">
+                            <p class="text-uppercase text-strong mb-10 custom-font">
+                              Address & other Details
+                            </p>
+                            <div class="col-md-12">
+                              <ul>
+                                <li>
+                                  <strong>Name</strong>:{{row.name}}</li>
+                                <li title="{{row.location}}">
+                                  <strong>Location</strong>:{{row.location}}</li>
+                                <li title="{{row.capacity}}">
+                                  <strong>Capacity</strong>:{{row.capacity}}</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-md-4 b-r">
+                            <p class="text-uppercase text-strong mb-10 custom-font">Manager Details</p>
+                            <ul>
+                              <li title="{{vm.ui.userInfo[row.managerId]}}">
+                                <strong>Name</strong>: {{vm.ui.userInfo[row.managerId]}}</li>
+                              <li>
+                                <strong>E-mail</strong>:</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-4 b-r">
+                            <button type="button" class="btn btn-default pull-right" ng-click="vm.bookGym(row.id);">Book</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div> -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="tile-footer dvd dvd-top">
+            <div class="row">
+              <div class="col-sm-5 hidden-xs">
+                <select class="input-sm form-control w-sm inline" style="width:150px" ng-model="vm.allmeetingrooms.applyaction" ng-options="meetingroomAction.id as meetingroomAction.name for meetingroomAction in vm.meetingroomActions" ng-if="vm.session.hasRole('SuperAdmin')">
+                  <option value="">Actions</option>
+                </select>
+                <button class="btn btn-sm btn-default" ng-click="vm.applyAction(vm.allmeetingrooms.applyaction)" ng-if="vm.session.hasRole('SuperAdmin')">Apply</button>
+              </div>
+              <div class="col-sm-3 text-center">
+                <small class="text-muted">showing {{vm.maxSize}} of {{vm.count}} items</small>
+              </div>
+              <div class="col-sm-4 text-right">
+                <paging-control paging-options="vm.pagingOptions" action-page-changed="vm.pageChanged">
+                </paging-control>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

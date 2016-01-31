@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="tile-widget">
+      <div class="panel panel-default">
+        <div class="form-group form-control div2_header_bg">
+          <div class="pull-left">
+            <input type="checkbox" name="grid_items" class="chkDelete" ng-model="data.checked" ng-change="actionClicked('selectionChanged', data);" ng-if="!isEditDisabled && data.isEditEnabled">
+            <span class="title_style" style="margin-left: 0;">{{data.name}}</span>
+          </div>
+          <div class="pull-right">
+            <a href="" title="Edit" ng-if="!isEditDisabled && data.isEditEnabled" ng-click="actionClicked('edit', data)">
+              <i class="fa fa-pencil-square-o" style="margin-bottom:4px;margin-right:0px;"></i>
+            </a>
+            <a href="javascript:void(0);" ng-if="!isDeleteDisabled && !data.isDeleteDisabled" ng-click="actionClicked('archive', data)">
+              <i class="glyphicon glyphicon-remove remov_left " style="margin-right:0px"></i>
+            </a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <carousel interval="interval">
+            <slide ng-repeat="slide in slidesData" active="slide.active">
+              <img ng-src="{{slide.image}}" style="margin:auto;height:200px;">
+              <div class="carousel-caption">
+                <p>{{slide.text}}</p>
+              </div>
+            </slide>
+          </carousel>
+        </div>
+        <div class="panel-footer">
+          <div class="row b-t pt-20">
+            <div class="col-md-4 b-r">
+              <p class="text-uppercase text-strong mb-10 custom-font">
+                Address & other Details
+              </p>
+              <div class="col-md-12">
+                <ul>
+                  <li>
+                    <strong>Name</strong>:
+                    <p>{{data.name}}</p>
+                  </li>
+                  <li title="{{data.location}}">
+                    <strong>Location</strong>:{{data.location}}</li>
+                  <li title="{{data.capacity}}">
+                    <strong>Capacity</strong>:{{data.capacity}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-4 b-r">
+              <p class="text-uppercase text-strong mb-10 custom-font">Manager Details</p>
+              <ul>
+                <li title="{{vm.ui.userInfo[data.managerId]}}">
+                  <strong>Name</strong>:yamini</li>
+                <li>
+                  <strong>E-mail</strong>:</li>
+              </ul>
+            </div>
+            <div class="col-md-4 b-r">
+              <div style="padding-right: 32px;">
+                <button type="submit" class="btn btn-info btn-sm" ng-repeat="action in vm.getCardActions('front', data)" href="" title="{{action.title}}" class="img_margin_1" ng-click="actionClicked(action.id, data)">
+                  <img ng-if="action.img" ng-src="{{action.img}}">
+                  <i ng-if="action.iconClass" ng-class="action.iconClass"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

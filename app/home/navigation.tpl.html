@@ -1,0 +1,449 @@
+<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="height:100%;">
+  <md-toolbar class="md-tall md-hue-2">
+    <span flex></span>
+    <div layout="column" class="md-toolbar-tools-bottom inset">
+      <svg class="user-avatar" viewBox="0 0 128 128" height="64" width="64" pointer-events="none" display="block">
+        <path fill="#FF8A80" d="M0 0h128v128H0z" />
+        <path fill="#FFE0B2" d="M36.3 94.8c6.4 7.3 16.2 12.1 27.3 12.4 10.7-.3 20.3-4.7 26.7-11.6l.2.1c-17-13.3-12.9-23.4-8.5-28.6 1.3-1.2 2.8-2.5 4.4-3.9l13.1-11c1.5-1.2 2.6-3 2.9-5.1.6-4.4-2.5-8.4-6.9-9.1-1.5-.2-3 0-4.3.6-.3-1.3-.4-2.7-1.6-3.5-1.4-.9-2.8-1.7-4.2-2.5-7.1-3.9-14.9-6.6-23-7.9-5.4-.9-11-1.2-16.1.7-3.3 1.2-6.1 3.2-8.7 5.6-1.3 1.2-2.5 2.4-3.7 3.7l-1.8 1.9c-.3.3-.5.6-.8.8-.1.1-.2 0-.4.2.1.2.1.5.1.6-1-.3-2.1-.4-3.2-.2-4.4.6-7.5 4.7-6.9 9.1.3 2.1 1.3 3.8 2.8 5.1l11 9.3c1.8 1.5 3.3 3.8 4.6 5.7 1.5 2.3 2.8 4.9 3.5 7.6 1.7 6.8-.8 13.4-5.4 18.4-.5.6-1.1 1-1.4 1.7-.2.6-.4 1.3-.6 2-.4 1.5-.5 3.1-.3 4.6.4 3.1 1.8 6.1 4.1 8.2 3.3 3 8 4 12.4 4.5 5.2.6 10.5.7 15.7.2 4.5-.4 9.1-1.2 13-3.4 5.6-3.1 9.6-8.9 10.5-15.2M76.4 46c.9 0 1.6.7 1.6 1.6 0 .9-.7 1.6-1.6 1.6-.9 0-1.6-.7-1.6-1.6-.1-.9.7-1.6 1.6-1.6zm-25.7 0c.9 0 1.6.7 1.6 1.6 0 .9-.7 1.6-1.6 1.6-.9 0-1.6-.7-1.6-1.6-.1-.9.7-1.6 1.6-1.6z" />
+        <path fill="#E0F7FA" d="M105.3 106.1c-.9-1.3-1.3-1.9-1.3-1.9l-.2-.3c-.6-.9-1.2-1.7-1.9-2.4-3.2-3.5-7.3-5.4-11.4-5.7 0 0 .1 0 .1.1l-.2-.1c-6.4 6.9-16 11.3-26.7 11.6-11.2-.3-21.1-5.1-27.5-12.6-.1.2-.2.4-.2.5-3.1.9-6 2.7-8.4 5.4l-.2.2s-.5.6-1.5 1.7c-.9 1.1-2.2 2.6-3.7 4.5-3.1 3.9-7.2 9.5-11.7 16.6-.9 1.4-1.7 2.8-2.6 4.3h109.6c-3.4-7.1-6.5-12.8-8.9-16.9-1.5-2.2-2.6-3.8-3.3-5z" />
+        <circle fill="#444" cx="76.3" cy="47.5" r="2" />
+        <circle fill="#444" cx="50.7" cy="47.6" r="2" />
+        <path fill="#444" d="M48.1 27.4c4.5 5.9 15.5 12.1 42.4 8.4-2.2-6.9-6.8-12.6-12.6-16.4C95.1 20.9 92 10 92 10c-1.4 5.5-11.1 4.4-11.1 4.4H62.1c-1.7-.1-3.4 0-5.2.3-12.8 1.8-22.6 11.1-25.7 22.9 10.6-1.9 15.3-7.6 16.9-10.2z" /> </svg>
+      <span></span>
+      <div>{{vm.ui.usrInfo.firstName}} {{vm.ui.usrInfo.lastName}}</div>
+      <div>{{vm.ui.usrInfo.officialMail}}</div>
+    </div>
+  </md-toolbar>
+  <md-list>
+    <md-item ng-repeat="item in  vm.menu">
+      <a href="javascript:void(0)" ng-click="vm.action(item.link);">
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+          </div>
+          <div class="inset">{{item.title}}
+          </div>
+        </md-item-content>
+      </a>
+    </md-item>
+    <md-divider></md-divider>
+    <md-subheader>Action</md-subheader>
+    <md-item ng-repeat="item in vm.actionsMenu">
+      <a href="javascript:void(0)" ng-click="vm.action(item.link);">
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+          </div>
+          <div class="inset">{{item.title}}
+          </div>
+        </md-item-content>
+      </a>
+    </md-item>
+  </md-list>
+</md-sidenav>
+<!-- <md-sidenav ui-view="navbar" class="site-sidenav md-sidenav-left md-whiteframe-z2 md-closed ng-isolate-scope md-locked-open" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
+  <md-toolbar class="md-tall md-hue-2">
+    <span flex></span>
+    <div layout="column" class="md-toolbar-tools-bottom inset">
+      <svg class="user-avatar" viewBox="0 0 128 128" height="64" width="64" pointer-events="none" display="block">
+        <path fill="#FF8A80" d="M0 0h128v128H0z" />
+        <path fill="#FFE0B2" d="M36.3 94.8c6.4 7.3 16.2 12.1 27.3 12.4 10.7-.3 20.3-4.7 26.7-11.6l.2.1c-17-13.3-12.9-23.4-8.5-28.6 1.3-1.2 2.8-2.5 4.4-3.9l13.1-11c1.5-1.2 2.6-3 2.9-5.1.6-4.4-2.5-8.4-6.9-9.1-1.5-.2-3 0-4.3.6-.3-1.3-.4-2.7-1.6-3.5-1.4-.9-2.8-1.7-4.2-2.5-7.1-3.9-14.9-6.6-23-7.9-5.4-.9-11-1.2-16.1.7-3.3 1.2-6.1 3.2-8.7 5.6-1.3 1.2-2.5 2.4-3.7 3.7l-1.8 1.9c-.3.3-.5.6-.8.8-.1.1-.2 0-.4.2.1.2.1.5.1.6-1-.3-2.1-.4-3.2-.2-4.4.6-7.5 4.7-6.9 9.1.3 2.1 1.3 3.8 2.8 5.1l11 9.3c1.8 1.5 3.3 3.8 4.6 5.7 1.5 2.3 2.8 4.9 3.5 7.6 1.7 6.8-.8 13.4-5.4 18.4-.5.6-1.1 1-1.4 1.7-.2.6-.4 1.3-.6 2-.4 1.5-.5 3.1-.3 4.6.4 3.1 1.8 6.1 4.1 8.2 3.3 3 8 4 12.4 4.5 5.2.6 10.5.7 15.7.2 4.5-.4 9.1-1.2 13-3.4 5.6-3.1 9.6-8.9 10.5-15.2M76.4 46c.9 0 1.6.7 1.6 1.6 0 .9-.7 1.6-1.6 1.6-.9 0-1.6-.7-1.6-1.6-.1-.9.7-1.6 1.6-1.6zm-25.7 0c.9 0 1.6.7 1.6 1.6 0 .9-.7 1.6-1.6 1.6-.9 0-1.6-.7-1.6-1.6-.1-.9.7-1.6 1.6-1.6z" />
+        <path fill="#E0F7FA" d="M105.3 106.1c-.9-1.3-1.3-1.9-1.3-1.9l-.2-.3c-.6-.9-1.2-1.7-1.9-2.4-3.2-3.5-7.3-5.4-11.4-5.7 0 0 .1 0 .1.1l-.2-.1c-6.4 6.9-16 11.3-26.7 11.6-11.2-.3-21.1-5.1-27.5-12.6-.1.2-.2.4-.2.5-3.1.9-6 2.7-8.4 5.4l-.2.2s-.5.6-1.5 1.7c-.9 1.1-2.2 2.6-3.7 4.5-3.1 3.9-7.2 9.5-11.7 16.6-.9 1.4-1.7 2.8-2.6 4.3h109.6c-3.4-7.1-6.5-12.8-8.9-16.9-1.5-2.2-2.6-3.8-3.3-5z" />
+        <circle fill="#444" cx="76.3" cy="47.5" r="2" />
+        <circle fill="#444" cx="50.7" cy="47.6" r="2" />
+        <path fill="#444" d="M48.1 27.4c4.5 5.9 15.5 12.1 42.4 8.4-2.2-6.9-6.8-12.6-12.6-16.4C95.1 20.9 92 10 92 10c-1.4 5.5-11.1 4.4-11.1 4.4H62.1c-1.7-.1-3.4 0-5.2.3-12.8 1.8-22.6 11.1-25.7 22.9 10.6-1.9 15.3-7.6 16.9-10.2z" /> </svg>
+      <span></span>
+      <div>{{vm.ui.usrInfo.firstName}} {{vm.ui.usrInfo.lastName}}</div>
+      <div>{{vm.ui.usrInfo.officialMail}}</div>
+    </div>
+  </md-toolbar>
+  <md-list>
+    <md-item ng-repeat="item in vm.menu">
+      <a href="javascript:void(0)" ng-click="vm.action(item.link);">
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+          </div>
+          <div class="inset">{{item.title}}
+          </div>
+        </md-item-content>
+      </a>
+    </md-item>
+    <md-divider></md-divider>
+    <md-subheader>Views</md-subheader>
+    <md-item ng-repeat="item in vm.views">
+      <a href="javascript:void(0)" ng-click="vm.action(item.link);">
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+          </div>
+          <div class="inset">{{item.title}}
+          </div>
+        </md-item-content>
+      </a>
+    </md-item>
+    <md-divider></md-divider>
+    <md-subheader>Management</md-subheader>
+    <md-item ng-repeat="item in vm.admin">
+      <a href="javascript:void(0)" ng-click="vm.action(item.link);">
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+          </div>
+          <div class="inset">{{item.title}}
+          </div>
+        </md-item-content>
+      </a>
+    </md-item>
+  </md-list>
+</md-sidenav> -->
+<!-- <div id="controls">
+  <aside id="sidebar" class="{{main.settings.sidebarColor}}">
+    <div id="sidebar-wrap">
+      <accordion close-others="vm.oneAtTime" slim-scroll="{height: '100%'}">
+        <accordion-group is-open="vm.status.isFirstOpen">
+          <accordion-heading> Navigation <i class="fa"></i> </accordion-heading>
+          <ul id="navigation" nav-collapse ripple>
+            <li ui-sref-active="active">
+              <a ui-sref="wams.dashboard">
+                <fa name="dashboard"></fa>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li ui-sref-active="active" ng-class="{'open':$state.includes('wams.bussinesspark')}">
+              <a href="javascript:;" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('PremiseAdmin')">
+                <i class="fa fa-university"></i>
+                <span>Premises</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')">
+                  <a href="javascript:;" ui-sref="wams.addPremises">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add Premises</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('PremiseAdmin')">
+                  <a href="javascript:;" ui-sref="wams.viewAllPremises">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Premises</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active" ng-class="{'open':$state.includes('wams.infrastructure')}" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('PremiseAdmin')">
+
+              <a href="javascript:;">
+                <i class="fa fa-building"></i>
+                <span>Buildings</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.createBuildings">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add Buildings</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.viewAllbuildings">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Buildings</span>
+                  </a>
+                </li>
+              </ul>
+
+            </li>
+
+            <li ui-sref-active="active" ng-class="{'open':$state.includes('wams.Floor')}" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('PremiseAdmin')">
+              <a href="javascript:;">
+                <i class="fa fa-building"></i>
+                <span>Floors</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.addFloor">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add floor</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.viewAllFloors">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Floors</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active" ng-class="{'open':$state.includes('wams.Floorpart')}" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('PremiseAdmin')">
+
+              <a href="javascript:;">
+                <i class="fa fa-building"></i>
+                <span>Floor Parts</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.addFloorPart">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add Floor Parts</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.viewAllFloorParts">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Floor Parts</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active" ng-class="{'open':$state.includes('wams.companies')}" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('PremiseAdmin')">
+              <a href="javascript:;">
+                <i class="fa fa-building"></i>
+                <span>Companies</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.createCompany">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add Company</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.viewAllCompanies">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Companies</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('TenantAdmin')||vm.session.hasRole('PremiseAdmin')">
+              <a href="javascript:;">
+                <i class="fa fa-users"></i>
+                <span>Users</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('PremiseAdmin')">
+                  <a href="javascript:;" ui-sref="wams.createusers">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add User</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('TenantAdmin')||vm.session.hasRole('PremiseAdmin')">
+                  <a href="javascript:;" ui-sref="wams.sendInvitations">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Send Invitations</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('TenantAdmin')||vm.session.hasRole('PremiseAdmin')">
+                  <a href="javascript:;" ui-sref="wams.users">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Users</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active" ng-class="{'open':$state.includes('wams.meeting')}">
+              <a href="javascript:;">
+                <i class="fa fa-building-o"></i>
+                <span>Meeting Room</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('PremiseAdmin')">
+                  <a href="#" ui-sref="wams.createmeetingroom">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add Meeting Room</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:void(0);" ui-sref="wams.meetingrooms">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Meeting Rooms</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('PremiseAdmin')">
+                  <a href="javascript:;" ui-sref="wams.allmeetingroominfra">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Meeting Room Infra</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('TenantAdmin')||vm.session.hasRole('PremiseAdmin')">
+                  <a href="javascript:void(0);" ui-sref="wams.allbookings">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Bookings</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active" ng-class="{'open':$state.includes('wams.cafeteriaCreation')}" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('CafeteriaAdmin')">
+              <a href="javascript:;">
+                <i class="fa fa-cutlery"></i>
+                <span>Cafeteria</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')
+                ">
+                  <a href="javascript:;" ui-sref="wams.createCafeteria">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add Cafeteria</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')">
+                  <a href="javascript:;" ui-sref="wams.allCafeterias">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Cafeterias</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')">
+                  <a href="javascript:;" ui-sref="wams.createFooditems">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add Food Items</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.allFooditems">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Food Items</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.createMenu">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Create Menu</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.viewAllMenu">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Menus</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.cafeConfiguration">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Cafe Configuration</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')">
+                  <a href="javascript:;" ui-sref="wams.configureMenu">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Configure Menu</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active" ng-class="{'open':$state.includes('wams.gym')}">
+              <a href="javascript:;">
+                <i class="glyphicon glyphicon-scale"></i>
+                <span>Gym</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.gymcreate">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Add Gym</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.allgyms">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Gyms</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.addGymInfra">
+                    <i class="fa fa-caret-right"></i>
+
+                    <span>Add Gym Equipment</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.allGymInfras">
+                    <i class="fa fa-caret-right"></i>
+                    <span>All Gym Equipment</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.gymWizard.checkAvailability">
+
+                    <i class="fa fa-caret-right"></i>
+                    <span>Booking Gym</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active" ng-class="{'open':$state.includes('wams.parking')}">
+              <a href="javascript:;">
+                <i class="fa fa-car"></i>
+                <span>Parking</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.createparking">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Create Parking</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:;" ui-sref="wams.parkingWizard.checkAvailability">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Book Parking</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')">
+              <a href="javascript:;">
+                <i class="fa fa-cog"></i>
+                <span>Configuration</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active">
+                  <a href="javascript:void(0);" ui-sref="wams.addcatalogConfiguration">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Create Catalog</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:void(0);" ui-sref="wams.addConfiguration">
+                    <i class="fa fa-caret-right"></i>
+                    <span>View Catalog</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active">
+                  <a href="javascript:void(0);" ui-sref="wams.enableMRoom">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Enable Resource</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ui-sref-active="active">
+              <a href="javascript:;">
+                <i class="fa fa-bars"></i>
+                <span>Quick Link</span>
+              </a>
+              <ul>
+                <li ui-sref-active="active" ng-hide="vm.session.hasRole('CafeteriaAdmin')">
+                  <a href="javascript:void(0);" ui-sref="wams.wizard.checkAvailability">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Book Meeting Room</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-hide="vm.session.hasRole('CafeteriaAdmin')">
+                  <a href="javascript:void(0);" ui-sref="wams.mybookings">
+                    <i class="fa fa-caret-right"></i>
+                    <span>My Bookings</span>
+                  </a>
+                </li>
+                <li ui-sref-active="active" ng-show="vm.session.hasRole('SuperAdmin')||vm.session.hasRole('CafeteriaAdmin')||vm.session.hasRole('User')">
+                  <a href="javascript:void(0);">
+                    <i class="fa fa-caret-right"></i>
+                    <span>Orders</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </accordion-group>
+      </accordion>
+    </div>
+  </aside>
+</div> -->

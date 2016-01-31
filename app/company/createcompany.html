@@ -1,0 +1,149 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+
+      <div class="pageheader">
+        <h2>{{vm.title}}
+          <!--  <span></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Company</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <form name="createCompany" class="form-horizontal" role="form" novalidate>
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong>Basic</strong>Details</h1>
+                  <ul class="controls">
+                    <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                      <a href class="dropdown-toggle settings" dropdown-toggle>
+                        <i class="fa fa-cog"></i>
+                      </a>
+                      <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                        <li>
+                          <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                            <fa name="refresh"></fa> Refresh </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tile-body form-validation">
+                  <alert class="col-md-2 pull-right" ng-repeat="alert in vm.alerts" type="success">{{alert.msg}}</alert>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Company Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control mb-10" id="companyname" name="companyname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" placeholder="Name" ng-model="vm.company.name" required>
+                      <span style="color:red" ng-show="createCompany.companyname.$dirty && createCompany.companyname.$invalid"></span>
+                      <!--  <span ng-show="createCompany.companyname.$error.required">companyname is required.</span> -->
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Company Type
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <!--  <input type="text" class="form-control mb-10" name="companytype" placeholder="Type" ng-pattern="/^\d+$/" ng-model="vm.company.type" required> -->
+                      <select name="companytype" class="form-control mb-9" ng-model="vm.company.type">
+                        <option ng-repeat="(key, val) in vm.tenantTypes" value="{{key}}">{{val}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Contact Person
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control mb-10" name="contactperson" placeholder="Contact person" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" ng-model="vm.company.contactPerson" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Contact number
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="tel" class="form-control mb-10" name="contactnumber" placeholder="Contact number" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-model="vm.company.contactNumber" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Email
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="email" name="email" class="form-control mb-10" placeholder="email" ng-model="vm.company.contactEmail" required>
+                      <span class="error-form-fields pull-right" ng-show="createCompany.email.$error.email ">
+                        Not valid email!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Area Rented
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control mb-10" name="area" placeholder="Area Rented" ng-pattern="/^\d+$/" ng-model="vm.company.area" required>
+                    </div>
+                    <label>sqft</label>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Seats Allotted
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control mb-10" name="capacity" placeholder="Seats Allotted" ng-pattern="/^\d+$/" ng-model="vm.company.capacity" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Seats Occupied
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control mb-10" name="occupancy" placeholder="Seats Occupied" ng-pattern="/^\d+$/" ng-model="vm.company.occupancy" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="Address">Address
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <textarea class="form-control mb-10" rows="5" name="address" placeholder="Address" ng-model="vm.company.address" required></textarea>
+                    </div>
+                  </div>
+                  <!--  <div class="form-group">
+                <label class="col-sm-3 control-label">
+                  <input type="checkbox" ng-click="vm.checkbox();" ng-model="vm.company.checkbox">Create user
+                </label>
+                <div class="col-sm-5">
+                  <div class="col-md-8">
+                    <input type="file" ngf-select ng-model="vm.company.files" ngf-multiple="multiple">
+                  </div>
+                  <button type="submit" class="btn btn-primary" ng-click="vm.uploadImage();">Upload</button>
+                </div>
+              </div>
+            </div> -->
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-disabled="createCompany.$invalid" ng-click="vm.createmore = true;vm.saveCompany();" ng-hide="vm.updateMode" class="btn btn-success mb-10">Save &amp; Create more</button>
+                    <button type="button" ng-disabled="createCompany.$invalid" ng-click="vm.createmore = false;vm.saveCompany();" class="btn btn-primary mb-10">Save</button>
+                    <button type="button" ng-click="vm.reset()" class="btn btn-info mb-10">Reset</button>
+                    <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                  </div>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

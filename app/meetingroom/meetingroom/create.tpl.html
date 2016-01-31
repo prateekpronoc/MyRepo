@@ -1,0 +1,178 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.page.title}}
+          <!-- <span class="ng-binding"></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Meeting Rooms</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /page header -->
+      <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+          <!-- col -->
+          <div class="col-md-12">
+            <!-- tile -->
+            <section class="tile" fullscreen="isFullscreen01">
+              <!-- tile header -->
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong> Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a href="" dropdown-toggle="" class="dropdown-toggle settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href="" tile-control-toggle="">
+                          <span class="minimize"><i class="fa fa-angle-down" name="angle-down"></i>&nbsp;&nbsp;&nbsp;Minimize</span>
+                          <span class="expand"><i class="fa fa-angle-up" name="angle-up"></i>&nbsp;&nbsp;&nbsp;Expand</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-refresh="" ng-click="ajaxFaker()"> <i class="fa fa-refresh" name="refresh"></i> Refresh </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-fullscreen="" ng-click="isFullscreen01 = !isFullscreen01"> <i class="fa fa-expand" name="expand"></i> Fullscreen </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="remove"><a href="" tile-control-close=""><i class="fa fa-times"></i></a></li>
+                </ul>
+              </div>
+              <!-- /tile header -->
+              <!-- tile body -->
+              <div class="tile-body">
+                <form class="form-horizontal" name="CreateMeetingRoom" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Meeting Room Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="meetingroomname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Meeting Room Name" data-ng-model="vm.credentials.name" required>
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="CreateMeetingRoom.meetingroomname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Location</label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" data-ng-model="vm.credentials.location" required>
+                        <option value="">location</option>
+                        <option value="xyz">Andhra Pradesh</option>
+                        <option value="pqr">Karnataka</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Type</label>
+                    <div class="col-sm-5">
+                      <select name="f2" class="form-control mb-9" data-ng-model="vm.credentials.type_id" required>
+                        <option value="">Type</option>
+                        <option value="1">Seminar Room</option>
+                        <option value="2">Board</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Description</label>
+                    <div class="col-sm-5">
+                      <textarea class="form-control" rows="5" name="message" id="message" placeholder="Description" data-ng-model="vm.credentials.description" required></textarea>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Meeting Room</strong> Admin</h1>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="message">want to creake new user?</label>
+                    <input type="checkbox" ng-click="vm.checkbox();" ng-model="vm.credentials.checkbox">
+                  </div>
+                  <div class="form-group" style="margin-left:375px;"> Or </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-5" ng-hide="vm.credentials.checkbox">
+                      <select name="f2" class="form-control mb-9" ng-model="vm.credentials.selectuser" ng-change="vm.getManagerid(vm.credentials.selectuser);">
+                        <option value="">Existing User</option>
+                        <option data-ng-model="vm.credentials.selectuser" ng-repeat="datamanager in vm.datamanagers" value="{{datamanager.id}}">{{datamanager.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Admin Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="adminname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" ng-readonly="vm.credentials.selectuser" class="form-control mb-10" placeholder="Admin Name" data-ng-model="vm.credentials.adminname" required>
+                      <span class="error-form-fields pull-right" ng-show="CreateMeetingRoom.adminname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Contact number
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="tel" name="mobilenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="15" ng-readonly="vm.credentials.selectuser" class="form-control mb-10" placeholder="Contact number" data-ng-model="vm.credentials.mobile" required>
+                      <span class="error-form-fields pull-right" ng-show="CreateMeetingRoom.mobilenumber.$error.pattern ">
+                        Not valid contact number!</span>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="col-sm-8">
+                        <select name="f2" class="form-control mb-9">
+                          <option value="">Choose Role</option>
+                          <option value="Admin">Admin</option>
+                          <option value="Manager">Manager</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Email Id
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="email" name="email" ng-readonly="vm.credentials.selectuser" class="form-control mb-10" placeholder="Email Id" data-ng-model="vm.credentials.email" required>
+                      <span class="error-form-fields pull-right" ng-show="CreateMeetingRoom.email.$error.email ">
+                        Not valid email!</span>
+                    </div>
+                    <div class="col-sm-3" ng-show="vm.credentials.checkbox">
+                      <a href="#" ui-sref="wams.addmore" ng-model="vm.credentials.addmore">add more </a>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="form-group">
+                    <!--  <div class="col-sm-2 pull-right">
+                    <button type="button" ng-click="vm.saveMeetingRoom(vm.credentials.selectuser);" class="btn btn-primary btn-sm" ng-disabled="CreateMeetingRoom.$invalid">Save</button>
+                  </div>
+                  <div class=" col-sm-3 pull-right">
+                    <button type="button" ng-click="vm.reset();" class="btn btn-info btn-sm">Reset</button>
+                  </div>
+                  <div class="col-sm-3 pull-right">
+                    <button type="button" class="btn btn-rounded btn-success btn-sm">Cancel</button>
+                  </div > -->
+                    <div class="pull-right">
+                      <button type="button" ng-click="vm.saveAndCreateMeetingRoom(vm.credentials.selectuser);" class="btn btn-success btn-sm" ng-disabled="CreateMeetingRoom.$invalid">Save &amp; Create more</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,101 @@
+<div class="page page-form-validate">
+  <div class="pagecontent">
+    <div class="row">
+      <div class="col-md-12">
+        <section class="tile" fullscreen="isFullscreen01">
+          <form class="form-horizontal" role="form">
+            <div class="tile-header dvd dvd-btm">
+              <h1 class="custom-font">
+                <strong>Meeting Room</strong> Details</h1>
+              <ul class="controls">
+
+                <li class="remove"><a href="" ng-click="vm.exit();" tile-control-close=""><i class="fa fa-times"></i></a></li>
+              </ul>
+            </div>
+            <div class="tile-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Name :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.meetinroomDetails.name}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Type :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.meetinroomDetails.type}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Location :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.meetinroomDetails.location}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Description :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.meetinroomDetails.description}}</p>
+                </div>
+              </div>
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Admin</strong> Details</h1>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Name :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.managerdetails.name}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Email :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.managerdetails.email}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Contact Number :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.managerdetails.mobile}}</p>
+                </div>
+              </div>
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Available</strong> Infrastructure</h1>
+              </div>
+              <div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3" ng-repeat="entity in vm.infraDetails">
+                      <label class="col-md-4
+                     control-label">{{entity.name}}</label>
+                      <div class="col-sm-4" ng-if="entity.isSelected">
+                        <p class="form-control-static">&nbsp;<i class="fa fa-check fa-2x" style="color:green" ng-if="entity.isSelected"></i></p>
+                      </div>
+                      <div class="col-sm-4" ng-if="!entity.isSelected">
+                        <p class="form-control-static">&nbsp;<i class="fa fa-times fa-2x" style="color:red" ng-if="!entity.isSelected"></i></p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!-- <div class="form-group" ng-repeat="entity in vm.infraDetails">
+                  <label class="col-sm-3 control-label">{{entity.name}}</label>
+                  <div class="col-sm-4" ng-if="entity.isSelected">
+                    <p class="form-control-static">&nbsp;<i class="fa fa-check fa-2x" style="color:green" ng-if="entity.isSelected"></i></p>
+                  </div>
+                  <div class="col-sm-4" ng-if="!entity.isSelected">
+                    <p class="form-control-static">&nbsp;<i class="fa fa-times fa-2x" style="color:red" ng-if="!entity.isSelected"></i></p>
+                  </div>
+                </div> -->
+              </div>
+             </div>
+            <div class="tile-footer">
+              <button type="button" ng-click="vm.exit();" class="btn btn-info pull-right">Close</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

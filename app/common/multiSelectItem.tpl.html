@@ -1,0 +1,11 @@
+<div class="col-sm-6" style="padding-left: 0px;">
+  <select multiple class="form-control menu_drpdwn" style="height: 100px;">
+    <option data-ng-repeat="(key,value) in data" value="{{key}}" ng-click="vm.itemStateChanged(key, true)" data-ng-if="selectedIds.indexOf(key) === -1">{{value}}</option>
+  </select>
+</div>
+<div class="col-sm-6 round selected-items">
+  <div data-ng-repeat="selectedItem in selectedIds" title="{{data[selectedItem]}}" class="softwre-job-tag inline {{selectedItemClass}}" style="margin-top: 2px;">
+    <span class="sftwr_engn">{{data[selectedItem]}}</span>
+    <a href="" data-ng-click="vm.itemStateChanged(selectedItem, false);"><i class="glyphicon glyphicon-remove"></i></a>
+  </div>
+</div>

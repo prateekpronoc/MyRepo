@@ -1,0 +1,12 @@
+<div ng-repeat="entity in shownData">
+  <div class="panel-body" style="overflow: hidden;  border: 1px solid #ddd;  margin: 5px 10px 10px 10px;  border-radius: 5px;padding=0px; padding:5px" ng-include="template">
+  </div>
+</div>
+<div style="text-align:center;" ng-if="shownData.length > 0">
+  <div class="btn " ng-disabled="showIndex === 0" ng-click="previous();">
+    <i ng-disabled="showIndex === '0'" class="fa fa-chevron-left  pull-right" style="color:#0e8eab;padding:0px;"></i>
+  </div>
+  <div class=" btn" ng-disabled="showIndex + count > lastIndex" ng-click="next();">
+    <i class="fa fa-chevron-right pull-left" style="color:#0e8eab;padding:0px;"></i>
+  </div>
+</div>

@@ -1,0 +1,180 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.page.title}}
+          <!-- <span class="ng-binding"></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Meeting Rooms</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /page header -->
+      <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+          <!-- col -->
+          <div class="col-md-12">
+            <!-- tile -->
+            <section class="tile" fullscreen="isFullscreen01">
+              <!-- tile header -->
+              <div class="row">
+                <div class="col-sm-12">
+
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Book</strong>MeetingRoom</h1>
+                  </div>
+                  <!-- /tile header -->
+                  <!-- tile body -->
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <p class="text-center" style="border-radius: 10px;border: 1px solid #C1C1AE;padding: 20px;width: 130px;height: 100px">Check Avalabilty</p>
+                        </div>
+                        <div class="col-sm-10">
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <p class="input-group">
+                                <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="vm.ui.startdate" is-open="vm.startdateopened" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                  <button type="button" class="btn btn-default" ng-click="vm.startdateopen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <p class="input-group">
+                                <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="vm.ui.enddate" is-open="vm.enddateopened" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                  <button type="button" class="btn btn-default" ng-click="vm.enddateopen($event)"><i class="fa fa-calendar"></i></button>
+                                </span>
+                              </p>
+                            </div>
+
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-2">
+                              <input type="checkbox">Daily
+                            </div>
+                            <div class="col-md-2" style="margin-top: 0px;margin-left: -85px;">
+                              <input type="checkbox">Weekly
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <p class=" text-center" style="border-radius: 10px;border: 1px solid #C1C1AE;padding: 20px;width: 130px;height: 70px">Location</p>
+                        </div>
+                        <div class="col-sm-10">
+                          <div class="row">
+
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-10">
+                              <label>Building</label> &nbsp;&nbsp;&nbsp;
+                              <select name="buildings" data-ng-model="vm.ui.buildingId" ng-change="vm.fetchFloor(vm.ui.buildingId);" ng-options=" entity.id as entity.name for entity in vm.buildings" required>
+                                <option value="">Select Building</option>
+                              </select>&nbsp;&nbsp;&nbsp;
+                              <label>Floor</label> &nbsp;&nbsp;&nbsp;
+                              <select name="floors" data-ng-model="vm.ui.floorId" ng-options="entity.id as entity.name for entity in vm.floors">
+                                <option value="">Select Floor</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-10">
+                        <div class="col-md-4">
+                        </div>
+                        <div class=" col-md-6">
+                        </div>
+                        <div class="col-md-2 ">
+                          <button type="button" class="btn btn-primary pull-right" ng-click="vm.filterSearch();">Apply</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile-body">
+
+
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+
+                      <!-- /tile header -->
+                      <!-- tile body -->
+                      <div class="tile-body">
+
+
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="tile-header dvd dvd-btm">
+                              <h1 class="custom-font">
+                                Available Meeting Rooms</h1>
+                            </div>
+                            <div class="tile-widget">
+                              <div class="row">
+                                <div class="col-sm-5">
+                                  <select class="input-sm form-control inline w-sm" style="width:150px;">
+                                    <option value="0">Bulk action </option>
+                                    <option value="1">Delete selected </option>
+                                    <option value="2">Archive selected </option>
+                                    <option value="3">Copy selected </option>
+                                  </select>
+                                  <button class="btn btn-sm btn-default">Apply</button>
+                                </div>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-4">
+                                  <div class="input-group">
+                                    <input type="text" class="input-sm form-control" placeholder="Search..." ng-model="vm.searchText">
+                                    <span class="input-group-btn">
+                                      <button class="btn btn-sm btn-default" type="button">Go!</button>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="cardview-container">
+                              <div card-view-grid data="vm.entity" main-columns="vm.meetingroomMainColumns" flip-columns="vm.meetingroomFlipColumns" flip-actions="vm.flipActions" main-actions="vm.mainActions" action-listener="vm.actionClicked(actionCode, record);"></div>
+                            </div>
+                            <div class="text-center">
+                              <small class="text-muted">showing {{vm.maxSize}} of {{vm.count}} items</small>
+                            </div>
+                            <div class="col-sm-4 pull-right">
+                              <ul class="pagination pagination-sm m-0">
+                                <li><a href="" ng-click="vm.pageChanged(1)"><i class="fa fa-chevron-left"></i></a></li>
+                                <li ng-repeat="pageNo in  vm.pagingArray"><a href="" ng-click="vm.pageChanged(pageNo)">{{pageNo}}</a></li>
+                                <li><a href="" ng-click="vm.pageChanged(vm.endPage)"><i class="fa fa-chevron-right"></i></a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

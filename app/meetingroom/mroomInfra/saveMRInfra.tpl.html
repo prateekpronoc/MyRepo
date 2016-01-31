@@ -1,0 +1,117 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-datatables">
+      <div class="pageheader">
+        <h2>{{vm.page.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Meeting Room Infra Structure</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+          <div class="col-md-12">
+            <form name="addMeetingRoomInfraForm" class="form-horizontal" role="form" novalidate>
+              <section class="tile" fullscreen="isFullscreen03">
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong></strong>
+                  </h1>
+                  <ul class="controls">
+                    <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                      <a href class="dropdown-toggle settings" dropdown-toggle>
+                        <i class="fa fa-cog"></i>
+                      </a>
+                      <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                        <li>
+                          <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                            <fa name="refresh"></fa> Refresh </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+                  </ul>
+                </div>
+                <section class="tile" fullscreen="isFullscreen07">
+                  <alert class="col-md-2 pull-right" ng-repeat="alert in vm.alerts" type="success">{{alert.msg}}</alert>
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label"> Meeting Room Name
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <!-- <label class="col-sm-4 control-label"> {{vm.ui.mrInfo.name}}</label> -->
+                        <input type="text" class="form-control mb-10" ng-model="vm.ui.mrInfo.name" placeholder="Name" readonly="true">
+
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label"> Meeting Room Type
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control mb-10" ng-model="vm.ui.mrInfo.type" placeholder="Name" readonly="true">
+
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label"> Name
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control mb-10" ng-model="vm.ui.name" placeholder="Name" name="infraname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" required>
+                        <span style="color:red;" class="error-form-fields pull-right" ng-show="
+                        addMeetingRoomInfraForm.infraname.$error.pattern">
+                          Enter a valid Name!</span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">details</label>
+                      <div class="col-sm-5">
+                        <textarea class="form-control" rows="3" ng-model="vm.ui.description" name="message" id="message" placeholder="Description">
+                        </textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Infra Items
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <select class="form-control mb-9" ng-model="vm.ui.typeId" ng-options=" entity.id as entity.value for entity in vm.ui.infraType">
+                          <option value="">Infra Items</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Code
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control mb-10" ng-model="vm.ui.code" placeholder="Code" required>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="form-group">
+                    <div class="col-md-4 pull-right">
+                      <button type="button" ng-click="vm.saveInfra();" class="btn btn-success mb-10" ng-disabled="addMeetingRoomInfraForm.$invalid">Save &amp; Create more</button>
+                      <button type="button" ng-click="vm.saveInfra();" class="btn btn-primary mb-10" ng-disabled="addMeetingRoomInfraForm.$invalid">Save</button>
+                      <button type="button" class="btn btn-info mb-10">Reset</button>
+                      <button type="button" ng-click="vm.cancel();" class="btn btn-warning mb-10">Cancel</button>
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

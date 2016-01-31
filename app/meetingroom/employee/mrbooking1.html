@@ -1,0 +1,434 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <div class="col-md-12">
+          <div class="col-md-1">
+            <img src="images/yeoman.a6b33b1c.png" style="height:30px;width=30px;" alt="">
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <h2>{{page.title}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard"><i class="fa fa-home"></i> {{main.title}}</a> </li>
+            <li> <a href="javascript:;">Employee</a> </li>
+            <li> <a ui-sref="app.employe.mr.mrbooking1">{{page.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <!-- row -->
+        <div class="row">
+          <form class="form-horizontal" role="form" novalidate>
+            <!-- tile -->
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>MeetingRoom</strong>Booking</h1>
+                <ul class="controls">
+                  <li class="dropdown" on-toggle="toggled(open)"> <a href class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-toggle>
+                          <span class="minimize">
+                            <fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                          <span class="expand">
+                            <fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href tile-control-refresh ng-click="ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                      <li>
+                        <a href tile-control-fullscreen ng-click="isFullscreen03 = !isFullscreen03">
+                          <fa name="expand"></fa> Fullscreen </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+                </ul>
+              </div>
+
+              <div class="tile-body form-validation">
+                <div class="col-md-12">
+                  <div class="col-md-9">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>9:00</th>
+                          <th>10:00</th>
+                          <th>11:00</th>
+                          <th>12:00</th>
+                          <th>13:00</th>
+                          <th>14:00</th>
+                          <th>15:00</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                        <tr>
+                          <td>Monday, April 20th</td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:red;"></td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green; color:#FFFFFF;">Slot Selected</td>
+                          <td style="background-color:green;"></td>
+                          <td style="background-color:green;"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <hr>
+                  </div>
+                  <div class="col-md-3">
+
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Available infraStructure</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Wifi Capability</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Overhead Projector</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Computers</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Loud Speakers</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Screen Stands</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Flim Projector</td>
+                          <td>
+                            <img src="https://openclipart.org/image/2400px/svg_to_png/167549/Kliponious-green-tick.png" style="width=30px;height:30px">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+
+                <div class="col-md-9">
+                  <div class="col-md-4">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Daily
+                      </label>
+
+                      <label>
+                        <input type="checkbox"> Weekly
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <p>
+                      <strong>Meeting Room Cost:</strong>100 Points</p>
+                  </div>
+                  <button type="button" class="btn btn-primary">Book Now</button>
+                  <hr>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong>Invite</strong>People</h1>
+                </div>
+                <div class="tile-body form-validation">
+                  <div class="row">
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Subject Line</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control mb-10" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Required People</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control mb-10" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Option People</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control mb-10" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="message">Comments</label>
+                      <div class="col-sm-5">
+                        <textarea class="form-control" rows="5" name="message" id="message"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <hr>
+                <button type="button" class="btn btn-primary pull-right">Send Invitation</button>
+              </div>
+
+              <div class="col-md-9">
+                <div class="tile-header dvd dvd-btm">
+                  <h1 class="custom-font">
+                    <strong>Book</strong>Snacks</h1>
+                </div>
+              </div>
+
+              <div class="tile-body form-validation">
+                <div class="col-md-9" style="padding:10px;">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Choose Resturant</label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" required>
+                        <option value="">Choose Resturant</option>
+                        <option value="foo">Foo</option>
+                        <option value="bar">Bar</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <div class="col-md-5 col-md-offset-1" style="background-color:#80FFFF;">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="col-md-8">Special</th>
+                          <th class="col-md-2"></th>
+                          <th class="col-md-2"></th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="col-md-8">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <img src="images/yeoman.a6b33b1c.png" style="height:35px; width=35px;" alt="">
+                              </div>
+
+                              <div class="row col-md-9">
+                                <p>ABC</p>
+                                <p>Preparation Time :10mins</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="col-md-2">Rs:20</td>
+                          <td class="col-md-2">
+                            <span class="glyphicon glyphicon-plus"></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-8">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <img src="images/yeoman.a6b33b1c.png" style="height:35px; width=35px;" alt="">
+                              </div>
+
+                              <div class="row col-md-9">
+                                <p>ABC</p>
+                                <p>Preparation Time :10mins</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="col-md-2">Rs:20</td>
+                          <td class="col-md-2">
+                            <span class="glyphicon glyphicon-plus"></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-8">
+                            <div class="row">
+                              <div class="col-md-3">
+                                <img src="images/yeoman.a6b33b1c.png" style="height:35px; width=35px;" alt="">
+                              </div>
+
+                              <div class="row col-md-9">
+                                <p>ABC</p>
+                                <p>Preparation Time :10mins</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="col-md-2">Rs:20</td>
+                          <td class="col-md-2">
+                            <span class="glyphicon glyphicon-plus"></span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+
+                  <div class="col-md-4 col-md-offset-1" style="padding-left:20px;">
+                    <table style="background-color:#C8ECFF">
+                      <caption align="center" style="background-color:#A3C2FF">Your Order</caption>
+
+                      <tbody style="background-color:#FFFFFF">
+                        <tr>
+                          <td class="col-md-1">1</td>
+                          <td clas="col-md-1">data
+                            <br>
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-minus"></span>
+                          </td>
+                          <td class="col-md-1">Rs.20</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-1">1</td>
+                          <td clas="col-md-1">data
+                            <br>
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-minus"></span>
+                          </td>
+                          <td class="col-md-1">Rs.20</td>
+                        </tr>
+                      </tbody>
+
+                      <tr>
+                        <td class="col-md-2">Subcost</td>
+
+                        <td class="col-md-1">Rs.40</td>
+                      </tr>
+                    </table>
+                    <table style="background-color:#C8ECFF">
+                      <tbody style="background-color:#FFFFFF">
+                        <tr>
+                          <td class="col-md-2">data</td>
+                          <td class="col-md-1">data</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">data</td>
+                          <td class="col-md-1">data</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- <button type="button" class="text-center">Confirm Order</button> -->
+                  </div>
+                  <hr>
+                </div>
+
+              </div>
+              <!-- <hr> -->
+              <div class="col-md-9">
+                <div class="form-group">
+                  <div class="pull-right">
+                    <strong> Snacks Cost :100 points</strong>
+                    <button type="button" class="btn btn-primary">Book snacks</button>
+                  </div>
+                </div>
+                <hr>
+              </div>
+
+              <div class="col-md-9">
+                <div class="form-group">
+                  <div class="pull-right">
+                    <table class="table">
+
+                      <tbody>
+                        <tr>
+                          <td><b>meeting Room Cost</b></td>
+                          <td>100points</td>
+                        </tr>
+                        <tr>
+                          <td><b>Snacks Cost</b></td>
+                          <td>100points</td>
+                        </tr>
+                        <tr>
+                          <td><b>Total Service</b></td>
+                          <td>200points</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </section>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

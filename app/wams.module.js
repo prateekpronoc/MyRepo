@@ -1,0 +1,42 @@
+(function () {
+  'use strict';
+
+  angular.module('wams', [
+    'ngMaterial',
+    'ngMdIcons',
+    'angular-growl',
+    //'ui.bootstrap',
+    'ngResource',
+    //'ui.calendar',
+    'toaster',
+   // 'flow',
+    //'ngFileUpload',
+    'hp.common',
+    'wams.user',
+    'wams.home',
+    'wams.dashboard',
+    'wams.meetingroom',
+    'wams.admin',
+    'wams.configuration',
+    'wams.company',
+    'wams.accounting',
+    'wams.infrastructure',
+    'wizard',
+    'wams.bookings',
+    'wams.cafeteria',
+   // 'angularFileUpload',
+    'wams.gym',
+    'gymWizard',
+    'wams.parking',
+    'parkingWizard',
+    'wams.mybookings',
+    'wams.userInfo',
+    'wams.mymeetingrooms',
+    'wams.mrbookingwizard',
+    //'mdDateTime',
+    'wams.newbooking',
+    //'mdDataTable',
+    'googlechart',
+    'wams.cafeview'
+  ]);
+})();

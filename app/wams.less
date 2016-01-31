@@ -1,0 +1,46 @@
+// Color variables (appears count calculates by raw css)
+@color0: #ffffff; // Appears 3 times
+
+
+
+md-content.md-default-theme {
+  background-color: #eeeeee;
+}
+md-card {
+  background-color: @color0;
+  h2 {
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+md-toolbar {
+  .md-button.md-default-theme {
+    border-radius: 99%;
+  }
+  &:not(.md-hue-1) {
+    fill: @color0;
+  }
+}
+h2 {
+  font-weight: 400;
+}
+.md-toolbar-tools-bottom {
+  font-size: small;
+  &:last-child {
+    opacity: 0.8;
+  }
+}
+.md-fab {
+  fill: @color0;
+}
+md-sidenav {
+  fill: #737373;
+  ng-md-icon {
+    position: relative;
+    top: 5px;
+  }
+}
+.user-avatar {
+  border-radius: 99%;
+}

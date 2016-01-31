@@ -1,0 +1,67 @@
+<md-dialog aria-label="Mango (Fruit)" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{vm.entityInfo.name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="styles/icons/ic_camera_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <p>
+          <md-list flex layout="row" layout-align="center center">
+            <md-list-item ng-repeat="item in vm.items">
+              <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+                <md-icon md-svg-src="{{item.icon}}"></md-icon>
+                <div class="md-grid-text"> {{ item.name }} </div>
+              </md-button>
+            </md-list-item>
+          </md-list>
+        </p>
+        <!-- <h2>Using .md-dialog-content class that sets the padding as the spec</h2> -->
+        <p>
+          Type : {{vm.entityInfo.type}}
+        </p>
+        <p>
+          Description : {{vm.entityInfo.description}}
+        </p>
+        <!-- <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="images/arnold-avatar.46a778b8.jpg"> -->
+
+        <!-- <p>
+          The highest concentration of Mangifera genus is in the western part of Malesia (Sumatra, Java and Borneo) and in Burma and India. While other Mangifera species (e.g. horse mango, M. foetida) are also grown on a more localized basis, Mangifera indica&mdash;the "common mango" or "Indian mango"&mdash;is the only mango tree commonly cultivated in many tropical and subtropical regions.
+        </p> -->
+
+      </div>
+    </md-dialog-content>
+    <md-card-title-media>
+      <div md-card-image>
+        <div>
+          <carousel interval="vm.myInterval">
+            <slide ng-repeat="slide in vm.slides" active="slide.active">
+              <img ng-src="{{slide.image}}">
+              <div class="carousel-caption">
+                <h4>Slide {{$index+1}}</h4>
+              </div>
+            </slide>
+          </carousel>
+        </div>
+      </div>
+
+    </md-card-title-media>
+    <md-dialog-actions layout="row">
+      <!--  <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+        More on Wik -->
+      </md-button>
+      <span flex></span>
+      <!-- <md-button ng-click="vm.hide('not useful')">
+        Not Useful
+      </md-button> -->
+      <md-button ng-click="vm.hide('not useful')" style="margin-right:20px;">
+        Ok
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

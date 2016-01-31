@@ -1,0 +1,105 @@
+<div class="page page-form-validate">
+  <div class="pagecontent">
+    <div class="row">
+      <div class="col-sm-12">
+        <section class="tile" fullscreen="isFullscreen01">
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font">
+              <strong>Slot</strong>Details</h1>
+          </div>
+          <div class="tile-body">
+            <tabset class="tab-animation tab-container tab-wizard" justified="true" set-ng-animate="true">
+              <tab active="vm.steps.step1">
+                <tab-heading>
+                  Two Wheeler Slots<i class="fa fa-motorcycle"></i>
+                  <span class="badge badge-default pull-right wizard-step"></span>
+                </tab-heading>
+
+                <form name="step1" role="form" novalidate class="form-validation">
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label for="username">Employee Id:</label>
+                      <input type="text" name="empId" id="empId" class="form-control" ng-model="vm.ui.employeeId" ng-pattern="/^[a-zA-Z0-9]*$/" readonly>
+                      <p class="help-block">
+                        <span ng-show="step1.empId.$invalid && !step1.empId.$pristine">Employee Id is required.</span>
+                      </p>
+                    </div>
+                  </div>
+                </form>
+
+              </tab>
+
+              <tab active="vm.steps.step2" disabled="step1.$invalid">
+
+                <tab-heading>
+                  Four Wheeler Slots<i class="fa fa-car"></i>
+                  <span class="badge badge-default pull-right wizard-step"></span>
+                </tab-heading>
+
+                <form name="step2" role="form" class="form-validation" novalidate>
+
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label for="personalemail">Personal Email:</label>
+                      <input type="email" name="personalemail" id="personalemail" class="form-control" ng-model="vm.ui.personalMail" ng-readonly="vm.notReadable">
+                      <p class="help-block">
+                        <span ng-show="step2.personalemail.$invalid && !step2.personalemail.$pristine">Email is required.</span>
+                      </p>
+                    </div>
+                  </div>
+                </form>
+              </tab>
+              <tab active="vm.steps.step3" disabled="step2.$invalid">
+                <tab-heading>
+                  Guest Two Wheeler Slots<i class="fa fa-motorcycle"></i>
+                  <span class="badge badge-default pull-right wizard-step"></span>
+                </tab-heading>
+                <form name="step3" role="form" class="form-validation" novalidate>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <label for="cname">Compnay Name: </label>
+                      <input type="text" name="cname" id="cname" class="form-control" ng-model="vm.ui.tenantDetails.name" readonly>
+                      <p class="help-block">
+                        <span ng-show="step3.cname.$invalid && !step3.cname.$pristine">Company Name is required.</span>
+                      </p>
+                    </div>
+
+                  </div>
+
+                </form>
+              </tab>
+
+              <tab active="vm.steps.step4" disabled="step3.$invalid">
+
+                <tab-heading>
+                  Guest Floor Wheeler Slots<i class="fa fa-car"></i>
+                  <span class="badge badge-default pull-right wizard-step"></span>
+                </tab-heading>
+                <form name="step4" role="form" class="form-validation" novalidate>
+                  <div class="checkbox">
+                    <label class="checkbox checkbox-custom">
+                      <input type="checkbox" name="agree" id="agree" ng-model="vm.ui.agree" required><i></i> I agree to the <a href class="text-info">Terms of Service</a>
+                    </label>
+                    <p class="help-block">
+                      <span ng-show="step4.agree.$invalid && !step4.agree.$pristine" class="text-red">You must accept Terms of Service.</span>
+                    </p>
+                  </div>
+                </form>
+              </tab>
+            </tabset>
+          </div>
+          <div class="tile-footer dvd dvd-top">
+            <div class="row">
+              <div class="col-md-10 hidden-xs">
+                <button type="button" ng-click="vm.previous('0')" class="btn btn-primary pull-left">Back</button>
+              </div>
+              <div class="col-md-2">
+                <button type="button" ng-click="vm.bookMeetingRoom()" class="btn btn-primary pull-right" ng-disabled="slotDetailsForm.$invalid">Book</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

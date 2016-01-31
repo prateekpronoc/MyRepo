@@ -1,0 +1,17 @@
+<div class="labels">
+  <div class="row1"></div>
+  <div class="row1" ng-repeat="label in labels">{{label | date : 'EEE'}},{{label | date}}</div>
+</div>
+
+<div class="data-area">
+
+  <div class="row1 timestamps">
+    <grid min="0" max="1440" tick="120" class="grid-container1"></grid>
+  </div>
+
+  <div class="row1" ng-repeat="label in labels">
+    <grid min="0" max="1440" tick="120" class="grid-container1 striped no-labels"></grid>
+    <multi-slider default-value="60" min="0" max="1440" tick="120" slots="data" day="$index"></multi-slider>
+  </div>
+
+</div>

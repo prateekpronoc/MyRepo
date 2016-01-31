@@ -1,0 +1,7 @@
+{
+  "apiURL": "http://d.ams.hirepro.in/amswebqa",
+  "apiRoutes": ["/JSONServices", "/JSONCommonControls", "/HelperServices", "/Admin",
+    "/AssessmentReports", "/TestTranscriptReport.aspx", "/QuestionPaperPreview.aspx", "/htmltest", "/App_Themes", "/Common"
+  ],
+  "mappedUrlPrefix": "/amswebqa"
+}

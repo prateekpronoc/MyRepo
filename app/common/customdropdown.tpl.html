@@ -1,0 +1,56 @@
+<div class="popover popover-multiselect">
+  <div style="margin: 10px;">
+    <div style="width: 45%; margin-left: 2%; float: left;">
+      <div class="multiselectline" style="background-color : #D0DDD0; padding-top: 5px;">
+        <span ng-bind="title" style="font-size: 120%;"></span>
+        <!-- <span>{{$id}} - {{$parent.$id}}</span> -->
+      </div>
+      <div class="multiselectline">
+        <input placeholder="Search" class="form-control searchtext" type="text" data-ng-model="vm.filterLeft">
+        <span data-ng-click="vm.filterLeft = '';" class="glyphicon glyphicon-remove-circle searchclear"></span>
+      </div>
+      <div class="selectbox">
+        <select size="5" multiple ng-model="vm.leftSelectedItems" class="form-control menu_drpdwn" style="height: 100%;">
+          <option class="ellipsis_text" data-ng-repeat="(k,v) in data" ng-if="(!selectedIds || selectedIds.indexOf(k) === -1) && (vm.leftSelectedItems.indexOf(k) > -1 || !vm.filterLeft || v.toLowerCase().indexOf(vm.filterLeft.toLowerCase()) > -1)" title ="{{v}}" value="{{k}}">{{v}}</option>
+        </select>
+      </div>
+    </div>
+    <div style="width: 5%; float: left; margin-top: 5%; margin-left: 1%; margin-right: 1%;">
+      <div style="text-align: center; margin-top: 70%;">
+        <button class="btn btn-primary btn-xs btn-xxs" data-ng-click="vm.moveItems(true,false);"><i class="fa fa-angle-right"></i>
+        </button>
+        <br/>
+        <button class="btn btn-success btn-xs btn-xxs" data-ng-click="vm.moveItems(true, true);"><i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i>
+        </button>
+        <br/>
+        <button class="btn btn-primary btn-xs btn-xxs" data-ng-click="vm.moveItems(false, false);"><i class="fa fa-angle-left"></i>
+        </button>
+        <br/>
+        <button class="btn btn-success btn-xs btn-xxs" data-ng-click="vm.moveItems(false, true);"><i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i>
+        </button>
+      </div>
+    </div>
+    <div style="width: 45%; float: left;">
+      <div class="multiselectline" style="background-color : #D0DDD0; padding-top: 5px;">
+        <span style="font-size: 120%;" ng-bind-template="Selected {{title}}"></span>
+      </div>
+      <div class="multiselectline">
+        <input placeholder="Search" type="text" class="form-control searchtext" ng-model="vm.filterRight" />
+        <span data-ng-click="vm.filterRight = '';" class="glyphicon glyphicon-remove-circle searchclear"></span>
+      </div>
+      <div class="selectbox">
+        <select size="5" multiple ng-model="vm.rightSelectedItems" class="form-control menu_drpdwn" style="height: 100%;">
+          <option class="ellipsis_text" data-ng-repeat="(k,v) in data" ng-if="(selectedIds && selectedIds.indexOf(k) > -1) && (vm.rightSelectedItems.indexOf(k) > -1 || !vm.filterRight || v.toLowerCase().indexOf(vm.filterRight.toLowerCase()) > -1)" title ="{{v}}" value="{{k}}">{{v}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div style="padding-right: 20px;" class="pull-right">
+        <a href="" ng-click="$hide();">Done</a>
+      </div>
+    </div>
+    <!--  <div class="row">
+      <span>{{data | json}}</span>
+    </div> -->
+  </div>
+</div>

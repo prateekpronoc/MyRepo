@@ -1,0 +1,258 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="pageheader">
+      <h2>User Profile
+      </h2>
+      <div class="page-bar">
+        <ul class="page-breadcrumb">
+          <li>
+            <a ui-sref="app.dashboard"><i class="fa fa-home"></i>wams</a>
+          </li>
+          <li>
+            <a href="javascript:;">User</a>
+          </li>
+          <li>
+            <a ui-sref="app.pages.profile">{{vm.title}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="pagecontent">
+      <div class="row">
+        <div class="col-md-12">
+          <section class="tile" fullscreen="isFullscreen03">
+            <div class="tile-body">
+              <!-- <tabset class="tabs-dark">
+              <tab heading="Profile">
+                <div class="wrap-reset"> -->
+
+              <form name="UserProfileForm" role="form" novalidate>
+
+                <div class="row">
+                  <div class="form-group col-md-12 legend">
+                    <h4>
+                      <strong>Basic</strong>Details</h4>
+                    <p></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="username">Employee Id:</label>
+                    <input type="text" name="empId" id="empId" class="form-control" ng-model="vm.ui.employeeId" ng-pattern="/^[a-zA-Z0-9]*$/" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.empId.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-3">
+                    <label for="username">First Name: </label>
+                    <input type="text" name="firstname" id="firstname" class="form-control" ng-model="vm.ui.firstName" ng-pattern="/^[A-z]+$/" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.firstname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                  <div class="form-group col-md-1"></div>
+                  <div class="form-group col-md-3">
+                    <label for="username">Last Name:</label>
+                    <input type="text" name="lastname" id="lastname" class="form-control" ng-model="vm.ui.lastName" ng-pattern="/^[A-z]+$/" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.lastname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label for="dob">Date of birth:</label>
+                    <input type="text" name="dob" class="form-control" id="dob" ng-model="vm.ui.dob" placeholder="YYYY-MM-DD" ng-pattern="/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.dob.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+
+                  <!-- <div class="form-group col-sm-6">
+                        <label for="avatar">Avatar</label>
+                        <input ui-jq="filestyle" type="file" class="filestyle" ui-options="{
+                          buttonText: 'Find file',
+                          iconName: 'fa fa-inbox'
+                        }" id="avatar">
+                        <span class="help-block">Allowed files: gif, png, jpg. Max file size 1Mb</span>
+                      </div> -->
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="officialemail">Official Email: </label>
+                    <input type="email" name="officialemail" id="officialemail" class="form-control" ng-model="vm.ui.officialMail" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.officialemail.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-3">
+                    <label class="checkbox checkbox-custom">
+                      <input name="optionsRadios" type="radio" value="Male" ng-model="vm.ui.gender" disabled><i></i> Male
+                    </label>
+                  </div>
+                  <div class="form-group col-sm-3">
+                    <label class="checkbox checkbox-custom">
+                      <input name="optionsRadios" type="radio" value="Female" ng-model="vm.ui.gender" disabled><i></i>Female
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-12 legend">
+                    <h4>
+                      <strong>Personal</strong> Details</h4>
+                    <p></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="personalemail">Personal Email:</label>
+                    <input type="email" name="personalemail" id="personalemail" class="form-control" ng-model="vm.ui.personalMail" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.personalemail.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="phone">Phone Number: </label>
+                    <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.ui.mobile" placeholder="XXXXXXXXXX" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.phone.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="emergencynumber">Emergency Number:</label>
+                    <input type="text" name="emergencynumber" id="emergencynumber" class="form-control" ng-model="vm.ui.emergencyNo" ng-pattern="/^\d+$/" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.emergencynumber.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="address2">Permanent Address: </label>
+                    <textarea class="form-control" rows="5" name="message" id="message" placeholder="Enter Permanent address" ng-model="vm.ui.permAddr" ng-readonly="vm.notReadable"></textarea>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="address2">Communication Address: </label>
+                    <textarea class="form-control" rows="5" name="message" id="message" placeholder="Enter Communication address" ng-model="vm.ui.commAddr" ng-readonly="vm.notReadable"></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="transport">Id Proof:</label>
+                    <select class="form-control mb-9" ng-model="vm.ui.idproof" disabled>
+                      <option value="">Id proof</option>
+                      <option value="1">Passport</option>
+                      <option value="2">Aadhar card</option>
+                      <option value="3">Voter id</option>
+                      <option value="4">PAN card</option>
+                      <option value="5">Driving License</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="transport">Mode Of Transport:</label>
+                    <select class="form-control mb-9" ng-model="vm.ui.modeOfTransport" disabled>
+                      <option value=""> Choose Transport</option>
+                      <option value="1">Car</option>
+                      <option value="2">Bike</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-12" ng-if="vm.ui.idproof">
+                    <label for="transport">Id Proof Details:</label>
+                    <input type="text" name="idpdetails" id="idpdetails" class="form-control" ng-model="vm.ui.idpdetails">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.idpdetails.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-12 legend">
+                    <h4>
+                      <strong>Work</strong> Details</h4>
+                    <p></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="cname">Compnay Name: </label>
+                    <input type="text" name="cname" id="cname" class="form-control" ng-model="vm.ui.tenantDetails.name" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.cname.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="designation">Designation: </label>
+                    <input type="text" name="designation" id="designation" class="form-control" ng-model="vm.ui.designation" ng-pattern="/^[a-zA-Z ]*$/" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.designation.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="jdate">Joining Date: </label>
+                    <input type="text" name="jdate" id="jdate" class="form-control" ng-model="vm.ui.joiningDate" placeholder="YYYY-MM-DD" ng-pattern="/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.jdate.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="level">Level:</label>
+                    <select class="form-control mb-9" ng-model="vm.ui.level" disabled>
+                      <option value=""> Choose Level</option>
+                      <option ng-repeat="(key, value) in vm.assignrole" value="{{key}}">{{value}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="officenumber">Office Number: </label>
+                    <input type="text" name="officenumber" id="officenumber" class="form-control" ng-model="vm.ui.officeNo" placeholder="XXXXXXXXXX" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-readonly="vm.notReadable">
+                    <p class="help-block" ng-pattern="/^\d+$/">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.officenumber.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="extensionnumber">Extension Number:</label>
+                    <input type="text" name="extensionnumber" id="extensionnumber" class="form-control" ng-model="vm.ui.extension" ng-pattern="/^\d+$/" placeholder="XXXXXXXXXX" ng-readonly="vm.notReadable">
+                    <p class="help-block">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="UserProfileForm.extensionnumber.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="tile-footer text-right">
+                  <button type="button" ng-disabled="UserProfileForm.$invalid" ng-click="vm.update()" class="btn btn-success mb-10">Update</button>
+                </div>
+              </form>
+              <!--  </div>
+              </tab>
+            </tabset> -->
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

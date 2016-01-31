@@ -1,0 +1,205 @@
+<section autoscroll="false" style="margin-left: 243px;margin-top: 50px;">
+  <div class="page page-form-validate">
+    <!-- page header -->
+    <div class="pageheader">
+      <h2>{{vm.page.title}}
+        <!-- <span class="ng-binding"></span> -->
+      </h2>
+      <div class="page-bar">
+        <ul class="page-breadcrumb">
+          <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+          <li> <a href="javascript:;">Booking</a> </li>
+          <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.page.title}}</a> </li>
+        </ul>
+      </div>
+    </div>
+    <div class="pagecontent">
+      <!-- row -->
+      <div class="row">
+        <div class="col-md-9">
+
+          <form name="form1" class="form-horizontal" role="form" novalidate>
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong></strong>
+                </h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <!-- <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li> -->
+                </ul>
+              </div>
+              <div class="tile-body form-validation">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="col-md-4" style="margin-top: 33px">
+                        <p class="input-group">
+                          <input type="date" class="form-control" datepicker-popup ng-model="vm.viewbooking.startdate" is-open="startdateopened" max-date="'2015-11-22'" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="startdateopen($event)"><i class="fa fa-calendar"></i></button>
+                          </span>
+                        </p>
+                      </div>
+                      <div class="col-md-2">
+                        <timepicker time-picker ng-model="vm.viewbooking.fromtime" ng-change="vm.changed();" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></timepicker>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="col-md-4" style="margin-top: 33px">
+                        <p class="input-group">
+                          <input type="date" class="form-control" datepicker-popup ng-model="vm.viewbooking.enddate" is-open="enddateopened" max-date="'2015-11-22'" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="enddateopen($event)"><i class="fa fa-calendar"></i></button>
+                          </span>
+                        </p>
+                      </div>
+                      <div class="col-md-2">
+                        <timepicker ng-model="vm.viewbooking.totime" time-picker ng-change="vm.changed();" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></timepicker>
+
+                      </div>
+                      <div class="col-md-2" style="margin-top: 33px">
+                        <button type="button" class="btn btn-primary pull-right">Apply</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+          </form>
+          <hr>
+        </div>
+        <div class="col-md-3" style="background-color:#D8E6E6">
+          <p>Net Snacks Order</p>
+          <hr class="line-full" style="color:#3333CC">
+          <p>Himalaya : 3:30PM</p>
+          <p>Tea - 5</p>
+          <p>Coffee -5</p>
+          <hr class="line-full" style="color:#3333CC">
+          <p>Himalaya : 3:30PM</p>
+          <p>Tea - 5</p>
+          <p>Coffee -5</p>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen07">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <ul class="controls">
+                    <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a href="" dropdown-toggle="" class="dropdown-toggle settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                      <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                        <li>
+                          <a href="" tile-control-toggle="">
+                            <span class="minimize"><i class="fa fa-angle-down" name="angle-down"></i>&nbsp;&nbsp;&nbsp;Minimize</span>
+                            <span class="expand"><i class="fa fa-angle-up" name="angle-up"></i>&nbsp;&nbsp;&nbsp;Expand</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="" tile-control-refresh="" ng-click="ajaxFaker()"> <i class="fa fa-refresh" name="refresh"></i> Refresh </a>
+                        </li>
+                        <li>
+                          <a href="" tile-control-fullscreen="" ng-click="isFullscreen07 = !isFullscreen07" class=""> <i class="fa fa-expand" name="expand"></i> Fullscreen </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- <li class="remove"><a href="" tile-control-close=""><i class="fa fa-times"></i></a></li> -->
+                  </ul>
+              </div>
+              <div class="tile-widget">
+                <div class="row">
+                  <div class="col-sm-5">
+                    <select class="input-sm form-control inline w-sm" style="width:150px;">
+                      <option value="0">Action </option>
+                      <option value="2">Archive selected </option>
+                    </select>
+                    <button class="btn btn-sm btn-default">Apply</button>
+                  </div>
+                  <div class="col-sm-3"></div>
+                  <div class="col-sm-4">
+                    <div class="input-group">
+                      <input type="text" class="input-sm form-control" placeholder="Search..." ng-model="vm.searchText">
+                      <span class="input-group-btn">
+                        <button class="btn btn-sm btn-default" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tile-body p-0">
+                <div class="table-responsive">
+                  <table class="table mb-0">
+                    <thead>
+                      <tr>
+                        <th style="width:20px">
+                          <label class="checkbox checkbox-custom checkbox-custom-sm m-0">
+                            <input type="checkbox" ng-model="selectedAll" ng-click="selectAll()" class="ng-pristine ng-untouched ng-valid"><i></i> </label>
+                        </th>
+                        <th ng-repeat="col in vm.columnCollection">{{col.title}}</th>
+                        <th style="width:30px"> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="ng-scope" ng-repeat="row in vm.entity | filter : vm.searchText">
+                        <td>
+                          <label class="checkbox checkbox-custom checkbox-custom-sm m-0">
+                            <input type="checkbox" ng-model="user.selected" class="ng-pristine ng-untouched ng-valid"><i></i></label>
+                        </td>
+                        <td ng-repeat="col in vm.columnCollection">
+
+                          <a ng-click="vm.getById(row[col.id]);" href="javascript:void(0);" ng-if="col.isAction">
+                            <span>{{row[col.id]}}</span>
+                          </a>
+                          <span ng-if="!col.isAction">{{row[col.id]}}</span>
+                        </td>
+
+                        <!--  <td>
+                          <span class="check-toggler checked" ng-class="{checked: user.checked}" ng-click="user.checked = !user.checked"></span>
+                        </td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="tile-footer dvd dvd-top">
+                <div class="row">
+                  <div class="col-sm-5 hidden-xs">
+                    <select class="input-sm form-control w-sm inline" style="width:150px">
+                      <option value="0">Action</option>
+                      <option value="2">Archive selected </option>
+                    </select>
+                    <button class="btn btn-sm btn-default">Apply</button>
+                  </div>
+                  <div class="col-sm-3 text-center">
+                    <small class="text-muted">showing {{vm.maxSize}} of {{vm.count}} items</small>
+                  </div>
+                  <div class="col-sm-4 text-right">
+                    <ul class="pagination pagination-sm m-0">
+                      <li><a href="" ng-click="vm.pageChanged(1)"><i class="fa fa-chevron-left"></i></a></li>
+                      <li ng-repeat="pageNo in  vm.pagingArray"><a href="" ng-click="vm.pageChanged(pageNo)">{{pageNo}}</a></li>
+                      <!-- <li><a href="">2</a></li>
+                    <li><a href="">3</a></li> -->
+                      <li><a href="" ng-click="vm.pageChanged(vm.endPage)"><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

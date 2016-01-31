@@ -1,0 +1,80 @@
+<div class="page page-form-validate">
+  <div class="pagecontent">
+    <div class="row">
+      <div class="col-md-12">
+        <section class="tile" fullscreen="isFullscreen01">
+          <form class="form-horizontal" role="form">
+            <div class="tile-header dvd dvd-btm">
+              <h1 class="custom-font">
+                <strong>Meeting Room</strong> Details</h1>
+            </div>
+            <div class="tile-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Name :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.meetinroomDetails.name}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Type :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{ vm.meetinroomDetails.meetingRoomType}}</p>
+
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Location :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.meetinroomDetails.location}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Capacity</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.meetinroomDetails.capacity}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Description :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.meetinroomDetails.description}}</p>
+                </div>
+              </div>
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Admin</strong> Details</h1>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Name :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.managerdetails.name}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Email :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.managerdetails.email}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Contact Number :</label>
+                <div class="col-sm-5">
+                  <p class="form-control-static">{{vm.managerdetails.mobile}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="tile-footer">
+                  <!-- <button type="button" ng-click="vm.exit();" class="btn btn-warning">Cancel</button>
+                  <button type="button" ng-click="vm.save();" class="btn btn-info">Save</button> -->
+                  <button type="button" ng-click="vm.exit();" class="btn btn-warning pull-left">Cancel</button>
+                  <button type="button" ng-click="vm.exit();" class="btn btn-info" style="margin-left:500px;">Edit</button>
+                  <button type="button" ng-click="vm.save();" class="btn btn-success pull-right">Save</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

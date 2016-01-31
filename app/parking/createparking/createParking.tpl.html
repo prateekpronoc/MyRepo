@@ -1,0 +1,209 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.title}}
+          <!--  <span></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Parking</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong> Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <form name="CreateParkingForm" class="form-horizontal" role="form" novalidate>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Location
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-md-5">
+                      <input type="text" name="parkingname" class="form-control mb-10" placeholder="Location" data-ng-model="vm.ui.location" required>
+                    </div>
+                    <div class="col-md-4">
+                      <button type="button" class="btn btn-info" ng-click="vm.getLocation();">Add Location</button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">No Of Two Wheeler Slots
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-md-5">
+                      <input type="text" name="TwoWheelerSlots" class="form-control mb-10" placeholder="TwoWheelerSlots" data-ng-model="vm.ui.noOfTwoWheelerSlots" ng-pattern="/^\d+$/" required>
+                      <span class="error-form-fields pull-right" ng-show="CreateParkingForm.TwoWheelerSlots.$error.pattern ">
+                        Not valid number!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">No Of Four Wheeler Slots
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-md-5">
+                      <input type="text" name="FourWheelerSlots" class="form-control mb-10" placeholder="FourWheelerSlots" data-ng-model="vm.ui.noOfFourWheelerSlots" ng-pattern="/^\d+$/" required>
+                      <span class="error-form-fields pull-right" ng-show="CreateParkingForm.FourWheelerSlots.$error.pattern ">
+                        Not valid number!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">No Of Guest TwoWheeler Slots
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-md-5">
+                      <input type="text" name="GuestTwoWheelerSlots" class="form-control mb-10" placeholder="GuestTwoWheelerSlots" data-ng-model="vm.ui.noOfGuestTwoWheelerSlots" ng-pattern="/^\d+$/" required>
+                      <span class="error-form-fields pull-right" ng-show="CreateParkingForm.GuestTwoWheelerSlots.$error.pattern ">
+                        Not valid number!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">No Of Guest FourWheeler Slots
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-md-5">
+                      <input type="text" name="GuestFourWheelerSlots" class="form-control mb-10" placeholder="GuestFourWheelerSlots" data-ng-model="vm.ui.noOfGuestFourWheelerSlots" ng-pattern="/^\d+$/" ng-change="vm.totalSlots();" required>
+                      <span class="error-form-fields pull-right" ng-show="CreateParkingForm.GuestFourWheelerSlots.$error.pattern ">
+                        Not valid number!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Total Slots
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-md-5">
+                      <input type="text" name="Totalslots" class="form-control mb-10" placeholder="Total Slots" ng-pattern="/^\d+$/" data-ng-model="vm.ui.totalSlots" ng-disabled="vm.ui.totalSlots">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Description</label>
+                    <div class="col-sm-5">
+                      <textarea name="description" class="form-control" rows="5" placeholder="Description" ng-model="vm.ui.description"></textarea>
+                    </div>
+                  </div>
+
+
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Parking</strong> Admin</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group" ng-hide="vm.ui.checkbox">
+                      <label class="col-sm-3 control-label">Existing User</label>
+                      <div class="col-sm-5">
+                        <select name="existinguser" class="form-control mb-9" ng-model="vm.ui.managerId" ng-change="vm.getUserById(vm.ui.managerId);">
+                          <option value="">Existing User</option>
+                          <option ng-repeat="(key,val) in vm.allusers" value="{{key}}">{{val}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-9 pull-right">
+                        <input type="checkbox" ng-model="vm.ui.checkbox" ng-click="vm.addNew();">
+                        <span>Add New User</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Admin Name
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="text" name="adminname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Admin Name" data-ng-model="vm.ui.adminname" required>
+                        <span class="error-form-fields pull-right" ng-show="CreateParkingForm.adminname.$error.pattern ">
+                          Enter a valid Name!</span>
+                      </div>
+                      <div class="col-sm-3">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Mobile number
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="tel" name="mobilenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Contact number" data-ng-model="vm.ui.mobile">
+                        <span class="error-form-fields pull-right" ng-show="CreateParkingForm.mobilenumber.$error.pattern ">
+                          Not valid contact number!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Contact number
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="tel" name="phonenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Phone number" data-ng-model="vm.ui.phone">
+                        <span class="error-form-fields pull-right" ng-show="CreateParkingForm.phonenumber.$error.pattern ">
+                          Not valid contact number!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Email Id
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="email" name="email" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Email Id" data-ng-model="vm.ui.email">
+                        <span class="error-form-fields pull-right" ng-show="CreateParkingForm.email.$error.email ">
+                          Not valid email!</span>
+                      </div>
+                      <div class="col-sm-3" ng-show="vm.ui.checkbox">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Upload</strong>Image</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-3  control-label" style="padding-top:0px;">Select Image</label>
+                      <div class="col-sm-3">
+                        <button ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ngf-max-height="1000" ngf-max-size="4MB">
+                          Select Files</button>
+                      </div>
+                      <div class="col-sm-3">
+                        <button class="btn btn-sm btn-default" ng-click="vm.uploadPic(vm.ui.picFile)">upload image</button>
+                      </div>
+                      <div class="form-group col-sm-3">
+                        <img ng-src="{{vm.imageSource}}" ng-if="vm.imageSource" style="height:200px;width:200px;padding-right:10px" />
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-disabled="CreateParkingForm.$invalid" ng-click="vm.createmore = true;vm.saveParking();" class="btn btn-success mb-10" ng-show="!vm.updateMode">Save &amp; Create more</button>
+                    <button type="button" ng-disabled="CreateParkingForm.$invalid" ng-click="vm.createmore = false;vm.saveParking();" class="btn btn-primary mb-10">Save</button>
+                    <button type="button" ng-click="vm.reset()" class="btn btn-info mb-10">Reset</button>
+                    <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- page content -->

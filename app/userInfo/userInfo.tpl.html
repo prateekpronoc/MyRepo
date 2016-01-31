@@ -1,0 +1,263 @@
+<md-card>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>My Profile</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <md-card ng-show="!vm.editMode">
+    <md-card-header>
+      <!--  <md-card-avatar>
+        <img class="md-user-avatar" src="images/cal.png">
+      </md-card-avatar> -->
+      <md-card-header-text>
+        <span class="md-title">{{vm.ui.firstName}} {{vm.ui.lastName}}</span>
+        <span class="md-subhead">{{vm.ui.officialMail}}</span>
+      </md-card-header-text>
+    </md-card-header>
+    <img ng-if="{vm.imageSource}" ng-src="{{vm.imageSource}}" class="md-card-image" alt="image caption" style="width: 40%;height:30%; align:center" layout="row" layout-align="center center">
+    <!-- <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Card headline</span>
+        <span class="md-subhead">Card subheader</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-actions layout="row" layout-align="start center">
+      <md-button>Action 1</md-button>
+      <md-button>Action 2</md-button>
+      <md-card-icon-actions>
+        <md-button class="md-icon-button" aria-label="icon">
+          <md-icon md-svg-icon="icon"></md-icon>
+        </md-button>
+      </md-card-icon-actions>
+    </md-card-actions> -->
+    <md-card-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Basic Details">
+          <md-content class="md-padding">
+            <!-- <h1 class="md-display-2">Basic Details</h1> -->
+            <div layout="column" layout-padding ng-cloak>
+              <br/>
+              <md-content class="autoScroll">
+                <div layout-gt-sm="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Employee Id</label>
+                    <md-icon md-svg-src="styles/icons/ic_person_24px.svg" class="name"></md-icon>
+                    <input ng-model="vm.ui.employeeId" readonly>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>First name</label>
+
+                    <input ng-model="vm.ui.firstName" readonly>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Last Name</label>
+                    <input ng-model="vm.ui.lastName" readonly>
+                  </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Official Mail</label>
+                    <md-icon md-svg-src="styles/icons/ic_email_24px.svg" class="email" ng-readonly="vm.editMode"></md-icon>
+                    <input ng-model="vm.ui.officialMail" readonly>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Date of Birth</label>
+                    <md-icon md-svg-src="styles/icons/ic_person_24px.svg" class="name" ng-readonly="vm.editMode"></md-icon>
+                    <input ng-model="vm.ui.dob" readonly>
+                  </md-input-container>
+
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Gender</label>
+                    <input ng-model="vm.ui.gender" readonly>
+                  </md-input-container>
+                </div>
+
+              </md-content>
+            </div>
+          </md-content>
+        </md-tab>
+        <md-tab label="Personal Details">
+          <md-content class="md-padding">
+            <!-- <h1 class="md-display-2">Basic Details</h1> -->
+            <div layout="column" layout-padding ng-cloak>
+              <br/>
+              <md-content class="autoScroll">
+                <div layout-gt-sm="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Personal Email</label>
+                    <md-icon md-svg-src="styles/icons/ic_email_24px.svg" class="email"></md-icon>
+                    <input ng-model="vm.ui.personalMail" readonly>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Phone #</label>
+                    <input ng-model="vm.ui.firstName" readonly>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Emergency Contact #</label>
+                    <input ng-model="vm.ui.emergencyNo" readonly>
+                  </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Permanent Address</label>
+                    <md-icon md-svg-src="styles/icons/ic_place_24px.svg" class="email"></md-icon>
+                    <textarea ng-model="vm.ui.permAddr" columns="1" md-maxlength="150" rows="5" readonly></textarea>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Communication Address</label>
+                    <md-icon md-svg-src="styles/icons/ic_person_24px.svg" class="name"></md-icon>
+                    <textarea ng-model="vm.ui.commAddr" columns="1" md-maxlength="150" rows="5" readonly></textarea>
+                  </md-input-container>
+
+
+                </div>
+
+              </md-content>
+            </div>
+          </md-content>
+        </md-tab>
+        <!-- <md-tab label="three">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Tab Three</h1>
+            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+          </md-content>
+        </md-tab> -->
+      </md-tabs>
+      <div layout-gt-sm="row">
+        <!-- <md-input-container class="md-block" flex-gt-sm>
+          <md-button class="md-raised md-primary" ng-click="vm.next();" ng-disabled="vm.isNextDisabled">Next</md-button>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <md-button class="md-raised md-primary" ng-click="vm.editMode=false;" ng-disabled="vm.isNextDisabled">Edit</md-button>
+        </md-input-container> -->
+        <md-input-container class="md-block" flex-gt-sm>
+          <md-button class="md-raised md-primary" ng-click="vm.changeMode();">Edit</md-button>
+        </md-input-container>
+      </div>
+    </md-card-content>
+  </md-card>
+  <div ng-cloak ng-show="vm.editMode">
+    <md-content>
+      <md-tabs md-dynamic-height md-border-bottom md-selected="vm.selectedIndex">
+        <md-tab label="Basic Details">
+          <md-content class="md-padding">
+            <!-- <h1 class="md-display-2">Basic Details</h1> -->
+            <div layout="column" layout-padding ng-cloak>
+              <br/>
+              <md-content class="autoScroll">
+                <div layout-gt-sm="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Employee Id</label>
+                    <md-icon md-svg-src="styles/icons/ic_person_24px.svg" class="name"></md-icon>
+                    <input ng-model="vm.ui.employeeId">
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>First name</label>
+
+                    <input ng-model="vm.ui.firstName">
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Last Name</label>
+                    <input ng-model="vm.ui.lastName">
+                  </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Official Mail</label>
+                    <md-icon md-svg-src="styles/icons/ic_email_24px.svg" class="email" ng-readonly="vm.editMode"></md-icon>
+                    <input ng-model="vm.ui.officialMail">
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Date of Birth</label>
+                    <md-icon md-svg-src="styles/icons/ic_person_24px.svg" class="name" ng-readonly="vm.editMode"></md-icon>
+                    <input ng-model="vm.ui.dob">
+                  </md-input-container>
+
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Gender</label>
+                    <input ng-model="vm.ui.gender">
+                  </md-input-container>
+                </div>
+
+              </md-content>
+            </div>
+          </md-content>
+        </md-tab>
+        <md-tab label="Personal Details">
+          <md-content class="md-padding">
+            <!-- <h1 class="md-display-2">Basic Details</h1> -->
+            <div layout="column" layout-padding ng-cloak>
+              <br/>
+              <md-content class="autoScroll">
+                <div layout-gt-sm="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Personal Email</label>
+                    <md-icon md-svg-src="styles/icons/ic_email_24px.svg" class="email"></md-icon>
+                    <input ng-model="vm.ui.personalMail">
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Phone #</label>
+                    <input ng-model="vm.ui.firstName">
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Emergency Contact #</label>
+                    <input ng-model="vm.ui.emergencyNo">
+                  </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Permanent Address</label>
+                    <md-icon md-svg-src="styles/icons/ic_place_24px.svg" class="email"></md-icon>
+                    <textarea ng-model="vm.ui.permAddr" columns="1" md-maxlength="150" rows="5"></textarea>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Communication Address</label>
+                    <md-icon md-svg-src="styles/icons/ic_person_24px.svg" class="name"></md-icon>
+                    <textarea ng-model="vm.ui.commAddr" columns="1" md-maxlength="150" rows="5"></textarea>
+                  </md-input-container>
+
+
+                </div>
+
+              </md-content>
+            </div>
+          </md-content>
+        </md-tab>
+        <md-tab label="Final">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Agreement</h1>
+            <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+            <p>
+
+              <!-- <input type="file" file-model="vm.uploadFile" />{{vm.uploadFile}} -->
+
+
+              <!-- <img ngf-thumbnail="vm.picFile" class="thumb"> -->
+            </p>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <md-button class="md-raised md-primary" ng-click="vm.next();" ng-disabled="vm.isNextDisabled">Next</md-button>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <md-button class="md-raised md-primary" ng-click="vm.saveData();">Save</md-button>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <md-button class="md-raised md-primary" ng-click="vm.previous();" ng-disabled="vm.isNextDisabled">Previous</md-button>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+          <button class="md-icon-button md-button md-ink-ripple" type="button" ng-click="vm.editMode = !vm.editMode" ng-transclude="" aria-label="Share">
+            <md-icon md-svg-icon="styles/icons/ic_rotate_90_degrees_ccw_24px.svg" aria-hidden="true">
+
+            </md-icon>
+            <div class="md-ripple-container"></div>
+          </button>
+        </md-input-container>
+      </div>
+    </md-content>
+  </div>
+</md-card>

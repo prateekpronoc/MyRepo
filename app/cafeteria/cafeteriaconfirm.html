@@ -1,0 +1,72 @@
+<div class="modal-header">
+  <h3 class="modal-title">Details you had entered</h3>
+</div>
+<div class="modal-body">
+  <section class="tile" fullscreen="isFullscreen01">
+    <form class="form-horizontal" role="form">
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font">
+          <strong>Cafeteria</strong> Details</h1>
+      </div>
+      <div class="tile-body">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Name :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.responseDetails.name}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Description :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.responseDetails.description}}</p>
+          </div>
+        </div>
+        <div class="form-group" ng-if="vm.responseDetails.premiseId">
+          <label class="col-sm-3 control-label">Premise Name :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.responsePremiseDetails.premiseName}}</p>
+          </div>
+        </div>
+        <div class="form-group" ng-if="vm.responseDetails.buildingId">
+          <label class="col-sm-3 control-label">Building Name :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.responseBuildingDetails.buildingName}}</p>
+          </div>
+        </div>
+        <div class="form-group" ng-if="vm.responseDetails.floorId">
+          <label class="col-sm-3 control-label">Floor Name :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.responseFloorDetails.floorname}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Contact Person :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.responseDetails.contactName}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Contact Number :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.responseDetails.contactNo}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Email :</label>
+          <div class="col-sm-5">
+            <p class="form-control-static">{{vm.responseDetails.contactEmail}}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="tile-footer">
+            <!-- <button type="button" ng-click="vm.exit();" class="btn btn-warning">Cancel</button>
+            <button type="button" ng-click="vm.save();" class="btn btn-info">Save</button> -->
+            <button type="button" ng-click="vm.exit();" class="btn btn-warning pull-left">Cancel</button>
+            <button type="button" ng-click="vm.exit();" class="btn btn-info" style="margin-left:500px;">Edit</button>
+            <button type="button" ng-click="vm.save();" class="btn btn-success pull-right">Save</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>

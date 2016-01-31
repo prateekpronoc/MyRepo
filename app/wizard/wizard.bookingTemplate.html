@@ -1,0 +1,163 @@
+<md-content md-scroll-y="" flex="" layout-padding="" class="layout-padding  flex">
+  <div class="doc-content">
+    <md-content>
+      <p>
+        <em>New to Angular? Before getting into Angular Material, it might be helpful to:</em>
+      </p>
+
+
+      <p></p>
+      <h2>How do I start with Angular Material?</h2>
+      <ul style="margin-bottom: 2em;">
+        <li><a href="https://codepen.io/collection/AxKKgY/" target="_blank" title="Link opens in a new window">Visit the Angular Material CodePen Community </a></li>
+
+
+
+
+      </ul>
+      <p>
+        <md-divider></md-divider>
+        <md-subheader class="md-no-sticky">Secondary Buttons</md-subheader>
+        <md-list-item class="secondary-button-padding">
+          <p>Clicking the button to the right will fire the secondary action</p>
+          <md-button class="md-secondary" ng-click="doSecondaryAction($event)">More Info</md-button>
+        </md-list-item>
+        <md-list-item class="secondary-button-padding" ng-click="doPrimaryAction($event)">
+          <p>Click anywhere to fire the primary action, or the button to fire the secondary</p>
+          <md-button class="md-secondary" ng-click="doSecondaryAction($event)">More Info</md-button>
+        </md-list-item>
+        <md-divider></md-divider>
+      </p>
+      <!-- <p>
+        <section layout="row" ng-repeat="val in vm.slots" layout-sm="column" layout-align="start" layout-wrap style="background: #f7f7f7;
+    border-radius: 3px;
+    margin: 1em;
+    position: relative !important;
+    padding-bottom: 10px;">
+          <md-button md-no-ink class="md-primary">
+            <input type="checkbox" ng-model="vm.isSelected" ng-true-value="{{val.from}}" ng-false-value=""> </md-button>
+          <md-button md-no-ink class="md-primary">From {{val.from}} : {{val.frommin}} </md-button>
+          <md-button ng-disabled="true" class="md-primary">To {{val.to}} : {{val.tomin}}</md-button>
+
+        </section>
+      </p> -->
+
+    </md-content>
+  </div>
+  <div layout="column" layout-gt-xs="row">
+    <md-card flex flex-gt-xs="30">
+      <!--  <h3>Avialable Slots</h3> -->
+      <md-card-content>
+        <section class="demo-container md-whiteframe-z1" style="">
+          <div flex="" layout="column" style="z-index:1" class="layout-column flex">
+
+            <div class="md-padding" ng-cloak>
+              <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="start" ng-repeat="val in vm.slots">
+
+                <md-button class="md-primary md-raised" flex="50" ng-click="vm.showListBottomSheet($event)">From {{val.from}} : {{val.frommin}} To {{val.to}} : {{val.tomin}}</md-button>
+
+              </div>
+              <div ng-if="alert">
+                <br/>
+                <b layout="row" layout-align="center center" class="md-padding">
+      {{alert}}
+    </b>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </md-card-content>
+    </md-card>
+    <!-- <md-card flex>
+      <h2>Card title #2</h2>
+      <md-card-content>
+        <p>Some content</p>
+      </md-card-content>
+    </md-card> -->
+  </div>
+</md-content>
+
+<!-- <md-content class="md-padding">
+  
+</md-content> -->
+
+
+
+<!-- <section class="tile" fullscreen="isFullscreen01">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font">
+          <strong>Slot</strong>Details</h1>
+      </div>
+      <div class="tile-body">
+
+        <form name="slotDetailsForm" class="form-horizontal" role="form" novalidate>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div style="font-family: monospace; font-size: 14px; margin-bottom: 30px;">
+
+                  </div>
+                  Slot Selected:{{vm.slotToSelected}}
+                  <scheduler class="scheduler" slots="vm.slots" columns="vm.labels">
+                  </scheduler>
+                </div>
+              </div>
+              <div class="col-sm-12" style="margin-top:10px;">
+                <label class="col-sm-2" style="padding-left:86px;padding-top:6px;">Subject Line:
+                  <span style="color:red;">*</span>
+                </label>
+                <div class="col-md-9 pull-left">
+                  <input type="text" name="subject" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Subject Line" ng-model="vm.slotdetails.subject" required>
+                  <span style="color:red;" class="error-form-fields pull-right" ng-show="slotDetailsForm.subject.$error.pattern ">
+                    Enter a valid Subject Line!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font">
+          <strong>Available Infrastructure</strong>Details</h1>
+      </div>
+      <div class="tile-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                Available Infrastructure
+              </div>
+              <div class="panel-body">
+                <div ng-repeat="entity in vm.infraDetails">
+                  <div class="col-sm-6">{{entity.name}}
+                  </div>
+                  <div class="col-sm-6" ng-if="entity.isSelected">&nbsp;<i class="fa fa-check fa-2x" style="color:green" ng-if="entity.isSelected"></i>
+                  </div>
+                  <div class="col-sm-6" ng-if="!entity.isSelected">&nbsp;<i class="fa fa-times fa-2x" style="color:red" ng-if="!entity.isSelected"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tile-footer dvd dvd-top">
+        <div class="row">
+          <div class="col-md-10 hidden-xs">
+            <button type="button" ng-click="vm.previous('0')" class="btn btn-primary pull-left">Back</button>
+          </div>
+          <div class="col-md-2">
+            <button type="button" ng-click="vm.bookMeetingRoom()" class="btn btn-primary pull-right" ng-disabled="slotDetailsForm.$invalid">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+​
+ -->

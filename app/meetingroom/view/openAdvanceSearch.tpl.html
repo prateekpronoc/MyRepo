@@ -1,0 +1,126 @@
+<div class="page page-form-validate">
+  <div class="pagecontent">
+    <!-- row -->
+    <div class="row">
+      <!-- col -->
+      <div class="col-md-12">
+        <!-- tile -->
+        <section class="tile" fullscreen="isFullscreen01">
+          <!-- tile header -->
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font">
+              <strong>Advanced</strong>Search</h1>
+            <ul class="controls">
+              <li>
+                <a href="" tile-control-refresh="" ng-click="vm.cancel()"> <i class="fa fa-times" name="close"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="tile-body">
+            <form class="form-horizontal" name="AddLocationForm" role="form">
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="message">Premises
+                </label>
+                <div class="col-sm-5">
+                  <select name="Premises" class="form-control mb-9" data-ng-model="vm.ui.premisesId" ng-change="vm.fetchBuildings();" ng-options="entity.id as entity.name for entity in  vm.premises">
+                    <option value="">Select Premises</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Building
+                </label>
+                <div class="col-sm-5">
+                  <select name="buildings" class="form-control mb-9" ng-disabled="!vm.ui.premisesId" data-ng-model="vm.ui.buildingId" ng-change="vm.fetchFloor();" ng-options=" entity.id as entity.name for entity in vm.buildings">
+                    <option value="">Select Building</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Floor</label>
+                <div class="col-sm-5">
+                  <select name="floors" class="form-control mb-9" ng-disabled="!vm.ui.buildingId" data-ng-model="vm.ui.floorId" ng-change="vm.fetchFloorPart();" ng-options="entity.id as entity.name for entity in vm.floors">
+                    <option value="">Select Floor</option>
+                  </select>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Floor Parts</label>
+                <div class="col-sm-5">
+                  <select name="floorpart" class="form-control mb-9" ng-disabled="!vm.ui.floorId" data-ng-model="vm.ui.floorPartId" ng-options="entity.id as entity.name for entity in vm.floorpart">
+                    <option value="">Select Floor Part</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="message">Meeting Room Name
+                </label>
+                <div class="col-sm-5">
+                  <select name="Meeting Room Name" class="form-control mb-9" data-ng-model="vm.ui.id" ng-options="entity.id as entity.name for entity in  vm.entity">
+                    <option value="">Select Meeting Room Name</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Capacity
+                </label>
+                <div class="col-sm-5">
+                  <select name="Capacity" class="form-control mb-9" data-ng-model="vm.ui.capacity">
+                    <option value="">Seaters</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Type
+                </label>
+                <div class="col-sm-5">
+                  <select name="meetingRoomType" class="form-control mb-9" data-ng-model="vm.ui.typeId" ng-options=" entity.id as entity.value for entity in vm.mrType">
+                    <option value="">Type</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Status
+                </label>
+                <div class="col-sm-5">
+                  <select name="Status" class="form-control mb-9" data-ng-model="vm.ui.status">
+                    <option value="">Status</option>
+                    <option value="0">Available</option>
+                    <option value="1">Not Available</option>
+                  </select>
+                </div>
+              </div>
+
+              <hr class="line-full">
+              <div class="form-group">
+                <div class="pull-right">
+                  <button type="button" ng-click="vm.reset()" class="btn btn-default btn-sm">Reset</button>
+                  <button type="button" ng-disabled="vm.ui.premisesId&&!vm.ui.buildingId" ng-click="vm.searchData();" class="btn btn-success btn-sm">Search</button>
+                  <button type="button" ng-click="vm.cancel()" class="btn btn-default btn-sm">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.title}}
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" class="ng-binding" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Catalogue</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen01">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong> Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a href="" dropdown-toggle="" class="dropdown-toggle settings" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href="" tile-control-toggle="">
+                          <span class="minimize"><i class="fa fa-angle-down" name="angle-down"></i>&nbsp;&nbsp;&nbsp;Minimize</span>
+                          <span class="expand"><i class="fa fa-angle-up" name="angle-up"></i>&nbsp;&nbsp;&nbsp;Expand</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-refresh="" ng-click="ajaxFaker()"> <i class="fa fa-refresh" name="refresh"></i> Refresh </a>
+                      </li>
+                      <li>
+                        <a href="" tile-control-fullscreen="" ng-click="isFullscreen01 = !isFullscreen01"> <i class="fa fa-expand" name="expand"></i> Fullscreen </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <form class="form-horizontal" name="CreateCatalogValues" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Select Entity
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" placeholder="MasterCatalog" ng-model="vm.ui.selectentity">
+                        <option value="">Select Entity</option>
+                        <option value="0">Master Catalog</option>
+                        <option value="1">Catalog Values</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="catalogname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Name" ng-model="vm.ui.name">
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="CreateCatalogValues.catalogname.$error.pattern ">
+                        Enter a valid Name!</span>
+
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="message">Description</label>
+                    <div class="col-sm-5">
+                      <textarea class="form-control" rows="5" name="message" id="message" placeholder="Description" data-ng-model="vm.ui.description"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Master Catalog Name
+                      <span style="color:red;" ng-hide="vm.ui.isMaster">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" placeholder="MasterCatalog" ng-model="vm.ui.mcId" ng-change="vm.fetchMasterAndParentValue()">
+                        <option value="">Master Catalog</option>
+                        <option ng-repeat="val in vm.mcValues" value="{{val.id}}">{{val.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group" ng-hide="vm.ui.selectentity==='0'">
+                    <label class="col-sm-3 control-label">Parent Catalog Name
+                      <span style="color:red;" ng-hide="vm.ui.isMaster">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" placeholder="MasterCatalog" ng-model="vm.ui.pmcId" ng-change="vm.fetchParentCatalogValue()">
+                        <option value="">Master Catalog</option>
+                        <option ng-repeat="(key,val) in vm.parentMCValues" value="{{key}}">{{val}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group" ng-hide="vm.ui.selectentity==='0'">
+                  <label class="col-sm-3 control-label"> Catalog Values
+                    <span style="color:red;" ng-hide="vm.ui.isMaster">*</span>
+                  </label>
+                  <div class="col-sm-5">
+                    <select class="form-control mb-9" placeholder="MasterCatalog" ng-model="vm.ui.cvId">
+                      <option value="">Catalog Values</option>
+                      <option ng-repeat="val in vm.catalogValues" value="{{val.id}}">{{val.value}}</option>
+                    </select>
+                  </div>
+                </div> -->
+                  <div class="form-group" ng-hide="vm.ui.selectentity==='0'">
+                    <label class="col-sm-3 control-label">Parent Catalog Values
+                      <span style="color:red;" ng-hide="vm.ui.isMaster">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select class="form-control mb-9" placeholder="MasterCatalog" ng-model="vm.ui.pcvId">
+                        <option value="">Catalog Values</option>
+                        <option ng-repeat="val in vm.catalogValues" value="{{val.id}}">{{val.value}}</option>
+                        <!-- <option ng-repeat="(key,val) in vm.pcValue" value="{{key}}">{{val}}</option> -->
+                      </select>
+
+                    </div>
+                  </div>
+                  <div class="tile-body">
+                    <hr class="line-full">
+                    <div class="form-group">
+                      <div class="tile-footer text-right">
+                        <button ng-disabled="CreateCatalogValues.$invalid" type="button" ng-click="vm.createmore = true;vm.createCatalogObject();" class="btn btn-success" ng-show="!vm.updateMode">Save &amp; Create more</button>
+                        <button ng-hide="vm.roomid" type="button" ng-click="vm.createmore = false;vm.createCatalogObject();" class="btn btn-primary" ng-disabled="CreateCatalogValues.$invalid">Save</button>
+
+                        <button type="button" ng-click="vm.reset();" class="btn btn-info">Reset</button>
+                        <button type="button" ng-click="vm.cancel();" class="btn btn-warning">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

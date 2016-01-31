@@ -1,0 +1,111 @@
+<md-card>
+  <md-card-header>
+    <!--  <md-card-avatar>
+        <img class="md-user-avatar" src="images/cal.png">
+      </md-card-avatar> -->
+    <md-card-header-text>
+      <span class="md-title">{{vm.ui.id}} - {{vm.ui.name}} </span>
+      <span class="md-subhead">{{vm.ui.type}}</span>
+    </md-card-header-text>
+  </md-card-header>
+  <md-card-title-media>
+   <!--  <div md-card-image >
+      <div class="md-media-sm card-media"> -->
+        <carousel interval="vm.myInterval">
+          <slide ng-repeat="slide in vm.slides" active="slide.active">
+            <img ng-src="{{slide.image}}">
+            <div class="carousel-caption">
+              <h4>Slide {{$index+1}}</h4>
+            </div>
+          </slide>
+        </carousel>
+   <!--    </div>
+    </div> -->
+
+  </md-card-title-media>
+  <md-card-content>
+
+    <p>
+      <span class="md-subhead">Location : {{ vm.ui.location}}</span>
+    </p>
+    <p>
+      <span class="md-subhead">Descriptions : {{ vm.ui.description}}</span>
+    </p>
+
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="one">
+        <md-content class="md-padding">
+
+          <div layout="row" layout="row" layout-xs="column">
+            <div flex>
+              <md-whiteframe class="md-whiteframe-1dp" layout>
+
+                <div layout-gt-sm="column">
+                  <div>
+                    <span>From Date </span>
+                  </div>
+                  <md-datepicker ng-model="vm.search.from" md-placeholder="Enter date">
+                  </md-datepicker>
+
+                  <md-input-container class="md-block" flex-gt-sm style="margin-left:45px;">
+                    <label>Enter Time</label>
+                    <input name="social" ng-model="vm.search.fromTime" type="number" />
+
+                  </md-input-container>
+                </div>
+              </md-whiteframe>
+            </div>
+            <div flex>
+              <md-whiteframe class="md-whiteframe-1dp" layout>
+                <div layout-gt-sm="column">
+                  <div>
+                    <span>To Date </span>
+                  </div>
+                  <md-datepicker ng-model="vm.search.to" md-placeholder="Enter date">
+                  </md-datepicker>
+
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Enter Time</label>
+                    <input name="social" ng-model="vm.search.toTime" type="number" />
+
+                  </md-input-container>
+                </div>
+              </md-whiteframe>
+            </div>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="two">
+        <md-content class="md-padding">
+
+          <div layout-gt-xs="column">
+
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Subject</label>
+              <input ng-model="user.company">
+            </md-input-container>
+
+            <md-select multiple placeholder="Selecte Invitees" ng-model="vm.user" md-on-open="vm.fetchAllUsers()" style="min-width: 200px;">
+              <md-option ng-value="user" ng-repeat="user in vm.users">{{user.email}}</md-option>
+            </md-select>
+
+
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="three">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab Three</h1>
+          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+
+
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="start">
+    <md-button ng-click="vm.search()">Action 1</md-button>
+    <md-button>Action 2</md-button>
+  </md-card-actions>
+</md-card>
+</md-card>

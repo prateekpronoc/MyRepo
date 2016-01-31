@@ -1,0 +1,78 @@
+<div class="page page-form-validate">
+  <div class="pagecontent">
+    <!-- row -->
+    <div class="row">
+      <!-- col -->
+      <div class="col-md-12">
+        <!-- tile -->
+        <section class="tile" fullscreen="isFullscreen01">
+          <!-- tile header -->
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font">
+              <strong>Advanced</strong>Search</h1>
+            <ul class="controls">
+              <li>
+                <a href="" tile-control-refresh="" ng-click="vm.cancel()"> <i class="fa fa-times" name="close"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="tile-body">
+            <form class="form-horizontal" name="userFilterForm" role="form">
+              <div class="form-group" ng-if="vm.session.hasRole('SuperAdmin')">
+                <label class="col-sm-3 control-label" for="message">Premises
+                </label>
+                <div class="col-sm-5">
+                  <select name="Premises" class="form-control mb-9" data-ng-model="vm.ui.premisesId" ng-change="vm.fetchBuildings();vm.getAllCompanies();" ng-options="entity.id as entity.name for entity in  vm.premises">
+                    <option value="">Select Premises</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" ng-if="vm.session.hasRole('SuperAdmin')">
+                <label class="col-sm-3 control-label">Building
+                </label>
+                <div class="col-sm-5">
+                  <select name="buildings" class="form-control mb-9" ng-disabled="!vm.ui.premisesId" data-ng-model="vm.ui.buildingId" ng-change="vm.getAllCompanies();" ng-options=" entity.id as entity.name for entity in vm.buildings">
+                    <option value="">Select Building</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group" ng-if="vm.session.hasRole('SuperAdmin')">
+                <label class="col-sm-3 control-label">Tenants
+                </label>
+                <div class="col-sm-5">
+                  <select name="Tenants" class="form-control mb-9" data-ng-model="vm.ui.company" ng-options=" entity.id as entity.name for entity in vm.companyDetails">
+                    <option value="">Select Tenant</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Employee Id
+                </label>
+                <div class="col-sm-5">
+                  <input type="text" name="empId" id="empId" class="form-control" ng-model="vm.ui.employeeId" ng-pattern="/^[a-zA-Z0-9]*$/">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Employee Name
+                </label>
+                <div class="col-sm-5">
+                  <select name="employeename" class="form-control mb-9" data-ng-model="vm.ui.firstName" ng-options=" entity.id as entity.firstName for entity in  vm.usersDetails">
+                    <option value="">Select Employee Name</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="pull-right">
+                  <button type="button" ng-click="vm.reset()" class="btn btn-default btn-sm">Reset</button>
+                  <button type="button" ng-disabled="userFilterForm.$invalid" ng-click="vm.searchData();" class="btn btn-success btn-sm">Search</button>
+                  <button type="button" ng-click="vm.cancel()" class="btn btn-default btn-sm">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<section class="tile" fullscreen="isFullscreen01">
+  <div class="pagecontent">
+    <div class="add-nav">
+      <div class="nav-heading">
+        <h3>Booking Details :
+          <strong class="text-greensea">{{vm.orderDetails.bookingInfo.id}}</strong>
+        </h3>
+      </div>
+
+      <div role="tabpanel">
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="details">
+            <div class="row">
+              <div class="col-md-12">
+                <section class="tile tile-simple">
+
+                  <!-- tile body -->
+                  <div class="tile-body p-0">
+
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped">
+                        <thead>
+                          <tr>
+                            <th>Gym ID</th>
+                            <th>Gym Name</th>
+                            <th>Booked By</th>
+                            <th>Status</th>
+                            <th>Booking From - To</th>
+                            <th>Edit</th>
+                            <th>Cancel</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><a href="javascript:;">{{vm.orderDetails.bookingInfo.resourceId}}</a></td>
+                            <td>{{vm.orderDetails.gymInfo.name}}</td>
+                            <td>{{vm.ui.userInfo[vm.orderDetails.bookingInfo.bookedForWhom]}}</td>
+                            <td>
+                              <span class="label label-success">Complete</span>
+                            </td>
+                            <td>
+                              {{vm.orderDetails.bookingInfo.from | date:'medium'}} - {{vm.orderDetails.bookingInfo.to | date:'medium'}}
+                            </td>
+                            <td><a href="javascript:;" ui-sref="wams.common" class="btn btn-ef btn-ef-1 btn-ef-1-default btn-ef-1a btn-rounded-20 mr-5" data-toggle="tooltip" title="" data-original-title="Back"><i class="fa fa-pencil"></i></a>
+                            </td>
+                            <td>
+                              <a href="javascript:;" ui-sref="wams.common" class="btn btn-ef btn-ef-1 btn-ef-1-default btn-ef-1a btn-rounded-20 mr-5" data-toggle="tooltip" title="" data-original-title="Back"><i class="fa fa-times"></i></a>
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                  <!-- /tile body -->
+
+                </section>
+                <section class="tile time-simple">
+
+                  <div class="tile-body">
+
+                    <div class="row">
+                      <div class="col-md-9">
+                        <p class="text-default lt">Created: {{vm.orderDetails.bookingInfo.createdOn | date : format : timezone}}</p>
+                        <p class="text-uppercase text-strong mt-40 mb-0 custom-font">Status</p>
+                        <h3 class="text-uppercase text-success mt-0 mb-20">Completed</h3>
+                      </div>
+                    </div>
+                    <div class="row b-t pt-20">
+                      <div class="col-md-3 b-r">
+                        <p class="text-uppercase text-strong mb-10 custom-font">Order Details</p>
+                        <ul class="list-unstyled text-default lt mb-20">
+                          <li>
+                            <strong>ID:</strong> <a href="javascript:;">{{vm.orderDetails.bookingInfo.id}}</a></li>
+
+                          <li>{{vm.orderDetails.gymInfo.name}}</li>
+                          <li>
+                            {{vm.orderDetails.MRInfo.capacity}}</li>
+                        </ul>
+                      </div>
+                      <div class="col-md-6 b-r">
+                        <p class="text-uppercase text-strong mb-10 custom-font">
+                          Address
+                        </p>
+                        <div class="col-md-6">
+                          <ul class="list-unstyled text-default lt mb-20">
+                            <li>{{vm.orderDetails.gymInfo.name}}</li>
+                            <li>{{vm.orderDetails.gymInfo.location}}</li>
+
+                          </ul>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

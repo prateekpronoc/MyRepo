@@ -1,0 +1,240 @@
+<div class="view-container" ui-view-container>
+  <section id="content" autoscroll="false" class="ng-scope">
+    <div class="page page-form-validate">
+      <!-- page header -->
+      <div class="pageheader">
+        <h2>{{vm.title}}
+          <!--  <span></span> -->
+        </h2>
+        <div class="page-bar">
+          <ul class="page-breadcrumb">
+            <li> <a ui-sref="app.dashboard" href="#/app/dashboard"><i class="fa fa-home"></i> Wams</a> </li>
+            <li> <a href="javascript:;">Gym</a> </li>
+            <li> <a ui-sref="app.tables.bootstrap" class="ng-binding" href="#/app/tables/bootstrap">{{vm.title}}</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="pagecontent">
+        <div class="row">
+          <div class="col-md-12">
+            <section class="tile" fullscreen="isFullscreen03">
+              <div class="tile-header dvd dvd-btm">
+                <h1 class="custom-font">
+                  <strong>Basic</strong> Details</h1>
+                <ul class="controls">
+                  <li class="dropdown" dropdown on-toggle="vm.toggled(open);">
+                    <a href class="dropdown-toggle settings" dropdown-toggle>
+                      <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                      <li>
+                        <a href tile-control-refresh ng-click="vm.ajaxFaker()">
+                          <fa name="refresh"></fa> Refresh </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="tile-body">
+                <form name="CreateGymForm" class="form-horizontal" role="form" novalidate>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Name
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <input type="text" name="name" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" class="form-control mb-10" placeholder="Name" ng-model="vm.ui.name" required>
+                      <span style="color:red;" class="error-form-fields pull-right" ng-show="CreateGymForm.name.$error.pattern ">
+                        Enter a valid Name!</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Location
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-md-5">
+                      <input type="text" name="meetingroomname" class="form-control mb-10" placeholder="Location" data-ng-model="vm.ui.location" required>
+                    </div>
+                    <div class="col-md-4">
+                      <button type="button" class="btn btn-info" ng-click="vm.getLocation();">Add Location</button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Capacity
+                      <span style="color:red;">*</span>
+                    </label>
+                    <div class="col-sm-5">
+                      <select name="capacity" class="form-control mb-9" data-ng-model="vm.ui.capacity" required>
+                        <option value="">Capacity</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Description</label>
+                    <div class="col-sm-5">
+                      <textarea name="description" class="form-control" rows="5" placeholder="Description" ng-model="vm.ui.description"></textarea>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Agreement</strong> Details</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Agreement Validity Date</label>
+                      <div class="col-sm-8">
+                        <div class="row">
+                          <div class="col-sm-5">
+                            <p class="input-group">
+                              <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="vm.ui.startdate" is-open="vm.startdateopened" datepicker-options="vm.dateOptions" close-text="Close" />
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-sm btn-default" ng-click="vm.startdateopen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                              </span>
+                            </p>
+                          </div>
+                          <div class="col-sm-2">
+                            <label class="col-sm-9 control-label">TO</label>
+                          </div>
+                          <div class="col-sm-5">
+                            <p class="input-group">
+                              <input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="vm.ui.enddate" is-open="vm.enddateopened" datepicker-options="vm.dateOptions" close-text="Close" />
+                              <span class="input-group-btn">
+                                <button type="button" class="btn btn-sm btn-default" ng-click="vm.enddateopen($event)"><i class="fa fa-calendar"></i></button>
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3  control-label" style="padding-top:0px;">Upload File</label>
+                      <div class="col-sm-3">
+                        <input type="file" ngf-select ng-model="vm.ui.File" name="file" id="fileInput" accept="*" ngf-max-size="2MB">
+                      </div>
+                      <div class="col-sm-3">
+                        <button class="btn btn-sm btn-default" ng-click="vm.uploadPic(vm.ui.File)">Upload File</button>
+                      </div>
+                      <span ng-show="picFile.result">Upload Successful</span>
+                      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">File Details</label>
+                      <div class="col-sm-5">
+                        <textarea name="filedetails" class="form-control" rows="3" placeholder="File Details" ng-model="vm.ui.filedetails"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Gym</strong> Admin</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group" ng-hide="vm.ui.checkbox">
+                      <label class="col-sm-3 control-label">Existing User</label>
+                      <div class="col-sm-5">
+                        <select name="existinguser" class="form-control mb-9" ng-model="vm.ui.managerId" ng-change="vm.getUserById(vm.ui.managerId);">
+                          <option value="">Existing User</option>
+                          <option ng-repeat="(key,val) in vm.allusers" value="{{key}}">{{val}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-9 pull-right">
+                        <input type="checkbox" ng-model="vm.ui.checkbox" ng-click="vm.addNew();">
+                        <span>Add New User</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Admin Name
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="text" name="adminname" ng-pattern="/^[a-zA-Z][a-zA-Z0-9\-\_\x20]*$/" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Admin Name" data-ng-model="vm.ui.adminname" required>
+                        <span class="error-form-fields pull-right" ng-show="CreateGymForm.adminname.$error.pattern ">
+                          Enter a valid Name!</span>
+                      </div>
+                      <div class="col-sm-3">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Mobile number
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="tel" name="mobilenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="10" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Contact number" data-ng-model="vm.ui.mobile">
+                        <span class="error-form-fields pull-right" ng-show="CreateGymForm.mobilenumber.$error.pattern ">
+                          Not valid contact number!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Contact number
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="tel" name="phonenumber" ng-pattern="/^\d+$/" ng-minlength="10" ng-maxlength="15" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Phone number" data-ng-model="vm.ui.phone">
+                        <span class="error-form-fields pull-right" ng-show="CreateGymForm.phonenumber.$error.pattern ">
+                          Not valid contact number!</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label">Email Id
+                        <span style="color:red;">*</span>
+                      </label>
+                      <div class="col-sm-5">
+                        <input type="email" name="email" ng-readonly="vm.notReadable" class="form-control mb-10" placeholder="Email Id" data-ng-model="vm.ui.email">
+                        <span class="error-form-fields pull-right" ng-show="CreateGymForm.email.$error.email ">
+                          Not valid email!</span>
+                      </div>
+                      <div class="col-sm-3" ng-show="vm.ui.checkbox">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">
+                      <strong>Upload</strong>Image</h1>
+                  </div>
+                  <div class="tile-body">
+                    <div class="form-group">
+                      <label class="col-sm-3  control-label" style="padding-top:0px;">Select Image</label>
+                      <div class="col-sm-3">
+                        <button ngf-select="uploadFiles($files, $invalidFiles)" multiple accept="image/*" ngf-max-height="1000" ngf-max-size="4MB">
+                          Select Files</button>
+                      </div>
+                      <div class="col-sm-3">
+                        <button class="btn btn-sm btn-default" ng-click="vm.uploadPic(vm.ui.picFile)">upload image</button>
+                      </div>
+                      <div class="form-group col-sm-3">
+                        <img ng-src="{{vm.imageSource}}" ng-if="vm.imageSource" style="height:200px;width:200px;padding-right:10px" />
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="line-full">
+                  <div class="tile-footer text-right">
+                    <button type="button" ng-disabled="CreateGymForm.$invalid" ng-click="vm.createmore = true;vm.saveGym();" class="btn btn-success mb-10" ng-show="!vm.updateMode">Save &amp; Create more</button>
+                    <button type="button" ng-disabled="CreateGymForm.$invalid" ng-click="vm.createmore = false;vm.saveGym();" class="btn btn-primary mb-10">Save</button>
+                    <button type="button" ng-click="vm.reset()" class="btn btn-info mb-10">Reset</button>
+                    <button type="button" ng-click="vm.cancel()" class="btn btn-warning mb-10">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- page content -->
